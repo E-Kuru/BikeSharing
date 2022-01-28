@@ -1,7 +1,7 @@
 const express = require("express")
 const app = express()
 const User = require("../models/User")
-const { verifyUser, verifySession } = require("../middleware/CheckUser")
+// const { verifyUser, verifySession } = require("../middleware/CheckUser")
 
 // Get tous les users 
 
@@ -33,7 +33,7 @@ app.get('/:id', async (req,res) => {
 
 // Permet de créer un user 
 
-app.post('/newUser', verifyUser, async (req,res) => {
+app.post('/newUser', async (req,res) => {
 
     try {
 

@@ -6,9 +6,11 @@ const passport = require("./config/passport")
 const { dbConnect } = require("./config/db.js")
 
 const users = require('./routes/users')
-const coment = require('./routes/coments')
-const tweet = require('./routes/tweets')
 const auth = require('./routes/auth')
+const annonce = require('./routes/annonce')
+const message = require('./routes/message')
+const conversation = require('./routes/conversation')
+const location = require('./routes/location')
 
 dbConnect()
 
@@ -29,9 +31,11 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 app.use('/auth', auth)
-app.use('/tweet', tweet)
 app.use('/users', users)
-app.use('/coments', coment)
+app.use('/annonce', annonce)
+app.use('/message', message)
+app.use('/conversation', conversation)
+app.use('/location', location)
 
 const port = 5000
 app.listen(port, () => {
