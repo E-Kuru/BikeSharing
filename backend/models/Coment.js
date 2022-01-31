@@ -7,11 +7,13 @@ const comentSchema = new Schema ({
     },
     user: {
         type: Schema.Types.ObjectId,
-        ref: "User"
+        ref: "User",
+        required : true
     },
     annonce: {
         type: Schema.Types.ObjectId,
-        ref: "Annonce"
+        ref: "Annonce",
+        required : true
     },
 },{
     timestamps: true
