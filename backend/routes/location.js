@@ -5,6 +5,8 @@ const Annonce = require("../models/Annonce")
 const User = require("../models/User")
 const { verifyUser, verifySession } = require("../middlewares/checkUser")
 
+// Récupérer toutes les locations
+
 app.get('/', async (req,res) => {
     
     try{
@@ -16,6 +18,19 @@ app.get('/', async (req,res) => {
         res.status(500).json({ error: err })
     }
 })
+
+// Récupérer toutes les locations d'un utilisateur
+
+app.get('/user', verifyUser, async (req,res) => {
+    
+    try {
+        const allLocations = await Location.find({user_id : req.user}).exec()
+        res.json(allLocations)
+    } catch (err) {
+        res.status(500).json({ error: err })
+    }
+})
+
 
 app.post('/:id', verifyUser, async (req,res) => {
     const { id } = req.params

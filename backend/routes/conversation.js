@@ -2,6 +2,7 @@ const express = require("express")
 const app = express()
 const Conversation = require("../models/Conversation")
 
+// Récupérer toutes les conversations
 
 app.get('/', async (req,res) => {
     

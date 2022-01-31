@@ -4,6 +4,7 @@ const Annonce = require("../models/Annonce")
 const User =  require("../models/User")
 const { verifyUser, verifySession } = require("../middlewares/checkUser")
 
+// Récupérer toutes les annonces
 
 app.get('/', async (req,res) => {
     
@@ -17,7 +18,7 @@ app.get('/', async (req,res) => {
     }
 })
 
-// créer une annonce
+// Créer une annonce
 
 app.post('/', verifyUser, async (req,res) => {
     
@@ -27,13 +28,10 @@ app.post('/', verifyUser, async (req,res) => {
             user: req.user
         })
         const OneAnnonce = await annonce.save()
-        
-        const annonceInsered = await annonce.save()
 
         const findUser = await User.findById(req.user)
-        console.log('user',findUser)
-        findUser.annonces = [...findUser.annonces, annonce._id]
-        findUser.save()
+        findUser.annonces = [...findUser.annonces, OneAnnonce._id]
+        await findUser.save()
 
         res.json(annonce)
         

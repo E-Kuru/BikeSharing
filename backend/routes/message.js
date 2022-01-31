@@ -2,6 +2,7 @@ const express = require("express")
 const app = express()
 const Message = require("../models/Message")
 
+// Récupérer tous les messages
 
 app.get('/', async (req,res) => {
     

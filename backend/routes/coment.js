@@ -5,6 +5,8 @@ const User = require("../models/User")
 const Annonce = require("../models/Annonce")
 const { verifyUser, verifySession } = require("../middlewares/checkUser")
 
+// Récupérer tous les commentaires
+
 app.get('/', async (req,res) => {
     
     try{
@@ -17,7 +19,7 @@ app.get('/', async (req,res) => {
     }
 })
 
-// post pour créer un commentaire
+// Post pour créer un commentaire
 
 app.post('/:id', verifyUser, async (req,res) => {
     const { id } = req.params

@@ -42,7 +42,6 @@ app.put('/', verifyUser, async (req,res) => {
             { new : true}
         ).exec()
 
-        console.log(userUpdate)
         res.json(userUpdate)
 
     } catch {
