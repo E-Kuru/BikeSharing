@@ -6,9 +6,9 @@ const Location = require("../models/Location")
 app.get('/', async (req,res) => {
     
     try{
-        const user = await Location.find().exec()
+        const location = await Location.find().exec()
         
-        res.json(user)
+        res.json(location)
         
     } catch (err) {
         res.status(500).json({ error: err })

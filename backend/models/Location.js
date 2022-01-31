@@ -2,16 +2,19 @@ const { Schema, model } = require("mongoose")
 
 const locationSchema = new Schema ({
     dateBegin: {
-        type: String
+        type: String,
+        required : true
     },
     dateEnd: {
-        type: String
+        type: String,
+        required : true
     },
     status: {
         type: String
     },
     price: {
-        type: Number
+        type: Number,
+        required : true
     },
     adressBegin: {
         type: String

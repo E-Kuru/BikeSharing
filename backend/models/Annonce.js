@@ -2,31 +2,30 @@ const { Schema, model } = require("mongoose")
 const annonceSchema = new Schema ({
 
     name: {
-        type: String
+        type: String,
+        required : true
     },
     description: {
-        type: String
+        type: String,
     },
     status: {
         type: Boolean
     },
     price: {
-        type: Number
+        type: Number,
+        required : true
     },
     picture: {
         type: String
     },
     location: [{
-        type: Schema.Types.ObjectId,
-        ref: "Location"
+        type: Schema.Types.ObjectId, ref: "Location"
     }],
     coment: [{
-        type: Schema.Types.ObjectId,
-        ref: "Coment"
+        type: Schema.Types.ObjectId, ref: "Coment"
     }],
     user: {
-        type: Schema.Types.ObjectId,
-        ref: "User"
+        type: Schema.Types.ObjectId, ref: "User"
     },
 },{
     timestamps: true

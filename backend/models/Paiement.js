@@ -4,7 +4,7 @@ const paiementSchema = new Schema ({
     numCard: {
         type: Number
     },
-    Name: {
+    name: {
         type: String
     },
     user: {

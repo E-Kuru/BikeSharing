@@ -1,14 +1,14 @@
 const express = require("express")
 const app = express()
-const Annonce = require("../models/Annonce")
+const Coment = require("../models/Coment")
 
 
 app.get('/', async (req,res) => {
     
     try{
-        const annonces = await Annonce.find().exec()
+        const coment = await Coment.find().exec()
         
-        res.json(annonces).status(200)
+        res.json(coment)
         
     } catch (err) {
         res.status(500).json({ error: err })

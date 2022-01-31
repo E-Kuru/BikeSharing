@@ -6,9 +6,9 @@ const Message = require("../models/Message")
 app.get('/', async (req,res) => {
     
     try{
-        const user = await Message.find().exec()
+        const message = await Message.find().exec()
         
-        res.json(user)
+        res.json(message)
         
     } catch (err) {
         res.status(500).json({ error: err })
