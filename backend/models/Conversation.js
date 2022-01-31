@@ -1,7 +1,7 @@
 const { Schema, model } = require("mongoose")
 
 const conversationSchema = new Schema ({
-    message: [{
+    messages: [{
         type: Schema.Types.ObjectId,
         ref: "Message"
     }],

@@ -16,7 +16,7 @@ const locationSchema = new Schema ({
         type: Number,
         required : true
     },
-    conversation: [{
+    conversations: [{
         type: Schema.Types.ObjectId,
         ref: "Conversation"
     }],

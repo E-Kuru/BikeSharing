@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose")
-const userSchema = new Schema ({
 
+const userSchema = new Schema ({
     firstName: {
         type: String,
         required : true
@@ -32,7 +32,7 @@ const userSchema = new Schema ({
         type: Schema.Types.ObjectId,
         ref: "Annonce"
     }],
-    conversation: [{
+    conversations: [{
         type: Schema.Types.ObjectId,
         ref: "Conversation"
     }],
@@ -40,7 +40,7 @@ const userSchema = new Schema ({
         type: Schema.Types.ObjectId,
         ref: "Coment"
     }],
-    paiement: [{
+    paiements: [{
         type: Schema.Types.ObjectId,
         ref: "Paiement"
     }],

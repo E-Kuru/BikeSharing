@@ -11,7 +11,7 @@ const paiementSchema = new Schema ({
         type: Schema.Types.ObjectId,
         ref: "User"
     },
-    location: [{
+    locations: [{
         type: Schema.Types.ObjectId,
         ref: "Location"
     }],
