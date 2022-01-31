@@ -2,7 +2,8 @@ const { Schema, model } = require("mongoose")
 
 const comentSchema = new Schema ({
     contenu: {
-        type: Number   
+        type: Number   ,
+        required : true
     },
     user: {
         type: Schema.Types.ObjectId,

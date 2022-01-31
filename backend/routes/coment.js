@@ -1,14 +1,14 @@
 const express = require("express")
 const app = express()
-const Conversation = require("../models/Conversation")
+const Coment = require("../models/Coment")
 
 
 app.get('/', async (req,res) => {
     
     try{
-        const conversation = await Conversation.find().exec()
+        const coment = await Coment.find().exec()
         
-        res.json(conversation)
+        res.json(coment)
         
     } catch (err) {
         res.status(500).json({ error: err })

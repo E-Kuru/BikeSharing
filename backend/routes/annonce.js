@@ -7,9 +7,9 @@ const User =  require("../models/User")
 app.get('/', async (req,res) => {
     
     try{
-        const annonce = await Annonce.find().exec()
+        const annonces = await Annonce.find().exec()
         
-        res.json(annonce)
+        res.json(annonces).status(200)
         
     } catch (err) {
         res.status(500).json({ error: err })
