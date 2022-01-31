@@ -37,7 +37,6 @@ app.post('/:id', verifyUser, async (req,res) => {
     
     try{
         const annonceUser = await Annonce.findById(id)
-        console.log("user",annonceUser)
         const location = await new Location({
             ...req.body,
             borrower: req.user,
