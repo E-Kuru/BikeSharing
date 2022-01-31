@@ -22,10 +22,11 @@ app.get('/', async (req,res) => {
 app.post('/', verifyUser, async (req,res) => {
     
     try{
-        const annonce = await new Annonce({
+        const annonce = new Annonce({
             ...req.body,
             user: req.user
         })
+        const OneAnnonce = await annonce.save()
         
         const annonceInsered = await annonce.save()
 
