@@ -31,6 +31,7 @@ app.get('/user', verifyUser, async (req,res) => {
     }
 })
 
+// Créer une location
 
 app.post('/:id', verifyUser, async (req,res) => {
     const { id } = req.params
