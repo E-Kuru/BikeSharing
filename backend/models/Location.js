@@ -16,12 +16,6 @@ const locationSchema = new Schema ({
         type: Number,
         required : true
     },
-    adressBegin: {
-        type: String
-    },
-    adressEnd: {
-        type: String
-    },
     conversation: [{
         type: Schema.Types.ObjectId,
         ref: "Conversation"

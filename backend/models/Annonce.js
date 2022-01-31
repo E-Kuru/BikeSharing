@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose")
-const annonceSchema = new Schema ({
 
+const annonceSchema = new Schema ({
     name: {
         type: String,
         required : true
@@ -19,10 +19,10 @@ const annonceSchema = new Schema ({
     picture: {
         type: String
     },
-    location: [{
+    locations: [{
         type: Schema.Types.ObjectId, ref: "Location"
     }],
-    coment: [{
+    coments: [{
         type: Schema.Types.ObjectId, ref: "Coment"
     }],
     user: {

@@ -2,7 +2,7 @@ const { Schema, model } = require("mongoose")
 
 const comentSchema = new Schema ({
     contenu: {
-        type: Number   ,
+        type: String,
         required : true
     },
     user: {

@@ -28,7 +28,7 @@ const userSchema = new Schema ({
     status: {
         type: String
     },
-    annonce: [{
+    annonces: [{
         type: Schema.Types.ObjectId,
         ref: "Annonce"
     }],
@@ -36,11 +36,15 @@ const userSchema = new Schema ({
         type: Schema.Types.ObjectId,
         ref: "Conversation"
     }],
-    coment: [{
+    coments: [{
         type: Schema.Types.ObjectId,
         ref: "Coment"
     }],
     paiement: [{
+        type: Schema.Types.ObjectId,
+        ref: "Paiement"
+    }],
+    locations: [{
         type: Schema.Types.ObjectId,
         ref: "Paiement"
     }]

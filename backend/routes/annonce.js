@@ -2,6 +2,7 @@ const express = require("express")
 const app = express()
 const Annonce = require("../models/Annonce")
 const User =  require("../models/User")
+const { verifyUser, verifySession } = require("../middlewares/checkUser")
 
 
 app.get('/', async (req,res) => {
@@ -16,21 +17,24 @@ app.get('/', async (req,res) => {
     }
 })
 
-app.post('/', async (req,res) => {
+// créer une annonce
+
+app.post('/', verifyUser, async (req,res) => {
     
     try{
         const annonce = await new Annonce({
             ...req.body,
-            user: req.user._id
+            user: req.user
         })
         
-        annonce.save(async (annonce)=>{
-            if ( annonce)
-            req.user.annonce.push(annonce._id)
-            req.user.save()
+        const annonceInsered = await annonce.save()
 
-            res.json(annonce)
-        })
+        const findUser = await User.findById(req.user)
+        console.log('user',findUser)
+        findUser.annonces = [...findUser.annonces, annonce._id]
+        findUser.save()
+
+        res.json(annonce)
         
     } catch (err) {
         res.status(500).json({ error: err })
