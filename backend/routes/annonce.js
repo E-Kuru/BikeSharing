@@ -17,20 +17,17 @@ app.get('/', async (req,res) => {
 })
 
 app.post('/', async (req,res) => {
-    
+
     try{
         const annonce = await new Annonce({
             ...req.body,
-            user: req.user._id
+            user: req.user
         })
         
-        annonce.save(async (annonce)=>{
-            if ( annonce)
-            req.user.annonce.push(annonce._id)
-            req.user.save()
+        const FindUser = await User.findById(req.user)
+        FindUser.annonce = [...FindUser.annonce , annonce._id]
 
-            res.json(annonce)
-        })
+        res.send(FindUser)
         
     } catch (err) {
         res.status(500).json({ error: err })
