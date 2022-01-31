@@ -8,7 +8,8 @@ const annonceSchema = new Schema ({
         type: String
     },
     status: {
-        type: Boolean
+        type: Boolean,
+        Default: true
     },
     price: {
         type: Number
