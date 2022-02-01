@@ -1,7 +1,7 @@
 const express = require("express")
 const app = express()
 const User = require("../models/User")
-// const { verifyUser, verifySession } = require("../middleware/CheckUser")
+const { verifyUser, verifySession } = require("../middlewares/CheckUser")
 
 // Get tous les users 
 
@@ -31,24 +31,22 @@ app.get('/:id', async (req,res) => {
     }
 })
 
-// Permet de créer un user 
+// Put pour modifier infos du user
 
-app.post('/newUser', async (req,res) => {
+app.put('/', verifyUser, async (req,res) => {
 
     try {
+        const userUpdate =  await User.findOneAndUpdate(
+            { _id: req.user },
+            { ...req.body },
+            { new : true}
+        ).exec()
 
-        const user = new User ({
-            ...req.body
-        })
+        res.json(userUpdate)
 
-        const newUser = await user.save()
-
-        res.json(newUser)
-         
-    } catch (err) {
+    } catch {
         res.status(500).json({ error: err })
     }
 })
-
 
 module.exports = app

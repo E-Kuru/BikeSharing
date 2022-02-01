@@ -11,6 +11,7 @@ const annonce = require('./routes/annonce')
 const message = require('./routes/message')
 const conversation = require('./routes/conversation')
 const location = require('./routes/location')
+const coment = require('./routes/coment')
 
 dbConnect()
 
@@ -36,6 +37,7 @@ app.use('/annonce', annonce)
 app.use('/message', message)
 app.use('/conversation', conversation)
 app.use('/location', location)
+app.use('/coment', coment)
 
 const port = 5000
 app.listen(port, () => {

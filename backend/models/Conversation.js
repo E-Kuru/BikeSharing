@@ -1,21 +1,24 @@
 const { Schema, model } = require("mongoose")
 
 const conversationSchema = new Schema ({
-    message: [{
+    messages: [{
         type: Schema.Types.ObjectId,
         ref: "Message"
     }],
     sender: {
         type: Schema.Types.ObjectId,
-        ref: "User"
+        ref: "User",
+        required : true
     },
     recipient: {
         type: Schema.Types.ObjectId,
-        ref: "User"
+        ref: "User",
+        required : true
     },
     location: {
         type: Schema.Types.ObjectId,
-        ref: "Location"
+        ref: "Location",
+        required : true
     },
 },{
     timestamps: true
