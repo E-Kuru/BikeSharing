@@ -22,6 +22,9 @@ app.get('/', async (req,res) => {
 // Post pour créer un commentaire
 
 app.post('/:id', verifyUser, async (req,res) => {
+
+    // ID de l'annonce
+    
     const { id } = req.params
     
     try{
