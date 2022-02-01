@@ -1,7 +1,7 @@
 const express = require("express")
 const app = express()
 const User = require("../models/User")
-const { verifyUser, verifySession } = require("../middlewares/CheckUser")
+const { verifyUser } = require("../middlewares/CheckUser")
 
 // Get tous les users 
 

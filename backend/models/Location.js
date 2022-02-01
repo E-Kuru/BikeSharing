@@ -16,10 +16,10 @@ const locationSchema = new Schema ({
         type: Number,
         required : true
     },
-    conversations: [{
+    conversation: {
         type: Schema.Types.ObjectId,
         ref: "Conversation"
-    }],
+    },
     annonce: {
         type: Schema.Types.ObjectId,
         ref: "Annonce"

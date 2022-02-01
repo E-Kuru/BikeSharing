@@ -5,12 +5,12 @@ const conversationSchema = new Schema ({
         type: Schema.Types.ObjectId,
         ref: "Message"
     }],
-    sender: {
+    borrower: {
         type: Schema.Types.ObjectId,
         ref: "User",
         required : true
     },
-    recipient: {
+    lender: {
         type: Schema.Types.ObjectId,
         ref: "User",
         required : true

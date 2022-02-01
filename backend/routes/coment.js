@@ -3,7 +3,7 @@ const app = express()
 const Coment = require("../models/Coment")
 const User = require("../models/User")
 const Annonce = require("../models/Annonce")
-const { verifyUser, verifySession } = require("../middlewares/checkUser")
+const { verifyUser } = require("../middlewares/checkUser")
 
 // Récupérer tous les commentaires
 

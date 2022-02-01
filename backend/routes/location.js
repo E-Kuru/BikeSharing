@@ -3,7 +3,8 @@ const app = express()
 const Location = require("../models/Location")
 const Annonce = require("../models/Annonce")
 const User = require("../models/User")
-const { verifyUser, verifySession } = require("../middlewares/checkUser")
+const Conversation = require("../models/Conversation")
+const { verifyUser } = require("../middlewares/checkUser")
 
 // Récupérer toutes les locations
 
@@ -48,11 +49,11 @@ app.post('/:id', verifyUser, async (req,res) => {
         const locationInsered = await location.save()
 
         const findUser = await User.findById(req.user)
-        findUser.locations = [...findUser.locations, location._id]
+        findUser.locations = [...findUser.locations, locationInsered._id]
         findUser.save()
 
         const findAnnonce = await Annonce.findById(id)
-        findAnnonce.locations = [...findAnnonce.locations, location._id]
+        findAnnonce.locations = [...findAnnonce.locations, locationInsered._id]
         findAnnonce.save()
 
         res.json(location)
