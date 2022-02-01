@@ -2,7 +2,7 @@ const express = require("express")
 const app = express()
 const Annonce = require("../models/Annonce")
 const User =  require("../models/User")
-const { verifyUser, verifySession } = require("../middlewares/checkUser")
+const { verifyUser } = require("../middlewares/checkUser")
 
 // Récupérer toutes les annonces
 
