@@ -22,10 +22,24 @@ app.get('/', async (req,res) => {
 
 // Récupérer toutes les locations d'un utilisateur
 
-app.get('/user', verifyUser, async (req,res) => {
+app.get('/lender', verifyUser, async (req,res) => {
+
+    console.log(req.user);
     
     try {
-        const allLocations = await Location.find({user_id : req.user}).exec()
+        const allLocations = await Location.find({lender : req.user}).exec()
+        res.json(allLocations)
+    } catch (err) {
+        res.status(500).json({ error: err })
+    }
+})
+
+app.get('/borrower', verifyUser, async (req,res) => {
+
+    console.log(req.user);
+    
+    try {
+        const allLocations = await Location.find({borrower : req.user}).exec()
         res.json(allLocations)
     } catch (err) {
         res.status(500).json({ error: err })
