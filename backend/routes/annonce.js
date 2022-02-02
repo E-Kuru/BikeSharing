@@ -40,6 +40,29 @@ app.post('/', verifyUser, async (req,res) => {
     }
 })
 
+// Supprimer une annonce 
 
+app.delete('/:id', verifyUser, async (req, res) => {
+
+    // Id de l'annonce 
+    const { id } = req.params
+
+    try {
+        const findAnnonce = await Annonce.findById(id).lean().exec()
+
+        const findUser = await User.findOne({_id : findAnnonce.user.valueOf()}).exec()
+
+        const annonceUpdated = findUser.annonces.filter(e => e != id)
+        findUser.annonces = annonceUpdated
+        findUser.save()
+
+        const deleteAnnonce = await Annonce.deleteOne({_id : id})
+
+        res.json({succes : "This announcement successfully been deleted"})
+
+    } catch (err) {
+        res.status(500).json({ error: err })
+    }
+})
 
 module.exports = app
