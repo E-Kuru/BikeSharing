@@ -1,9 +1,9 @@
 import React from 'react'
 import './categorie.css'
-import img1 from '../../pictures/velo2.jpeg'
-import img2 from '../../pictures/velo3.jpeg'
-import img3 from '../../pictures/velo_foont.jpeg'
-import img4 from '../../pictures/VELO.jpeg'
+import img1 from '../../images/velo2.jpeg'
+import img2 from '../../images/velo3.jpeg'
+import img3 from '../../images/velo_foont.jpeg'
+import img4 from '../../images/VELO.jpeg'
 
 
 const Categorie = () => {
