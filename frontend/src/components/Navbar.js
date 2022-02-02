@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
 import { useState, useContext } from "react";
 import styled from "styled-components";
-import logo from "../pictures/Logo.png"
+import logo from "../images/Logo.png";
 import { ModalContext } from "../context/Modal";
-// import LoginModal from "./form/LoginModal"
-// import SignUp from './form/SignUp'
+import Modals from "./Modals";
+import LoginForm from "./form/Login";
+
 
 const linkStyle = {
     color: "white",
@@ -15,7 +16,7 @@ const linkStyle = {
 }
 
 const linkStyle2 = {
-    // color: "white",
+    color: "black",
     textDecoration: "none",
     fontSize: "15px",
     textAlign: "center",
@@ -27,18 +28,18 @@ const linkStyle2 = {
 
 const Navbar = () => {
 
-    const { handleSignupClick, handleLoginClick } = useContext(ModalContext)
+    const { handleSignupClick, handleLoginClick, open, visible, setVisible } = useContext(ModalContext)
       
-    const [ open, setOpen ] = useState(false)
+    const [ openBurger, setOpenBurger ] = useState(false)
 
     const List = styled.div`
     background-color: black;
     padding: 10px 10px 10px 30px ;
-    height: ${open ? "100%" : "20vh"};
+    height: ${openBurger ? "100%" : "20vh"};
     display: flex;
     align-items: center;
     justify-content: space-between;
-    flex-direction: ${open ? "column" : "row"}; 
+    flex-direction: ${openBurger ? "column" : "row"}; 
     
     border-bottom: 1px solid white;
 
@@ -54,7 +55,7 @@ const Navbar = () => {
     const Title = styled.h1`
     font-family: "Gilda Display";
     font-size: 10px;
-    ${open && "display: none"};
+    ${openBurger && "display: none"};
 
     @media (max-width: 280px) {
       font-size: 28px;
@@ -64,7 +65,7 @@ const Navbar = () => {
 
     @media (max-width: 376px) {
       display: flex;
-      margin-left: ${open ? "0" : "30px"};
+      margin-left: ${openBurger ? "0" : "30px"};
       border: none;
       background: none;
       font-size: 40px;
@@ -76,8 +77,8 @@ const Navbar = () => {
     font-family: 'Gilda Display', serif;
     list-style: none;
     display: flex;
-    flex-direction: ${open ? " column" : "row"};
-    ${open && "text-align: center;"}
+    flex-direction: ${openBurger ? " column" : "row"};
+    ${openBurger && "text-align: center;"}
     
     button{
         font-family: 'Gilda Display', serif;
@@ -92,9 +93,9 @@ const Navbar = () => {
 
     @media (max-width: 376px) {
       padding: 10px;
-      ${open ? "display: flex" : "display: none"}
-      ${open && "flex-direction: column" }
-      ${open && "align-items: center"}
+      ${openBurger ? "display: flex" : "display: none"}
+      ${openBurger && "flex-direction: column" }
+      ${openBurger && "align-items: center"}
       
     }
   `
@@ -102,21 +103,25 @@ return (
     <>
     <List>
     <img src={logo}></img>
-        <Burger onClick={() => setOpen(!open)} >☰</Burger>
+        <Burger onClick={() => setOpenBurger(!openBurger)} >☰</Burger>
         <Menu>
             <Li>
-                <button style={linkStyle} onClick={() => handleLoginClick()}>
+                <button style={linkStyle} onClick={handleLoginClick}>
                     SE CONNECTER
                 </button>
             </Li>
             <Li>
-                <Link to="/annonce" style={linkStyle2}>
+                <button style={linkStyle} onClick={handleSignupClick}>
+                    S'INSCRIRE
+                </button>
+            </Li>
+            <Li>
+                <Link to="/bikePage" style={linkStyle2}>
                     Louer un vélo
                 </Link>
             </Li>
         </Menu>
     </List>
-
     </>
 )
 }
