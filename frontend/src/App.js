@@ -20,6 +20,8 @@ const App = () => {
     <ModalProvider>
     <Routes>
       <Route exact path="/" element={<Home />} />
+      {/* <Route path="/annonce" element={<Annonce/>} /> */}
+      <Route path="/profil" element={<Profil/>} />
       <Route path="/bikePage" element={<BikePage/>} />
       <Route path="*" element={<NotFound />} />
     </Routes>

@@ -1,5 +1,6 @@
 const passport = require("passport")
 const passportLocal = require("passport-local")
+const bcrypt = require("bcrypt")
 const User = require("../models/User")
 
 const LocalStrategy = passportLocal.Strategy
@@ -11,6 +12,13 @@ passport.use(new LocalStrategy({ usernameField : "email"}, async (username, pass
     if (!user) {
         return done(null, false)
     } 
+
+    // const passwordValid = await bcrypt.compare(password, user.password)
+
+    // if (!passwordValid) {
+    //     return done(null, false)
+    // }
+
     return done(null, user)
 }))
 

@@ -18,6 +18,24 @@ app.get('/', async (req,res) => {
     }
 })
 
+// Trouver des locations dans un secteur proche
+
+app.get('/location/:lat/:lng', async (req,res) => {
+    const {lat, lng} = req.params
+
+    const options = {
+        location : {
+            $geoWithin : {
+                $centerSphere : [[lat,lng], 15 / 3963.2]
+            }
+        }
+    }
+
+    const findRentals = await Location.find(options)
+
+    res.json(findRentals)
+})
+
 // Créer une annonce
 
 app.post('/', verifyUser, async (req,res) => {
@@ -40,20 +58,48 @@ app.post('/', verifyUser, async (req,res) => {
     }
 })
 
-app.get('/location/:lat/:lng', async (req,res) => {
-    
-})
+// Put pour modifier une annonce
 
-// Supprimer une annonce 
-
-app.delete('/:id', verifyUser, async (req, res) => {
-
-    // Id de l'annonce 
+app.put('/:id', verifyUser, async (req,res) => {
     const { id } = req.params
 
     try {
-        const findAnnonce = await Annonce.findById(id).lean().exec()
+        const annonceUpdate =  await Annonce.findOneAndUpdate(
+            { _id: id },
+            { ...req.body },
+            { new : true}
+        ).exec()
 
+        res.json(annonceUpdate)
+
+    } catch {
+        res.status(500).json({ error: err })
+    }
+})
+
+// Récupérer une annonce en fonction de l'id
+
+app.get('/:id', verifyUser, async (req,res) => {
+    const { id } = req.params
+    
+    try{
+        const annonces = await Annonce.findById(id)
+        
+        res.json(annonces).status(200)
+        
+    } catch (err) {
+        res.status(500).json({ error: err })
+    }
+})
+
+// Supprimer une annonce
+
+app.delete('/:id', verifyUser, async (req, res) => {
+    const { id } = req.params
+  
+    try {
+        const findAnnonce = await Annonce.findById(id).lean().exec()
+        
         const findUser = await User.findOne({_id : findAnnonce.user.valueOf()}).exec()
 
         const annonceUpdated = findUser.annonces.filter(e => e != id)
