@@ -18,6 +18,24 @@ app.get('/', async (req,res) => {
     }
 })
 
+// Trouver des locations dans un secteur proche
+
+app.get('/location/:lat/:lng', async (req,res) => {
+    const {lat, lng} = req.params
+
+    const options = {
+        location : {
+            $geoWithin : {
+                $centerSphere : [[lat,lng], 15 / 3963.2]
+            }
+        }
+    }
+
+    const findRentals = await Location.find(options)
+
+    res.json(findRentals)
+})
+
 // Créer une annonce
 
 app.post('/', verifyUser, async (req,res) => {
