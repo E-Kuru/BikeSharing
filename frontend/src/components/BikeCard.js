@@ -1,73 +1,100 @@
-import { Link } from "react-router-dom";
+import { useRef, useEffect } from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom"
+// import { AiFillStar } from "react-icons/ai";
+import BikeImage from '../images/BikeImage.jpg'
+
+
+const CardBox = styled.div`
+  margin: 0px 0px 30px 0px;
+  border-radius: 10px;
+  height: 110px;
+  display: flex;
+  justify-content: flex-start;
+  overflow: hidden;
+  
+
+  :hover {
+    background-color: black;
+  }
+`;
+
+const CardImage = styled.div`
+  background-position: bottom;
+  background-size: cover;
+  width: 40%;
+`;
+
+const CardContent = styled.div`
+  margin: 10px;
+  display: flex;
+  justify-content: space-between;
+  width: 60%;
+`;
+
+const CardText = styled.div`
+  margin-top: 0;
+  display: flex;
+  flex-direction: column;
+  h4 {
+    font-family: "Abel", sans-serif;
+  }
+`;
+
+// const BikeStars = styled.div`
+//   display: flex;
+//   justify-content: flex-start;
+// `;
+
 
 const BikeCard = (props) => {
+    const selectedBike = props.selectedBike;
+    const ref = useRef();
 
-    const Card = styled.div`
-    background-color:black;
-    border-radius: 1.5rem;
-    width: 405px;
-    height: 250px;
-    margin: 20px;
-    text-align: center;
-
-    // :hover {
-    //   background-color: #0091AD;
-    //   box-shadow: 0 0 10px #ADE8F4;
-    // }
-
-    @media (max-width: 812px) {
-        margin: 5% 6%;
-    }
-
-    div {
-        height: 75%;
-        width: 100%;
-        background-position: center;
-        border-radius: 1.5rem 1.5rem 0 0;    
-    }
-
-    @media (max-width: 376px) {
-        height: 50%;
-        width: 90%;
-
-    }
-
-    p {
-      font-size: 1.25rem;
-      fontfamily: "Gilda Display";;
-      margin-top: 10px;
-
-      @media (max-width: 812px) {
-        margin-top: 0px;
-    }
-    }
-  `;
-    return(
-        <>
-        <Card>
-            <p>
+    useEffect(() => {
+        if (props.id === selectedBike._id) {
+            ref.current.scrollIntoView({ behavior: "smooth" });
+          }
+        }, [selectedBike, props.id]);
+      
+        console.log(props)
+        return (
+          <>
+            <CardBox
+              ref={ref}
+              style={{
+                background: `${props.id === selectedBike._id ? "black" : "grey"}`,
+              }}
+            >
+              <CardImage
+                style={
+                    {background : `url(${BikeImage}) no-repeat center/cover`}
+                }
+              />
+              <CardContent>
                 <Link
-                to={`/Bikes/${props.name}`}
-                style={{
-                    color:"white",
-                    padding:"20px",
+                  to={`/bikePage/${props.id}`}
+                  style={{
+                    color: "white",
                     textDecoration: "none",
-                    fontSize: "25px"
-                }}
+                    fontFamily: "Abel, sans-serif",
+                  }}
                 >
-                {props.name}
-                {props.image}
-                {props.price}€/h
-                {props.stars}
-                {props.adress}
-                {props.coment}
+                  <CardText>
+                    <h4>Vélo de ville</h4>
+                    <h2>10€/h</h2>
+                    {/* <BikeStars>
+                      {[...Array(Math.floor(props.stars))].map((i) => (
+                        <AiFillStar size={14} color={"yellow"} />
+                      ))}
+                    </BikeStars> */}
+                  </CardText>
                 </Link>
-            </p>
-        </Card>
-        </>
-    )
-    
-}
-
-export default BikeCard
+              </CardContent>
+            </CardBox>
+            </>
+          );
+        };
+        
+        export default BikeCard;
+        
