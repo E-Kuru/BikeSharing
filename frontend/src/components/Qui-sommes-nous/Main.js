@@ -1,12 +1,13 @@
 import React from 'react'
 import './Main.css'
+import img from "../../pictures/bike.jpeg"
  
 const Main = () => {
   return (
      <div className='hero-img'>
           <div className='hero-content'>
 
-           <img className='photo-bike' src='./photo/bike.jpeg' /> 
+           <img className='photo-bike' src={img} /> 
            <div className='centered'>
                 
               

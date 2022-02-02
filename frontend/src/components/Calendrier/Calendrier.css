@@ -1,0 +1,14 @@
+.input-style {
+     width: 40rem;
+     box-sizing: border-box;
+     border: 2px solid #ccc;
+     border-radius: 18px;
+     font-size: 18px;
+     background-color: white;
+      
+     background-position: 10px 10px; 
+     background-repeat: no-repeat;
+     padding: 15px 24px 15px 30px;
+     
+     
+   }
