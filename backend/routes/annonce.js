@@ -21,17 +21,18 @@ app.get('/', async (req,res) => {
 // Trouver des locations dans un secteur proche
 
 app.get('/location/:lat/:lng', async (req,res) => {
+
     const {lat, lng} = req.params
 
     const options = {
         location : {
             $geoWithin : {
-                $centerSphere : [[lat,lng], 15 / 3963.2]
+                $centerSphere : [[Number(lat),Number(lng)], 15 / 3963.2]
             }
         }
     }
 
-    const findRentals = await Location.find(options)
+    const findRentals = await Annonce.find(options)
 
     res.json(findRentals)
 })
