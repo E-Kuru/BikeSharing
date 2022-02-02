@@ -3,7 +3,6 @@ const app = express()
 const Location = require("../models/Location")
 const Annonce = require("../models/Annonce")
 const User = require("../models/User")
-const Conversation = require("../models/Conversation")
 const { verifyUser } = require("../middlewares/checkUser")
 
 // Récupérer toutes les locations

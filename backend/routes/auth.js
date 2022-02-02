@@ -2,6 +2,7 @@ const express = require("express")
 const app = express()
 const passport = require('../config/passport')
 const User = require('../models/User')
+const bcrypt = require("bcrypt")
 
 app.post(`/login`, passport.authenticate('local'), (req, res) => {
   
@@ -14,19 +15,22 @@ app.post(`/login`, passport.authenticate('local'), (req, res) => {
 })
 
 app.post('/signup', async (req,res) => {
+ 
+  try {
+    // const { password } = req.body
+    // const hash = await bcrypt.hash(password, 10)
 
-    try {
+    const newUser = new User ({
+      ...req.body,
+      // password: hash
+  })
 
-      const newUser = new User ({
-        ...req.body
-    })
+  const signupUser = await newUser.save()
+  res.status(200).json(signupUser)
 
-    const signupUser = await newUser.save()
-    res.status(200).json(signupUser)
-
-    } catch (err) {
-      res.status(500).json({ error: err })
-    }
+  } catch (err) {
+    res.status(500).json({ error: err })
+  }
 })
 
 
