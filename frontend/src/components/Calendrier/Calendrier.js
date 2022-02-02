@@ -26,8 +26,8 @@ function Calendrier() {
       >
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
           <div>
-            <p>Latitude: {coordinates.lat}</p>
-            <p>Longitude: {coordinates.lng}</p>
+            <p> {coordinates.lat}</p>
+            <p> {coordinates.lng}</p>
 
             <input className="input-style"
             {...getInputProps
@@ -39,7 +39,7 @@ function Calendrier() {
 
               {suggestions.map(suggestion => {
                 const style = {
-                  backgroundColor: suggestion.active ? "#41b6e6" : "#fff"
+                  backgroundColor: suggestion.active ? "#41b6e6" : "black"
                 };
 
                 return (
