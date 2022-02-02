@@ -1,8 +1,8 @@
-import GoogleMapReact from "google-maps-react"
+import GoogleMapReact from "google-map-react"
 import BikeMarker from "./BikeMarker"
 
 const BikeMap = (props) => {
-    const setSelectedBike =props.setSelectedHotel
+    const setSelectedBike =props.setSelectedBike
     const bikes = props.bikes
     let center = props.center
     
@@ -15,7 +15,7 @@ const BikeMap = (props) => {
         }}
         defaultZoom={12}
       >
-          {bikes.map(bike => (
+          {/* {bikes.map(bike => (
               <BikeMarker
               bike={bike}
               lat={bike.location.lat}
@@ -34,7 +34,7 @@ const BikeMap = (props) => {
                   </div>
                   }
               </BikeMarker>
-          ))}
+          ))} */}
           </GoogleMapReact>       
     )
 }
