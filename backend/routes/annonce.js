@@ -40,6 +40,10 @@ app.post('/', verifyUser, async (req,res) => {
     }
 })
 
+app.get('/location/:lat/:lng', async (req,res) => {
+    
+})
+
 // Supprimer une annonce 
 
 app.delete('/:id', verifyUser, async (req, res) => {

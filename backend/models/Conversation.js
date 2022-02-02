@@ -15,7 +15,7 @@ const conversationSchema = new Schema ({
         ref: "User",
         required : true
     },
-    location: {
+    rental: {
         type: Schema.Types.ObjectId,
         ref: "Location",
         required : true

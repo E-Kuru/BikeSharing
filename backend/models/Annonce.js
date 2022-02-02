@@ -1,3 +1,4 @@
+const { min, max } = require("moment")
 const { Schema, model } = require("mongoose")
 
 const annonceSchema = new Schema ({
@@ -16,10 +17,13 @@ const annonceSchema = new Schema ({
         type: Number,
         required : true
     },
+    location : {
+        type : Object
+    },
     picture: {
         type: String
     },
-    locations: [{
+    rentals: [{
         type: Schema.Types.ObjectId, ref: "Location"
     }],
     coments: [{
