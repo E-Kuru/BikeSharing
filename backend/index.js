@@ -12,6 +12,7 @@ const message = require('./routes/message')
 const conversation = require('./routes/conversation')
 const location = require('./routes/location')
 const coment = require('./routes/coment')
+const files = require('./routes/files')
 
 dbConnect()
 
@@ -38,6 +39,7 @@ app.use('/message', message)
 app.use('/conversation', conversation)
 app.use('/location', location)
 app.use('/coment', coment)
+app.use('/files', files)
 
 const port = 5000
 app.listen(port, () => {
