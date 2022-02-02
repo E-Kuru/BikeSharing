@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import '../App.css'
 
 import styled from "styled-components";
-// import BikesMap from "../components/BikeMap"
+import BikesMap from "../components/BikeMap"
 import BikeCard from "../components/BikeCard"
 import Navbar from "../components/Navbar";
 import { getAnnonce } from "../api/annonce"
@@ -44,15 +45,15 @@ const BikesList = styled.div`
     }
 `
 
-// const BikesMap = styled.div`
-//     width: 50%;
+const BikeMap = styled.div`
+    width: 50%;
 
-//     @media (max-width: 376px) {
-//     width: 100%;
-//     height: 300px;
-//     margin-bottom: 20px;
-//     }
-// `
+    @media (max-width: 376px) {
+    width: 100%;
+    height: 300px;
+    margin-bottom: 20px;
+    }
+`
 
 const Pages = styled.button`
     width: 25px;
@@ -89,7 +90,7 @@ text-align: left;
 const BikePage = () => {
 const [selectedBike, setSelectedBike] = useState({});
 const [bikes, setBikes] = useState([]);
-const [center, setCenter] = useState(null);
+const [center, setCenter] = useState({lat: 48.8646434, lon: 2.3714107});
 const [page,setPage] = useState(1)
 const { categorie } = useParams();
 const [ search, setSearch ] = useState("")
@@ -101,6 +102,7 @@ useEffect(() => {
 const fetchAnnonce = async () => {
     const annonces = await getAnnonce()
     setBikes(annonces)
+    console.log(annonces);
 }
 
 const handleChangeSearch = e => {
@@ -128,12 +130,13 @@ return (
                 price={bike.price}
                 starts={bike.starts}
                 image={bike.pictures}
+                description={bike.description}
                 selectedBike={selectedBike}
                 />
             ))
         )}
         </BikesList>
-        {/* <BikesMap>
+        <BikeMap>
             <BikesMap
             map="list"
             center={center}
@@ -141,7 +144,7 @@ return (
             selectedBike={selectedBike}
             setSelectedBike={setSelectedBike}
             />
-        </BikesMap> */}
+        </BikeMap>
     </Container>
     <CenterPages>
         <Pages onClick={() => setPage(1)}>1</Pages>

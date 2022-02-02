@@ -12,6 +12,7 @@ const CardBox = styled.div`
   display: flex;
   justify-content: flex-start;
   overflow: hidden;
+  border : 2px solid white;
   
 
   :hover {
@@ -57,7 +58,6 @@ const BikeCard = (props) => {
           }
         }, [selectedBike, props.id]);
       
-        console.log(props)
         return (
           <>
             <CardBox
@@ -81,8 +81,9 @@ const BikeCard = (props) => {
                   }}
                 >
                   <CardText>
-                    <h4>Vélo de ville</h4>
-                    <h2>10€/h</h2>
+                    <h4>{props.name}</h4>
+                    <h5>{props.description}</h5>
+                    <h6>{props.price}€/h</h6>
                     {/* <BikeStars>
                       {[...Array(Math.floor(props.stars))].map((i) => (
                         <AiFillStar size={14} color={"yellow"} />
