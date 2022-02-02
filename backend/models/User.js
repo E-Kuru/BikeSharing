@@ -44,7 +44,7 @@ const userSchema = new Schema ({
         type: Schema.Types.ObjectId,
         ref: "Paiement"
     }],
-    locations: [{
+    rentals: [{
         type: Schema.Types.ObjectId,
         ref: "Paiement"
     }]

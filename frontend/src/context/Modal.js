@@ -1,18 +1,13 @@
-import { createContext, useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import { createContext, useState } from 'react'
+
 
 const ModalContext = createContext({ })
 
 const ModalProvider = ({ children }) => {
-  const location = useLocation()
   const [visible, setVisible] = useState(true)
   const [type, setType] = useState(null)
 
-  useEffect(() => {
-    setVisible(false)
-    setType(null)
-  }, [location])
-
+ 
   const close = () => {
     setType(null)
     setVisible(false)

@@ -6,7 +6,6 @@ import Main from "../components/Qui-sommes-nous/Main"
 import Calendrier from "../components/Calendrier/Calendrier"
 import DateTime from "../components/Calendrier/DateTime"
 
-
 const Home = () => {
     return (
         <div>
