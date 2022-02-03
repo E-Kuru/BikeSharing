@@ -1,4 +1,3 @@
-const { min, max } = require("moment")
 const { Schema, model } = require("mongoose")
 
 const annonceSchema = new Schema ({
@@ -12,6 +11,10 @@ const annonceSchema = new Schema ({
     status: {
         type: Boolean,
         Default: true
+    },
+    categorie : {
+        type : String,
+        required : true
     },
     price: {
         type: Number,

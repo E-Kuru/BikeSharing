@@ -33,5 +33,12 @@ app.post('/signup', async (req,res) => {
   }
 })
 
+app.get('/me', (req, res) => {
+  if (req.user) {
+    res.json(req.user)
+  } else {
+    res.status(401).json({ error: "Unauthorized" })
+  }
+})
 
 module.exports = app

@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar"
 // import Footer from "../components/Footer/Footer"
 // import Categorie from "../components/Catégorie/Categorie"
 // import Main from "../components/Qui-sommes-nous/Main"
-// import Calendrier from "../components/Calendrier/Calendrier"
+import Calendrier from "../components/Calendrier/Calendrier"
 // import DateTime from "../components/Calendrier/DateTime"
 import CategoriesCard from "../components/CategoriesCard"
 import Qsm from "../components/Qsm"
@@ -13,11 +13,11 @@ const Home = () => {
     return (
         <div>
             <Navbar/>
+            <Calendrier />
             <CategoriesCard/>
             <Qsm/>
             <Footer/>
-            {/* <Calendrier />
-            <DateTime /> */}
+            {/* <DateTime /> */}
             {/* <BikeCard></BikeCard> */}
             {/* <Categorie/>
             <Main/>

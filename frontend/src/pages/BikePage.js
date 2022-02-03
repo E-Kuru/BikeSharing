@@ -7,7 +7,7 @@ import BikesMap from "../components/BikeMap"
 import BikeCard from "../components/BikeCard"
 import Navbar from "../components/Navbar";
 import { getAnnonce } from "../api/annonce"
-import Footer from "../components/Footer/Footer";
+import Footer from "../components/Footer";
 
 const Container = styled.div`
     display: flex;
@@ -160,7 +160,7 @@ return (
         <Pages onClick={() => setPage(3)}>3</Pages>
         <Pages onClick={() => setPage(4)}>4</Pages>
     </CenterPages>
-    {/* <Footer/> */}
+    <Footer/>
     </>
 )
 }

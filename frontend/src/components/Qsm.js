@@ -6,7 +6,7 @@ const Qsm = () => {
 
     const Container = styled.div`
     width: 100%;
-    height: 70%;
+    height: 50%;
     `
     const Info = styled.div`
     font-family: 'Gilda Display', serif;
@@ -15,7 +15,7 @@ const Qsm = () => {
 
     p {
         margin: 50px;
-        font-size: 25px;
+        font-size: 20px;
         font-family: 'Gilda Display', serif;
     }
    
@@ -26,6 +26,7 @@ const Qsm = () => {
      <Container
      style={{
          background:  `url(${img}) no-repeat center/cover`,
+         
      }}
      > 
            <Info>
