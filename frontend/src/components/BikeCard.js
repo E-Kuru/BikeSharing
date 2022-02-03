@@ -30,17 +30,24 @@ const CardContent = styled.div`
   margin: 10px;
   display: flex;
   justify-content: space-between;
-  width: 60%;
+  width: 70%;
 `;
 
 const CardText = styled.div`
   margin-top: 0;
   display: flex;
   flex-direction: column;
-  h4 {
-    font-family: "Abel", sans-serif;
+  h4  {
+    font-family: 'Overpass', sans-serif;
   }
 `;
+
+const Div = styled.div`
+display: flex; 
+justify-content: space-between;
+width: 100%;
+
+`
 
 // const BikeStars = styled.div`
 //   display: flex;
@@ -77,13 +84,17 @@ const BikeCard = (props) => {
                   style={{
                     color: "white",
                     textDecoration: "none",
-                    fontFamily: "Abel, sans-serif",
+                    fontFamily: 'Overpass, sans-serif',
+                    width: '100%',
                   }}
                 >
                   <CardText>
-                    <h4>{props.name}</h4>
-                    <h5>{props.description}</h5>
+                    <Div>
+                    <h4>{props.name} </h4>
                     <h6>{props.price}€/h</h6>
+                    </Div>
+                    <h5>{props.description}</h5>
+                    
                     {/* <BikeStars>
                       {[...Array(Math.floor(props.stars))].map((i) => (
                         <AiFillStar size={14} color={"yellow"} />

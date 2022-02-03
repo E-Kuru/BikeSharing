@@ -7,6 +7,7 @@ import BikesMap from "../components/BikeMap"
 import BikeCard from "../components/BikeCard"
 import Navbar from "../components/Navbar";
 import { getAnnonce } from "../api/annonce"
+import Footer from "../components/Footer";
 
 const Container = styled.div`
     display: flex;
@@ -31,12 +32,12 @@ const BikesList = styled.div`
     }
     
     ::-webkit-scrollbar-thumb {
-    background: #b7094c;
+    background: white;
     border-radius: 10px;
     }
     
     ::-webkit-scrollbar-thumb:hover {
-    background: #b30000;
+    background: lightgray;
     }
 
     @media (max-width: 376px) {
@@ -78,21 +79,25 @@ const CenterPages = styled.div`
     margin: 20px 30px;
 `;
 
+
 const Input = styled.input`
 margin: 50px 40px;
 border-radius: 5px;
 padding: 5px 40px;
 text-align: left;
+width: 500px;
+`
+const Div = styled.form`
+display:flex;
+justify-content: center;
 
 `
-
 
 const BikePage = () => {
 const [selectedBike, setSelectedBike] = useState({});
 const [bikes, setBikes] = useState([]);
 const [center, setCenter] = useState({lat: 48.8646434, lon: 2.3714107});
-const [page,setPage] = useState(1)
-const { categorie } = useParams();
+const [page,setPage] = useState(1);
 const [ search, setSearch ] = useState("")
 
 useEffect(() => {
@@ -112,12 +117,15 @@ const handleChangeSearch = e => {
 return (
     <>
      <Navbar/>
-     <Input
+     <Div>
+        <Input
           placeholder="Rechercher..."
           name="rechercher"
           type="text"
           onChange= {()=> handleChangeSearch()}
+          
         />
+        </Div>
     <Container>
         <BikesList>
         {!bikes ? (
@@ -152,6 +160,7 @@ return (
         <Pages onClick={() => setPage(3)}>3</Pages>
         <Pages onClick={() => setPage(4)}>4</Pages>
     </CenterPages>
+    <Footer/>
     </>
 )
 }

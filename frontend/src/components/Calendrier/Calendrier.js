@@ -29,13 +29,13 @@ function Calendrier() {
             <p> {coordinates.lat}</p>
             <p> {coordinates.lng}</p>
 
-            <input className="input-style"
+             <input className="input-style"
             {...getInputProps
             ({ placeholder: "Type address" })}
              />
 
             <div>
-              {loading ? <div>...loading</div> : null}
+             {loading ? <div>...loading</div> : null}
 
               {suggestions.map(suggestion => {
                 const style = {

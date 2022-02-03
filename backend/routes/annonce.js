@@ -36,7 +36,8 @@ app.get('/:categorie', async (req,res) => {
 
 // Trouver des locations dans un secteur proche
 
-app.get('/location/:lat/:lng', async (req,res) => {
+app.get('/location/:lat/:lng', 
+async (req,res) => {
 
     const {lat, lng} = req.params
 
@@ -131,5 +132,7 @@ app.delete('/:id', verifyUser, async (req, res) => {
         res.status(500).json({ error: err })
     }
 })
+
+
 
 module.exports = app

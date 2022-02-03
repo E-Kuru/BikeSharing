@@ -2,11 +2,16 @@ import styled from 'styled-components'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { useNavigate } from 'react-router-dom' 
+import { login } from '../../api/auth'
+import { UserContext } from '../../context/User'
+import { useContext } from 'react'
 
 import Button from '../Button'
 import Input from '../Input'
 import { white } from '../../style/colors'
 import { FloatingLabel } from 'react-bootstrap'
+import { ModalContext } from '../../context/Modal'
+
 
 
 const Form = styled.form`
@@ -16,11 +21,12 @@ const Form = styled.form`
   color: white;
 `
 const Container = styled.div`
-  position: relative;
   width: 300px;
   height: 300px;
   margin-right:550px;
-
+  display: flex;
+  flex-direction: column;
+  
 `
 
 const ErrorMessage = styled.div`
@@ -30,28 +36,23 @@ font-family: "Gilda Display";
 
 const LoginForm = () => {
   const navigate = useNavigate()
+  const { setUser, user } = useContext(UserContext)
+  const { setVisible } = useContext(ModalContext)
 
   const { values, errors, handleSubmit, handleChange } = useFormik({
     initialValues: {
       email: '',
       password: ''
     },
-    onSubmit: values => {
-        fetch('http://localhost:3000/login', {
-            method: 'post',
-            headers: {
-                'Content-type': 'application/json',
-            },
-            credentials: 'include',
-            body: JSON.stringify(values)
-        })
-        .then(response => {
-            if (response.status >= 400) {
-                alert(response.statusText)
-            }else {
-                navigate('/admin')
-            }
-        })
+    onSubmit: async (values, { setFieldError }) => {
+      try {
+        const response = await login(values)
+        setUser(response)
+        setVisible(false)
+        navigate('/profil')
+      } catch (e) {
+        setFieldError('submit', 'Incorrect email/password')
+      }
     },
     validateOnChange: false,
     validationSchema: Yup.object({
@@ -59,10 +60,10 @@ const LoginForm = () => {
         .required("Email requis"),
         password: Yup.string()
         .required("Mot de passe requis")
-        .min(8, "Mot de passe trop court")
+        .min(4, "Mot de passe trop court")
     })
 })
-
+console.log(user)
   return (
     <Form onSubmit={handleSubmit}>
       <Container>
@@ -75,7 +76,7 @@ const LoginForm = () => {
       >
         <Input
             placeholder="Email..."
-            name="Email"
+            name="email"
             type="email"
             onChange={handleChange}
             value ={values.email}

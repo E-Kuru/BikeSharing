@@ -7,3 +7,9 @@
     font-family: 'Overpass', sans-serif;
     src: url('https://fonts.googleapis.com/css2?family=Overpass:wght@100&display=swap');
 }
+
+@font-face {
+    font-family: 'Oswald', sans-serif;
+    src: url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');;
+
+}
