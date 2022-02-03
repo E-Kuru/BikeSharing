@@ -18,6 +18,22 @@ app.get('/', async (req,res) => {
     }
 })
 
+// Récupérer les annonces en fonction de leur catégorie 
+
+app.get('/:categorie', async (req,res) => {
+
+    const {categorie} = req.params
+    
+    try{
+        const annonces = await Annonce.find({ categorie : categorie}).exec()
+        
+        res.json(annonces).status(200)
+        
+    } catch (err) {
+        res.status(500).json({ error: err })
+    }
+})
+
 // Trouver des locations dans un secteur proche
 
 app.get('/location/:lat/:lng', async (req,res) => {
