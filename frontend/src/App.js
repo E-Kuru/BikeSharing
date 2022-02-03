@@ -7,6 +7,7 @@ import ConfirmationBorrower from "./pages/ConfirmationBorrower";
 import ConfirmationUser from "./pages/ConfirmationUser";
 import CreateAnnonce from "./pages/CreateAnnonce";
 import Paiement from "./pages/Paiement";
+import BikeDescription from "./pages/BikeDescription";
 import Profil from "./pages/Profil";
 import Admin from "./pages/Admin"
 import NotFound from "./pages/NotFound";
@@ -23,6 +24,7 @@ const App = () => {
       {/* <Route path="/annonce" element={<Annonce/>} /> */}
       <Route path="/profil" element={<Profil/>} />
       <Route path="/bikePage" element={<BikePage/>} />
+      <Route path="/BikeDescription" element={<BikeDescription/>} />
       <Route path="*" element={<NotFound />} />
     </Routes>
     <Modals />
