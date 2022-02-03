@@ -10,6 +10,8 @@ import Button from '../Button'
 import Input from '../Input'
 import { white } from '../../style/colors'
 import { FloatingLabel } from 'react-bootstrap'
+import { ModalContext } from '../../context/Modal'
+
 
 
 const Form = styled.form`
@@ -34,7 +36,8 @@ font-family: "Gilda Display";
 
 const LoginForm = () => {
   const navigate = useNavigate()
-  const { setUser } = useContext(UserContext)
+  const { setUser, user } = useContext(UserContext)
+  const { setVisible } = useContext(ModalContext)
 
   const { values, errors, handleSubmit, handleChange } = useFormik({
     initialValues: {
@@ -45,6 +48,7 @@ const LoginForm = () => {
       try {
         const response = await login(values)
         setUser(response)
+        setVisible(false)
         navigate('/profil')
       } catch (e) {
         setFieldError('submit', 'Incorrect email/password')
@@ -59,7 +63,7 @@ const LoginForm = () => {
         .min(4, "Mot de passe trop court")
     })
 })
-
+console.log(user)
   return (
     <Form onSubmit={handleSubmit}>
       <Container>

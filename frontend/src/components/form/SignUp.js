@@ -10,6 +10,7 @@ import Button from '../Button'
 import Input from '../Input'
 import { white } from '../../style/colors'
 import { FloatingLabel } from 'react-bootstrap'
+import { ModalContext } from '../../context/Modal'
 
 const Form = styled.form`
   width: 300px;
@@ -32,6 +33,7 @@ padding-left: 10%;
 const SignUp = () => {
     const navigate = useNavigate()
     const { setUser } = useContext(UserContext)
+    const { setVisible } = useContext(ModalContext)
 
     const { values, errors, handleSubmit, handleChange } = useFormik ({
         initialValues: {
@@ -46,24 +48,19 @@ const SignUp = () => {
         },
         onSubmit: async (values, { setFieldError }) => {
           const { firstName,lastName, adress, phoneNumber, email, password } = values
-    
-          const response = await signUp({
-            firstName,
-            lastName, 
-            adress, 
-            phoneNumber, 
-            email,
-            password
-          })
+          const user = {firstName, lastName, adress, phoneNumber, email, password}
+          
+          const response = await signUp(user)
     
           if (response.error) {
             setFieldError('submit', response.error)
           } else {
             const user = await login({ email, password })
             setUser(user)
+            setVisible(false)
             navigate('/profil')
-          }
-        },
+          } 
+        }, 
 
         validateOnChange: false,
         validationSchema: Yup.object({
@@ -93,7 +90,6 @@ const SignUp = () => {
             )})
         })
     })
-
     return (
       <Container>
         <Form onSubmit={handleSubmit}>
@@ -149,7 +145,7 @@ const SignUp = () => {
             <Input
               placeholder="Numéro de téléphone..."
               name="phoneNumber"
-              type="tel"
+              type="text"
               onChange={handleChange}
               value ={values.phone}
               error={errors.phone}

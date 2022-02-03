@@ -27,7 +27,7 @@ const getMe = async () => {
     return data
   }
 
-  const signUp = async ({ firstName, lastName, adress, phone, email, password }) => {
+  const signUp = async ({ firstName, lastName, adress, phoneNumber, email, password }) => {
     const response = await fetch('http://localhost:5000/auth/signup', {
       method: 'post',
       ...options,
@@ -35,7 +35,7 @@ const getMe = async () => {
         firstName,
         lastName,
         adress,
-        phone,
+        phoneNumber,
         email,
         password,
       })
