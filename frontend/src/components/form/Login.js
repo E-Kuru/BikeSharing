@@ -16,11 +16,12 @@ const Form = styled.form`
   color: white;
 `
 const Container = styled.div`
-  position: relative;
   width: 300px;
   height: 300px;
   margin-right:550px;
-
+  display: flex;
+  flex-direction: column;
+  
 `
 
 const ErrorMessage = styled.div`

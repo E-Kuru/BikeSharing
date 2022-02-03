@@ -1,20 +1,20 @@
-import React from 'react'
-import  {DateTimePikerComponent} from  '@syncfusion/ej2-calendars'
+// import React from 'react'
+// import  {DateTimePikerComponent} from  '@syncfusion/ej2-calendars'
 
-const DateTime = () => {
-  return (
-     <div>
-       <input type="datetime-local" 
+// const DateTime = () => {
+//   return (
+//      <div>
+//        <input type="datetime-local" 
         
-       name="time" 
-       value="Dade"
-       placeholder="Type address" 
-       min="" max="" />
+//        name="time" 
+//        value="Dade"
+//        placeholder="Type address" 
+//        min="" max="" />
        
 
-     </div>
-  )
-}
+//      </div>
+//   )
+// }
 
-export default DateTime
+// export default DateTime
 

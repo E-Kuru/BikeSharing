@@ -12,7 +12,10 @@ const linkStyle = {
     fontSize: "15px",
     textAlign: "center",
     border : "none",
-    background : "none"
+    background : "none",
+    textDecoration: "none",
+    
+    
 }
 
 const linkStyle2 = {
@@ -105,6 +108,11 @@ return (
     <img src={logo}></img>
         <Burger onClick={() => setOpenBurger(!openBurger)} >☰</Burger>
         <Menu>
+        <Li>
+                <Link to="/" style={linkStyle}>
+                    HOME
+                </Link>
+            </Li>
             <Li>
                 <button style={linkStyle} onClick={handleLoginClick}>
                     SE CONNECTER

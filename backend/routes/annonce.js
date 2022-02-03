@@ -20,7 +20,8 @@ app.get('/', async (req,res) => {
 
 // Trouver des locations dans un secteur proche
 
-app.get('/location/:lat/:lng', async (req,res) => {
+app.get('/location/:lat/:lng', 
+async (req,res) => {
 
     const {lat, lng} = req.params
 

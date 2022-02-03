@@ -16,7 +16,15 @@ const Form = styled.form`
 const ErrorMessage = styled.div`
 size: 15px;
 `
+const Container = styled.div`
+display: flex;
+flex-direction: column;
+justify-content: center;
+width: 49%;
+padding-left: 10%;
 
+
+`
 
 const SignUp = () => {
     const navigate = useNavigate()
@@ -79,9 +87,9 @@ const SignUp = () => {
     })
 
     return (
+      <Container>
         <Form onSubmit={handleSubmit}>
-          <h1>INSCRIPTION</h1>
-    
+          <h1 style={{marginBottom: 30, textAlign: 'center'}}>INSCRIPTION</h1>
           <FloatingLabel
             controlId="firstnameInput"
             label="NOM"
@@ -133,7 +141,7 @@ const SignUp = () => {
             <Input
               placeholder="Numéro de téléphone..."
               name="phone"
-              type="number"
+              type="tel"
               onChange={handleChange}
               value ={values.phone}
               error={errors.phone}
@@ -195,6 +203,7 @@ const SignUp = () => {
           
           {errors.submit && <ErrorMessage marginTop>{errors.submit}</ErrorMessage>}
         </Form>
+        </Container>
       )
     }
     

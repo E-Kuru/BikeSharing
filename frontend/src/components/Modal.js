@@ -12,8 +12,6 @@ font-family: "Gilda Display";
 color : white;
 z-index: 100;
 border-radius: 5px;
-height : 100%;
-width: 100%;
 padding: 3rem;
 position: fixed;
 top: 0;
@@ -26,6 +24,8 @@ overflow-y: auto;
 outline: 0;
 display: flex;
 align-items: start;
+justify-content: start;
+
 
 `
 
