@@ -18,6 +18,19 @@ app.get('/', async (req,res) => {
     }
 })
 
+app.get('/user', verifyUser, async (req,res) => {
+    console.log(req.user)
+    
+    try{
+        const annonces = await Annonce.find({user: req.user}).exec()
+        
+        res.json(annonces).status(200)
+        
+    } catch (err) {
+        res.status(500).json({ error: err })
+    }
+})
+
 // Créer une annonce
 
 app.post('/', verifyUser, async (req,res) => {
@@ -96,5 +109,7 @@ app.delete('/:id', verifyUser, async (req, res) => {
         res.status(500).json({ error: err })
     }
 })
+
+
 
 module.exports = app

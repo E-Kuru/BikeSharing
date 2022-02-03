@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import '../App.css'
 
 import styled from "styled-components";
 // import BikesMap from "../components/BikeMap"

@@ -12,6 +12,7 @@ import Admin from "./pages/Admin"
 import NotFound from "./pages/NotFound";
 import Modals from "./components/Modals";
 import { ModalProvider } from "./context/Modal";
+import Annonce from "./pages/BikePage"
 import './style/fonts.css'
 
 const App = () => {

@@ -37,7 +37,7 @@ const LoginForm = () => {
       password: ''
     },
     onSubmit: values => {
-        fetch('http://localhost:3000/login', {
+        fetch('http://localhost:5000/auth/login', {
             method: 'post',
             headers: {
                 'Content-type': 'application/json',
@@ -49,7 +49,7 @@ const LoginForm = () => {
             if (response.status >= 400) {
                 alert(response.statusText)
             }else {
-                navigate('/admin')
+                navigate('/profil')
             }
         })
     },
@@ -59,7 +59,7 @@ const LoginForm = () => {
         .required("Email requis"),
         password: Yup.string()
         .required("Mot de passe requis")
-        .min(8, "Mot de passe trop court")
+        .min(4, "Mot de passe trop court")
     })
 })
 
@@ -75,7 +75,7 @@ const LoginForm = () => {
       >
         <Input
             placeholder="Email..."
-            name="Email"
+            name="email"
             type="email"
             onChange={handleChange}
             value ={values.email}

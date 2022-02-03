@@ -24,7 +24,7 @@ const SignUp = () => {
     const { values, errors, handleSubmit, handleChange } = useFormik ({
         initialValues: {
             firstName: "",
-            lastname: "",
+            lastName: "",
             adress: "",
             phone: "",
             email: "",
@@ -33,7 +33,7 @@ const SignUp = () => {
 
         },
         onSubmit: values => {
-            fetch('http://localhost:3000/login', {
+            fetch('http://localhost:5000/auth/signup', {
                 method: 'post',
                 headers: {
                     'Content-type': 'application/json',

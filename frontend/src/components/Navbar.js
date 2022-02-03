@@ -41,7 +41,7 @@ const Navbar = () => {
     justify-content: space-between;
     flex-direction: ${openBurger ? "column" : "row"}; 
     
-    border-bottom: 1px solid white;
+    // border-bottom: 1px solid white;
 
     @media (max-width: 376px) {
       justify-content: flex-end;
