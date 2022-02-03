@@ -1,15 +1,35 @@
-import React from 'react'
-import './Main.css'
- 
-const Main = () => {
-  return (
-     <div className='hero-img'>
-          <div className='hero-content'>
+import img from "../images/Qsm.png"
+import styled from 'styled-components'
 
-           <img className='photo-bike' src='./photo/bike.jpeg' /> 
-           <div className='centered'>
-                
-              
+
+const Qsm = () => {
+
+    const Container = styled.div`
+    width: 100%;
+    height: 50%;
+    `
+    const Info = styled.div`
+    font-family: 'Gilda Display', serif;
+    text-align: center;
+    padding: 100px;
+
+    p {
+        margin: 50px;
+        font-size: 20px;
+        font-family: 'Gilda Display', serif;
+    }
+   
+    `
+
+
+  return (
+     <Container
+     style={{
+         background:  `url(${img}) no-repeat center/cover`,
+         
+     }}
+     > 
+           <Info>
                <h1>Qui sommes-nous ?</h1>
                <p>Envie de louer ou prêter un vélo ?  BikeSharing est le site
                <br /> 
@@ -19,41 +39,14 @@ const Main = () => {
                <br /> 
                particulier à particulier.
                </p>
-               
                <p>Rouler à vélo ou vélo électrique est plus rapide et plus
                <br />
                 facile, surtout en ville. Mais aussi meilleur pour la santé
                 <br />
                  et l’environnement.</p>
-            
-          </div>
-         
-     </div>
-     </div>
-              
-                 
+            </Info>
+     </Container>               
   )
 }
 
-export default Main
-               
-          
-
-
-
-
-
-
-
-
-
-               
-            
-         
-       
-
-
-  
-
-
-
+export default Qsm

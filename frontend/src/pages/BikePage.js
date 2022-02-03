@@ -3,10 +3,11 @@ import { useParams } from "react-router-dom";
 import '../App.css'
 
 import styled from "styled-components";
-// import BikesMap from "../components/BikeMap"
+import BikesMap from "../components/BikeMap"
 import BikeCard from "../components/BikeCard"
 import Navbar from "../components/Navbar";
 import { getAnnonce } from "../api/annonce"
+import Footer from "../components/Footer";
 
 const Container = styled.div`
     display: flex;
@@ -31,12 +32,12 @@ const BikesList = styled.div`
     }
     
     ::-webkit-scrollbar-thumb {
-    background: #b7094c;
+    background: white;
     border-radius: 10px;
     }
     
     ::-webkit-scrollbar-thumb:hover {
-    background: #b30000;
+    background: lightgray;
     }
 
     @media (max-width: 376px) {
@@ -45,15 +46,15 @@ const BikesList = styled.div`
     }
 `
 
-// const BikesMap = styled.div`
-//     width: 50%;
+const BikeMap = styled.div`
+    width: 50%;
 
-//     @media (max-width: 376px) {
-//     width: 100%;
-//     height: 300px;
-//     margin-bottom: 20px;
-//     }
-// `
+    @media (max-width: 376px) {
+    width: 100%;
+    height: 300px;
+    margin-bottom: 20px;
+    }
+`
 
 const Pages = styled.button`
     width: 25px;
@@ -78,21 +79,25 @@ const CenterPages = styled.div`
     margin: 20px 30px;
 `;
 
+
 const Input = styled.input`
 margin: 50px 40px;
 border-radius: 5px;
 padding: 5px 40px;
 text-align: left;
+width: 500px;
+`
+const Div = styled.form`
+display:flex;
+justify-content: center;
 
 `
-
 
 const BikePage = () => {
 const [selectedBike, setSelectedBike] = useState({});
 const [bikes, setBikes] = useState([]);
-const [center, setCenter] = useState(null);
-const [page,setPage] = useState(1)
-const { categorie } = useParams();
+const [center, setCenter] = useState({lat: 48.8646434, lon: 2.3714107});
+const [page,setPage] = useState(1);
 const [ search, setSearch ] = useState("")
 
 useEffect(() => {
@@ -102,6 +107,7 @@ useEffect(() => {
 const fetchAnnonce = async () => {
     const annonces = await getAnnonce()
     setBikes(annonces)
+    console.log(annonces);
 }
 
 const handleChangeSearch = e => {
@@ -111,12 +117,15 @@ const handleChangeSearch = e => {
 return (
     <>
      <Navbar/>
-     <Input
+     <Div>
+        <Input
           placeholder="Rechercher..."
           name="rechercher"
           type="text"
           onChange= {()=> handleChangeSearch()}
+          
         />
+        </Div>
     <Container>
         <BikesList>
         {!bikes ? (
@@ -129,12 +138,13 @@ return (
                 price={bike.price}
                 starts={bike.starts}
                 image={bike.pictures}
+                description={bike.description}
                 selectedBike={selectedBike}
                 />
             ))
         )}
         </BikesList>
-        {/* <BikesMap>
+        <BikeMap>
             <BikesMap
             map="list"
             center={center}
@@ -142,7 +152,7 @@ return (
             selectedBike={selectedBike}
             setSelectedBike={setSelectedBike}
             />
-        </BikesMap> */}
+        </BikeMap>
     </Container>
     <CenterPages>
         <Pages onClick={() => setPage(1)}>1</Pages>
@@ -150,6 +160,7 @@ return (
         <Pages onClick={() => setPage(3)}>3</Pages>
         <Pages onClick={() => setPage(4)}>4</Pages>
     </CenterPages>
+    <Footer/>
     </>
 )
 }

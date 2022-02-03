@@ -12,7 +12,10 @@ const linkStyle = {
     fontSize: "15px",
     textAlign: "center",
     border : "none",
-    background : "none"
+    background : "none",
+    textDecoration: "none",
+    
+    
 }
 
 const linkStyle2 = {
@@ -41,7 +44,10 @@ const Navbar = () => {
     justify-content: space-between;
     flex-direction: ${openBurger ? "column" : "row"}; 
     
+<<<<<<< HEAD
     // border-bottom: 1px solid white;
+=======
+>>>>>>> b9df0dcbe88a7e1ff5f77f4bc42cf60855ff9429
 
     @media (max-width: 376px) {
       justify-content: flex-end;
@@ -105,6 +111,11 @@ return (
     <img src={logo}></img>
         <Burger onClick={() => setOpenBurger(!openBurger)} >☰</Burger>
         <Menu>
+        <Li>
+                <Link to="/" style={linkStyle}>
+                    HOME
+                </Link>
+            </Li>
             <Li>
                 <button style={linkStyle} onClick={handleLoginClick}>
                     SE CONNECTER

@@ -2,6 +2,9 @@ import styled from 'styled-components'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { useNavigate } from 'react-router-dom' 
+import { signUp,login } from '../../api/auth'
+import { UserContext } from '../../context/User'
+import { useContext } from 'react'
 
 import Button from '../Button'
 import Input from '../Input'
@@ -16,39 +19,52 @@ const Form = styled.form`
 const ErrorMessage = styled.div`
 size: 15px;
 `
+const Container = styled.div`
+display: flex;
+flex-direction: column;
+justify-content: center;
+width: 49%;
+padding-left: 10%;
 
+
+`
 
 const SignUp = () => {
     const navigate = useNavigate()
+    const { setUser } = useContext(UserContext)
 
     const { values, errors, handleSubmit, handleChange } = useFormik ({
         initialValues: {
             firstName: "",
             lastName: "",
             adress: "",
-            phone: "",
+            phoneNumber: "",
             email: "",
             password:"",
             confirmPassword: "",
 
         },
-        onSubmit: values => {
-            fetch('http://localhost:5000/auth/signup', {
-                method: 'post',
-                headers: {
-                    'Content-type': 'application/json',
-                },
-                credentials: 'include',
-                body: JSON.stringify(values)
-            })
-            .then(response => {
-                if (response.status >= 400) {
-                    alert(response.statusText)
-                }else {
-                    navigate('/admin')
-                }
-            })
+        onSubmit: async (values, { setFieldError }) => {
+          const { firstName,lastName, adress, phoneNumber, email, password } = values
+    
+          const response = await signUp({
+            firstName,
+            lastName, 
+            adress, 
+            phoneNumber, 
+            email,
+            password
+          })
+    
+          if (response.error) {
+            setFieldError('submit', response.error)
+          } else {
+            const user = await login({ email, password })
+            setUser(user)
+            navigate('/profil')
+          }
         },
+
         validateOnChange: false,
         validationSchema: Yup.object({
             firstName: Yup.string()
@@ -61,7 +77,7 @@ const SignUp = () => {
             .max (10, "Nom trop long"),
             adress:Yup.string()
             .required("Adresse requise"),
-            phone: Yup.string()
+            phoneNumber: Yup.string()
             .required("Numéro de téléphone requis"),
             email:Yup.string()
             .required("Email requis"),
@@ -79,9 +95,9 @@ const SignUp = () => {
     })
 
     return (
+      <Container>
         <Form onSubmit={handleSubmit}>
-          <h1>INSCRIPTION</h1>
-    
+          <h1 style={{marginBottom: 30, textAlign: 'center'}}>INSCRIPTION</h1>
           <FloatingLabel
             controlId="firstnameInput"
             label="NOM"
@@ -132,8 +148,8 @@ const SignUp = () => {
           >
             <Input
               placeholder="Numéro de téléphone..."
-              name="phone"
-              type="number"
+              name="phoneNumber"
+              type="tel"
               onChange={handleChange}
               value ={values.phone}
               error={errors.phone}
@@ -195,6 +211,7 @@ const SignUp = () => {
           
           {errors.submit && <ErrorMessage marginTop>{errors.submit}</ErrorMessage>}
         </Form>
+        </Container>
       )
     }
     
