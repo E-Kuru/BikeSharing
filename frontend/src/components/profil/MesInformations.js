@@ -1,6 +1,9 @@
 import React from 'react';
 import { useEffect, useState } from "react";
 import { getAnnonce } from "../../api/annonce"
+import { UserContext } from '../../context/User'
+import { useContext } from 'react'
+
 import styled from "styled-components";
 import { MdOutlineEdit, MdDeleteOutline } from "react-icons/md"
 
@@ -11,11 +14,8 @@ const Container = styled.div`
   background-color: white;
 `
 const Content = styled.div`
- 
- margin: 10px;
- 
- 
-  width: 100%;
+    margin: 10px;
+    width: 100%;
 `
 
 const Title = styled.div`
@@ -29,6 +29,12 @@ const Icon = styled.div`
 
 
 const MesInformations = () => {
+    const { setUser, user } = useContext(UserContext)
+
+    if (!user){
+        return <p>pas d'infos</p>
+    }
+
     return (
         <>
             <Container>
@@ -39,11 +45,11 @@ const MesInformations = () => {
                             <MdOutlineEdit color="black" fontSize="35px" />
                         </Icon>
                     </Title>
-                    <p className='ms-2 text-dark'>Nom:</p>
-                    <p className='ms-2 text-dark'>Prénom:</p>
-                    <p className='ms-2 text-dark'>Email:</p>
-                    <p className='ms-2 text-dark'>Numéro de téléphone:</p>
-                    <p className='ms-2 text-dark'>Adresse:</p>
+                    <p className='ms-2 text-dark'>Nom: {user.lastName}</p>
+                    <p className='ms-2 text-dark'>Prénom: {user.firstName}</p>
+                    <p className='ms-2 text-dark'>Email: {user.email}</p>
+                    <p className='ms-2 text-dark'>Numéro de téléphone: {user.phoneNumber}</p>
+                    <p className='ms-2 text-dark'>Adresse: {user.adress}</p>
                 </Content>
                 
             </Container>

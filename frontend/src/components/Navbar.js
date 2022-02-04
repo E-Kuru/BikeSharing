@@ -3,6 +3,9 @@ import { useState, useContext } from "react";
 import styled from "styled-components";
 import logo from "../images/Logo.png";
 import { ModalContext } from "../context/Modal";
+import { UserContext } from '../context/User'
+import { logout } from "../api/auth"
+import { useNavigate } from "react-router-dom"
 import Modals from "./Modals";
 import LoginForm from "./form/Login";
 
@@ -32,8 +35,15 @@ const linkStyle2 = {
 const Navbar = () => {
 
     const { handleSignupClick, handleLoginClick, open, visible, setVisible } = useContext(ModalContext)
-      
     const [ openBurger, setOpenBurger ] = useState(false)
+    const { setUser, user } = useContext(UserContext)
+    const navigate = useNavigate()
+
+    const logoutUser = async () => {
+        await logout()
+        setUser(null)
+        navigate('/')  
+      }
 
     const List = styled.div`
     background-color: black;
@@ -44,10 +54,6 @@ const Navbar = () => {
     justify-content: space-between;
     flex-direction: ${openBurger ? "column" : "row"}; 
     
-<<<<<<< HEAD
-    // border-bottom: 1px solid white;
-=======
->>>>>>> b9df0dcbe88a7e1ff5f77f4bc42cf60855ff9429
 
     @media (max-width: 376px) {
       justify-content: flex-end;
@@ -110,6 +116,8 @@ return (
     <List>
     <img src={logo}></img>
         <Burger onClick={() => setOpenBurger(!openBurger)} >☰</Burger>
+        {!user ? 
+        <>
         <Menu>
         <Li>
                 <Link to="/" style={linkStyle}>
@@ -132,6 +140,32 @@ return (
                 </Link>
             </Li>
         </Menu>
+        </> :
+            <>
+            <Menu>
+            <Li>
+                <Link to="/" style={linkStyle}>
+                    HOME
+                </Link>
+                </Li>
+                <Li>
+                    <Link to="/profil" style={linkStyle}>
+                        PROFIL
+                    </Link>
+                </Li>
+                <Li>
+                    <button style={linkStyle} onClick={logoutUser}>
+                        SE DECONNECTER
+                    </button>
+                </Li>
+                <Li>
+                    <Link to="/bikePage" style={linkStyle2}>
+                        Louer un vélo
+                    </Link>
+                </Li>
+            </Menu>
+            </>
+}
     </List>
     </>
 )

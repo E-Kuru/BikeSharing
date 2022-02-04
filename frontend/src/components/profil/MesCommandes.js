@@ -43,7 +43,7 @@ const Button = styled.button`
     font-size: 14px;
     padding: 0.6em 6.2em;
     cursor: pointer;
-    margin-top: 60px
+    margin-top: 85px
 }
 `
 
@@ -63,10 +63,10 @@ const MesCommandes = () => {
                         <P className='text-dark'>Paris</P>  
                         </div>
                         <div>
-                            <Icon className=''>
+                            {/* <Icon className=''>
                                 <MdOutlineEdit color="black" fontSize="30px" /> 
                                 <MdDeleteOutline color="black" fontSize="30px"/>
-                            </Icon>
+                            </Icon> */}
                             
                             <Button>En cours</Button>
                         </div>

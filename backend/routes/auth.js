@@ -41,4 +41,10 @@ app.get('/me', (req, res) => {
   }
 })
 
+app.delete('/logout', (req, res) => {
+  req.session.destroy()
+  req.logout() 
+  res.status(200).json({ success: "Sucess" })
+})
+
 module.exports = app

@@ -6,6 +6,8 @@ import MesCommandes from '../components/profil/MesCommandes';
 import MesInformations from '../components/profil/MesInformations';
 import Navbar from "../components/Navbar"
 import styled from "styled-components";
+import { UserContext } from '../context/User'
+import { useContext } from 'react'
 import '../App.css'
 
 const Vertical = styled.div`
@@ -15,7 +17,7 @@ const Vertical = styled.div`
 `
 
 const Profil = () => {
-
+    const { user } = useContext(UserContext)
     const [toggle, setToggleState] = useState("1");
 
     const toggleTab = (index) => {
@@ -24,25 +26,28 @@ const Profil = () => {
 
     return (
         <>
-    <Navbar/>
-        <div className='container '>
+            <Navbar/>
             
-            <nav className="nav my-4">
-                <Link name="Mes annonces" number="1" className="nav-link active text-light" href="#"  toggleTab={toggleTab}/>
-                <Vertical className='my-3' />
-                <Link name="Mes commandes" number="2" className="nav-link active text-light" href="#"  toggleTab={toggleTab}/>
-                <Vertical  className='my-3'/>
-                <Link name="Mes informations" number="3" className="nav-link active text-light" href="#" toggleTab={toggleTab} />
-                <Vertical  className='my-3' />
-                <Link name="Mes méthodes de paiement" number="4" className="nav-link active text-light" href="#" toggleTab={toggleTab} />
-            </nav>
+            <div className='container '>
+            {!user ? <p className='my-5'>Vous devez vous connectez pour accéder à votre profil</p> :
+            <>
+                <nav className="nav my-4">
+                    <Link name="Mes annonces" number="1" className="nav-link active text-light" href="#"  toggleTab={toggleTab}/>
+                    <Vertical className='my-3' />
+                    <Link name="Mes commandes" number="2" className="nav-link active text-light" href="#"  toggleTab={toggleTab}/>
+                    <Vertical  className='my-3'/>
+                    <Link name="Mes informations" number="3" className="nav-link active text-light" href="#" toggleTab={toggleTab} />
+                    <Vertical  className='my-3' />
+                    <Link name="Mes méthodes de paiement" number="4" className="nav-link active text-light" href="#" toggleTab={toggleTab} />
+                </nav>
 
-            {toggle === null && <MesAnnonces />}
-            {toggle === "1" && <MesAnnonces />}
-            {toggle === "2" && <MesCommandes />}
-            {toggle === "3" && <MesInformations />}
-            
-        </div>
+                {toggle === null && <MesAnnonces />}
+                {toggle === "1" && <MesAnnonces />}
+                {toggle === "2" && <MesCommandes />}
+                {toggle === "3" && <MesInformations />}
+            </>
+            }
+            </div>
         </>
     );
 };

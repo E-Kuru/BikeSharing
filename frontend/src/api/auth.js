@@ -19,35 +19,47 @@ const login = async ({ email, password }) => {
 }
 
 const getMe = async () => {
-    const response = await fetch('http://localhost:5000/auth/me', {
-      ...options
-    })
   
-    const data = response.json()
-    return data
-  }
+  const response = await fetch('http://localhost:5000/auth/me', {
+    ...options
+  })
+  
+  const data = response.json()
+  return data
+}
 
-  const signUp = async ({ firstName, lastName, adress, phoneNumber, email, password }) => {
-    const response = await fetch('http://localhost:5000/auth/signup', {
-      method: 'post',
-      ...options,
-      body: JSON.stringify({
-        firstName,
-        lastName,
-        adress,
-        phoneNumber,
-        email,
-        password,
-      })
+const signUp = async ({ firstName, lastName, adress, phoneNumber, email, password }) => {
+  const response = await fetch('http://localhost:5000/auth/signup', {
+    method: 'post',
+    ...options,
+    body: JSON.stringify({
+      firstName,
+      lastName,
+      adress,
+      phoneNumber,
+      email,
+      password,
     })
-  
-    const data = await response.json()
-    return data
-  }
+  })
+
+  const data = await response.json()
+  return data
+}
+
+const logout = async () => {
+  const response = await fetch(`http://localhost:5000/auth/logout`, {
+    method: 'delete',
+    ...options
+  })
+
+  const data = response.json()
+  return data
+}
 
 
 export {
     login,
     getMe,
-    signUp
+    signUp,
+    logout
 }
