@@ -11,6 +11,7 @@ import Input from "../Input";
 import { white } from "../../style/colors";
 import { FloatingLabel } from "react-bootstrap";
 import { ModalContext } from "../../context/Modal";
+import { MdOutlinePermIdentity } from 'react-icons/md';
 
 const Form = styled.form`
   width: 320px;
@@ -94,7 +95,8 @@ const LoginForm = () => {
             onChange={handleChange}
             value={values.password}
             error={errors.password}
-          />
+          > 
+          </Input>
         </FloatingLabel>
 
         <Button
