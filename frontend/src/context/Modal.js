@@ -1,31 +1,29 @@
-import { createContext, useState } from 'react'
+import { createContext, useState } from "react";
 
-
-const ModalContext = createContext({ })
+const ModalContext = createContext({});
 
 const ModalProvider = ({ children }) => {
-  const [visible, setVisible] = useState(true)
-  const [type, setType] = useState(null)
+  const [visible, setVisible] = useState(true);
+  const [type, setType] = useState(null);
 
- 
   const close = () => {
-    setType(null)
-    setVisible(false)
-  }
+    setType(null);
+    setVisible(false);
+  };
 
   const open = () => {
-    setVisible(true)
-  }
+    setVisible(true);
+  };
 
   const handleSignupClick = () => {
-    open()
-    setType('signup')
-  }
-  
+    open();
+    setType("signup");
+  };
+
   const handleLoginClick = () => {
-    open()
-    setType('login')
-  }
+    open();
+    setType("login");
+  };
 
   const value = {
     visible,
@@ -36,16 +34,11 @@ const ModalProvider = ({ children }) => {
     open,
     handleSignupClick,
     handleLoginClick,
-  }
+  };
 
   return (
-    <ModalContext.Provider value={value}>
-      {children}
-    </ModalContext.Provider>
-  )
-}
+    <ModalContext.Provider value={value}>{children}</ModalContext.Provider>
+  );
+};
 
-export {
-  ModalContext,
-  ModalProvider
-}
+export { ModalContext, ModalProvider };
