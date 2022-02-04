@@ -5,27 +5,24 @@ import velodeville from "../images/velodeville.png";
 import vtc from "../images/vtc.jpeg";
 import vtt from "../images/vtt.jpeg";
 
-
-
 const CategoriesCard = (props) => {
- 
   const Card = styled.div`
     width: 300px;
     height: 200px;
     margin: 20px;
- 
+
     @media (max-width: 812px) {
-        margin: 5% 6%;
+      margin: 5% 6%;
     }
 
     p {
       font-size: 40px;
-      font-family: 'Oswald', sans-serif;
+      font-family: "Oswald", sans-serif;
       padding-top: 60px;
 
       @media (max-width: 812px) {
         margin-top: 0px;
-    }
+      }
     }
   `;
 
@@ -39,7 +36,7 @@ const CategoriesCard = (props) => {
     <Link
             to={`/bikepage`}
             style={{
-              color: "black",
+              color: "white",
               padding: "20px",
               textDecoration: "none",
               fontSize: "30px",
@@ -51,7 +48,7 @@ const CategoriesCard = (props) => {
       <Card
       style={{
         background : `url(${velodeville}) no-repeat center/cover`,
-        opacity: 0.6,
+        opacity: 0.8
       }}
       >
         <p>VELO DE VILLE</p>
@@ -62,7 +59,7 @@ const CategoriesCard = (props) => {
     <Link
             to={`/bikepage`}
             style={{
-              color: "black",
+              color: "white",
               padding: "20px",
               textDecoration: "none",
               fontSize: "30px",
@@ -74,7 +71,7 @@ const CategoriesCard = (props) => {
       <Card
       style={{
         background : `url(${vtt}) no-repeat center/cover`,
-        opacity: 0.6,
+        opacity: 0.8,
       }}
       >
         <p>VTT</p>
@@ -85,7 +82,7 @@ const CategoriesCard = (props) => {
     <Link
             to={`/bikepage`}
             style={{
-              color: "black",
+              color: "white",
               padding: "20px",
               textDecoration: "none",
               fontSize: "30px",
@@ -97,7 +94,7 @@ const CategoriesCard = (props) => {
       <Card
       style={{
         background : `url(${vtc}) no-repeat center/cover`,
-        opacity: 0.6,
+        opacity: 0.8,
       }}
       >
         <p>VTC</p>
@@ -108,7 +105,7 @@ const CategoriesCard = (props) => {
     <Link
             to={`/bikepage`}
             style={{
-              color: "black",
+              color: "white",
               padding: "20px",
               textDecoration: "none",
               fontSize: "30px",
@@ -120,7 +117,7 @@ const CategoriesCard = (props) => {
       <Card
       style={{
         background : `url(${autre}) no-repeat center/cover`,
-        opacity: 0.6,
+        opacity: 0.8,
       }}
       >
         <p>AUTRE...</p>
@@ -133,5 +130,3 @@ const CategoriesCard = (props) => {
   );
 };
 export default CategoriesCard;
-
-        

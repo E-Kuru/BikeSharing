@@ -9,30 +9,26 @@ import { useNavigate } from "react-router-dom"
 import Modals from "./Modals";
 import LoginForm from "./form/Login";
 
-
 const linkStyle = {
-    color: "white",
-    fontSize: "15px",
-    textAlign: "center",
-    border : "none",
-    background : "none",
-    textDecoration: "none",
-    
-    
-}
+  color: "white",
+  fontSize: "15px",
+  textAlign: "center",
+  border: "none",
+  background: "none",
+  textDecoration: "none",
+};
 
 const linkStyle2 = {
-    color: "black",
-    textDecoration: "none",
-    fontSize: "15px",
-    textAlign: "center",
-    backgroundColor: "white",
-    padding: "10px",
-    
-
-}
+  color: "black",
+  textDecoration: "none",
+  fontSize: "15px",
+  textAlign: "center",
+  backgroundColor: "white",
+  padding: "10px",
+};
 
 const Navbar = () => {
+  
 
     const { handleSignupClick, handleLoginClick, open, visible, setVisible } = useContext(ModalContext)
     const [ openBurger, setOpenBurger ] = useState(false)
@@ -45,34 +41,51 @@ const Navbar = () => {
         navigate('/')  
       }
 
-    const List = styled.div`
+
+  const List = styled.div`
     background-color: black;
-    padding: 10px 10px 10px 30px ;
+    padding: 10px 10px 10px 30px;
     height: ${openBurger ? "100%" : "20vh"};
     display: flex;
     align-items: center;
     justify-content: space-between;
+<<<<<<< HEAD
     flex-direction: ${openBurger ? "column" : "row"}; 
     
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+    
+=======
+<<<<<<< HEAD
+    // border-bottom: 1px solid white;
+=======
+>>>>>>> b9df0dcbe88a7e1ff5f77f4bc42cf60855ff9429
+>>>>>>> refs/remotes/origin/main
+=======
+    flex-direction: ${openBurger ? "column" : "row"};
+>>>>>>> 4eab688f3663c036f1e7eefa8c1d850424f02754
+>>>>>>> 6b33e6d15b9619862179b7afd613768dd28ac33b
 
     @media (max-width: 376px) {
       justify-content: flex-end;
       padding-right: 30px;
     }
-    img{
-        height : 100%;
+    img {
+      height: 100%;
     }
-    `
+  `;
 
-    const Title = styled.h1`
+  const Title = styled.h1`
     font-family: "Gilda Display";
     font-size: 10px;
     ${openBurger && "display: none"};
 
     @media (max-width: 280px) {
       font-size: 28px;
-    }`
-    const Burger = styled.button`
+    }
+  `;
+  const Burger = styled.button`
     display: none;
 
     @media (max-width: 376px) {
@@ -82,64 +95,67 @@ const Navbar = () => {
       background: none;
       font-size: 40px;
       color: white;
-      cursor: pointer;   
-    }`
+      cursor: pointer;
+    }
+  `;
 
   const Menu = styled.ul`
-    font-family: 'Gilda Display', serif;
+    font-family: "Gilda Display", serif;
     list-style: none;
     display: flex;
     flex-direction: ${openBurger ? " column" : "row"};
     ${openBurger && "text-align: center;"}
-    
-    button{
-        font-family: 'Gilda Display', serif;
+
+    button {
+      font-family: "Gilda Display", serif;
     }
-  `
+  `;
 
   const Li = styled.li`
     padding: 20px;
     :hover {
-        font-weight: bold; 
+      font-weight: bold;
     }
 
     @media (max-width: 376px) {
       padding: 10px;
       ${openBurger ? "display: flex" : "display: none"}
-      ${openBurger && "flex-direction: column" }
+      ${openBurger && "flex-direction: column"}
       ${openBurger && "align-items: center"}
-      
     }
-  `
-return (
+  `;
+  return (
     <>
+
     <List>
     <img src={logo}></img>
         <Burger onClick={() => setOpenBurger(!openBurger)} >☰</Burger>
         {!user ? 
         <>
+
         <Menu>
-        <Li>
-                <Link to="/" style={linkStyle}>
-                    HOME
-                </Link>
-            </Li>
-            <Li>
-                <button style={linkStyle} onClick={handleLoginClick}>
-                    SE CONNECTER
-                </button>
-            </Li>
-            <Li>
-                <button style={linkStyle} onClick={handleSignupClick}>
-                    S'INSCRIRE
-                </button>
-            </Li>
-            <Li>
-                <Link to="/bikePage" style={linkStyle2}>
-                    Louer un vélo
-                </Link>
-            </Li>
+          <Li>
+            <Link to="/" style={linkStyle}>
+              HOME
+            </Link>
+          </Li>
+          <Li>
+            <button style={linkStyle} onClick={handleLoginClick}>
+              SE CONNECTER
+            </button>
+          </Li>
+          <Li>
+            <button style={linkStyle} onClick={handleSignupClick}>
+              S'INSCRIRE
+            </button>
+          </Li>
+          <Li>
+            <Link to="/bikePage" style={linkStyle2}>
+              Louer un vélo
+            </Link>
+          </Li>
         </Menu>
+
         </> :
             <>
             <Menu>
@@ -167,7 +183,10 @@ return (
             </>
 }
     </List>
-    </>
-)
-}
-export default Navbar
+
+  </>
+
+    
+  );
+};
+export default Navbar;

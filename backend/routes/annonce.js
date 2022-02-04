@@ -36,7 +36,7 @@ app.get('/user',  async (req,res) => {
 // Récupérer les annonces en fonction de leur catégorie 
 
 app.get('/:categorie', async (req,res) => {
-
+    
     const {categorie} = req.params
     
     try{
@@ -49,10 +49,24 @@ app.get('/:categorie', async (req,res) => {
     }
 })
 
+// Récupérer une annonce en fonction de l'id
+
+app.get('/:id', verifyUser, async (req,res) => {
+    const { id } = req.params
+    
+    try{
+        const annonces = await Annonce.findById(id)
+        
+        res.json(annonces).status(200)
+        
+    } catch (err) {
+        res.status(500).json({ error: err })
+    }
+})
+
 // Trouver des locations dans un secteur proche
 
-app.get('/location/:lat/:lng', 
-async (req,res) => {
+app.get('/location/:lat/:lng', async (req,res) => {
 
     const {lat, lng} = req.params
 
@@ -110,20 +124,6 @@ app.put('/:id', verifyUser, async (req,res) => {
     }
 })
 
-// Récupérer une annonce en fonction de l'id
-
-app.get('/:id', verifyUser, async (req,res) => {
-    const { id } = req.params
-    
-    try{
-        const annonces = await Annonce.findById(id)
-        
-        res.json(annonces).status(200)
-        
-    } catch (err) {
-        res.status(500).json({ error: err })
-    }
-})
 
 // Supprimer une annonce
 

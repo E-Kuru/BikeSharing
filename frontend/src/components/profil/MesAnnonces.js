@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { useEffect, useState } from "react";
 import { getAnnonce, deleteAnnonce } from "../../api/annonce"
 import styled from "styled-components";
@@ -9,15 +9,15 @@ import { MdOutlineEdit, MdDeleteOutline } from "react-icons/md"
 import EditAnnonce from './EditAnnonce';
 
 const Box = styled.div`
-    background: white;
-    border-radius: 5px;
-    transition: 1s;
-`
+  background: white;
+  border-radius: 5px;
+  transition: 1s;
+`;
 const Image = styled.img`
-    height: 250px;
-    width: 50px;
-    min-width: 100%;
-`
+  height: 250px;
+  width: 50px;
+  min-width: 100%;
+`;
 
 const Button = styled.button`
 {
