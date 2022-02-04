@@ -56,31 +56,51 @@ const ConfirmationUser = () => {
         width : 45%;
 
         .mess-head {
+          font-family: "Gilda Display";
           display : flex ;
           justify-content : center ;
           align-items : center;
           border-radius : 10px  10px 0 0;
           height : 12%;
-          background-color : #152A74;
+          background-color : #494949 ;
           width : 80% ;
           text-align : center;
         }
 
         .message-content{
           width : 80% ;
-          height : 80%;
+          height : 70%;
           background-color : #ffff;
         }
 
-        input{
-          border : none;
-          border-top : 1px solid black;
-          border-radius : 0 0 10px 10px;
-          width 80%;
-          height : 10%;
-          text-align : center;
-        }
-    `
+        form{
+          height : 25%;
+          width : 80%;
+          display : flex;
+          justify-content : space-between;
+          align-items : center;
+          flex-direction : column;
+      }
+      
+      form button{
+          border-radius : 5px;
+          background-color : #000;
+          color : #fff;
+          border : 1px solid white;
+          height : 30%;
+          width : 70%;
+          margin-top : 2%;
+      }
+      
+      input{
+        width : 100%;
+        height : 40%;
+        border : none;
+        border-top : 1px solid black;
+        border-radius : 0 0 10px 10px;
+        text-align : center;
+      }
+  `
 
   return(
     <>
@@ -112,7 +132,10 @@ const ConfirmationUser = () => {
         <div className="message-content">
           {/* Les messages */}
         </div>
+        <form>
         <input type="text" placeholder="Message..." />
+        <button type="submit">Envoyer</button>
+        </form>
       </Messagerie>
 
     </AllContent>
