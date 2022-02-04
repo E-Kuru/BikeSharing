@@ -106,7 +106,8 @@ const BikePage = () => {
   const fetchAnnonce = async () => {
     const annonces = await getAnnonce();
     setBikes(annonces);
-    console.log(annonces);
+    // console.log(annonces.map(e => e.location.coordinates[0]));
+    // console.log(annonces.map(e => e.location.coordinates[1]));
   };
 
   const handleChangeSearch = (e) => {
@@ -152,7 +153,6 @@ const BikePage = () => {
             >
             {bikes.map(e => (
                 <BikeMarker 
-                color = "yellow"
                 key={e.name + e.description} 
                 lat={e.location.coordinates[0]} 
                 lng={e.location.coordinates[1]} 

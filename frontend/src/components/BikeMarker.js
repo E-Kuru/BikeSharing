@@ -15,14 +15,13 @@ const BikeMarker = (props) => {
   
         <MarkerContainer>
         <GrBike
-            onMouseEnter={() => {
-                props.setSelectedBike(props.bike);
-            }}
-            onMouseLeave={() => {
-                props.setSelectedBike({});
-            }}
+            // onMouseEnter={() => {
+            //     props.setSelectedBike(props.bike);
+            // }}
+            // onMouseLeave={() => {
+            //     props.setSelectedBike({});
+            // }}
             style={{
-              color : `${props.color}`,
                 width: `${props.map === 'list'? '20px' : '25px' }`,
                 height: `${props.map === 'list'? '10px' : '25px' }`,
             }}
