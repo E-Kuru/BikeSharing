@@ -31,10 +31,10 @@ function Calendrier() {
 
              <input className="input-style"
             {...getInputProps
-            ({ placeholder: "Type address" })}
+            ({ placeholder: "Emplacement actuel ..." })}
              />
 
-            <div>
+            <div className="style">
              {loading ? <div>...loading</div> : null}
 
               {suggestions.map(suggestion => {

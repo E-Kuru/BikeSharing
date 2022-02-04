@@ -1,38 +1,31 @@
-import { createContext, useEffect, useState } from 'react'
+import { createContext, useEffect, useState } from "react";
 
-import { getMe } from '../api/auth'
+import { getMe } from "../api/auth";
 
-const UserContext = createContext({ })
+const UserContext = createContext({});
 
 const UserProvider = ({ children }) => {
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
-    getUser()
-  }, [])
+    getUser();
+  }, []);
 
   const getUser = async () => {
-    const fetchedUser = await getMe()
+    const fetchedUser = await getMe();
 
     if (!fetchedUser.error) {
-      setUser(fetchedUser)
+      setUser(fetchedUser);
     }
-  }
+  };
 
   const value = {
     user,
     setUser,
-    getUser
-  }
+    getUser,
+  };
 
-  return (
-    <UserContext.Provider value={value}>
-      {children}
-    </UserContext.Provider>
-  )
-}
+  return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
+};
 
-export {
-  UserContext,
-  UserProvider
-}
+export { UserContext, UserProvider };
