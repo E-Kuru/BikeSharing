@@ -25,6 +25,7 @@ const App = () => {
             {/* <Route path="/annonce" element={<Annonce/>} /> */}
             <Route exact path="/profil" element={<Profil />} />
             <Route exact path="/bikePage" element={<BikePage />} />
+            <Route exact path="/blop" element={<ConfirmationUser />} />
             <Route exact path="*" element={<NotFound />} />
           </Routes>
           <Modals />
