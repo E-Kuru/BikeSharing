@@ -1,19 +1,19 @@
-import styled from "styled-components"
+import styled from "styled-components";
 
-import { FormControl } from "react-bootstrap"
-import { white, grey, red } from "../style/colors"
+import { FormControl } from "react-bootstrap";
+import { white, grey, red } from "../style/colors";
 
 const Input = styled(FormControl)`
   background: transparent;
   color: ${white};
   outline: 0;
   padding: 12px 12px;
-  margin-bottom: ${props => props.error ? '8px' : '24px'};
-  border: solid 1px ${props => props.error ? red : grey};
+  margin-bottom: ${(props) => (props.error ? "8px" : "24px")};
+  border: solid 1px ${(props) => (props.error ? red : grey)};
   transition: border 0.1s;
-  ${props => {
+  ${(props) => {
     if (props.$large) {
-      return `height: 100px !important;`
+      return `height: 100px !important;`;
     }
   }}
   &:focus {
@@ -21,14 +21,22 @@ const Input = styled(FormControl)`
     color: ${white};
     outline: 0;
     box-shadow: none;
-    border: solid 1px ${props => props.error ? red : white};
+    border: solid 1px ${(props) => (props.error ? red : white)};
   }
-`
+`;
 const ErrorMessage = styled.div`
-size: 15px;
-`
+  size: 15px;
+`;
 
-const InputComponent = ({ placeholder, name, type, onChange, value, error, large }) => {
+const InputComponent = ({
+  placeholder,
+  name,
+  type,
+  onChange,
+  value,
+  error,
+  large,
+}) => {
   return (
     <>
       <Input
@@ -36,13 +44,13 @@ const InputComponent = ({ placeholder, name, type, onChange, value, error, large
         name={name}
         type={type}
         onChange={onChange}
-        value ={value}
+        value={value}
         error={error}
         $large={large}
       />
       {error && <ErrorMessage marginBottom>{error}</ErrorMessage>}
     </>
-  )
-}
+  );
+};
 
-export default InputComponent
+export default InputComponent;
