@@ -1,42 +1,36 @@
 // import { Marker } from "google-maps-react";
-// import styled from "styled-components";
-
-// const Marker = styled.div`
-//   height: 20px;
-//   background: #b7094c;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   border-radius: 5px;
-//   border: 1px solid white;
-
-//   :hover {
-//     background-color: #892b64
-//   }
-
-// `;
+import styled from "styled-components";
+import { GrBike } from 'react-icons/gr'
 
 
-// const BikeMarker = (props) => {
-//     return (
-//         <Marker
-//         onMouseEnter={() => {
-//             props.setSelectedBike(props.bike);
-//         }}
-//         onMouseLeave={() => {
-//             props.setSelectedBike({});
-//         }}
-//         style={{
-//             width: `${props.map === 'list'? '40px' : '120px' }`,
-//             height: `${props.map === 'list'? '25px' : '70px' }`,
-//             padding: '5px',
-//         }}
-//         lat={props.lat}
-//         lng={props.lng}
-//         >
-//             {props.children}
-//         </Marker>
-//     )
-// }
+const MarkerContainer = styled.div`
+  position : relative;  
+  width: 40px;
+  height: 40px;
 
-// export default BikeMarker
+`;
+
+const BikeMarker = (props) => {
+    return (
+  
+        <MarkerContainer>
+        <GrBike
+            onMouseEnter={() => {
+                props.setSelectedBike(props.bike);
+            }}
+            onMouseLeave={() => {
+                props.setSelectedBike({});
+            }}
+            style={{
+              color : `${props.color}`,
+                width: `${props.map === 'list'? '20px' : '25px' }`,
+                height: `${props.map === 'list'? '10px' : '25px' }`,
+            }}
+            lat={props.lat}
+            lng={props.lng}
+        />
+        </MarkerContainer>
+    )
+}
+
+export default BikeMarker

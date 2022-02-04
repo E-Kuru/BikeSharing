@@ -92,6 +92,7 @@ const BikeCard = (props) => {
                     <Div>
                     <h4>{props.name} </h4>
                     <h6>{props.price}€/h</h6>
+                    <h5>{props.city}</h5>
                     </Div>
                     <h5>{props.description}</h5>
                     

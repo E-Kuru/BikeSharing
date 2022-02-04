@@ -4,7 +4,7 @@ import Navbar from "../components/Navbar"
 // import Categorie from "../components/Catégorie/Categorie"
 // import Main from "../components/Qui-sommes-nous/Main"
 import Calendrier from "../components/Calendrier/Calendrier"
-// import DateTime from "../components/Calendrier/DateTime"
+import DateTime from "../components/Calendrier/DateTime"
 import CategoriesCard from "../components/CategoriesCard"
 import Qsm from "../components/Qsm"
 import Footer from '../components/Footer'
@@ -14,10 +14,10 @@ const Home = () => {
         <div>
             <Navbar/>
             <Calendrier />
+            <DateTime />
             <CategoriesCard/>
             <Qsm/>
             <Footer/>
-            {/* <DateTime /> */}
             {/* <BikeCard></BikeCard> */}
             {/* <Categorie/>
             <Main/>

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import '../App.css'
 
+import BikeMarker from "../components/BikeMarker";
 import styled from "styled-components";
 import BikesMap from "../components/BikeMap"
 import BikeCard from "../components/BikeCard"
@@ -107,13 +108,13 @@ useEffect(() => {
 const fetchAnnonce = async () => {
     const annonces = await getAnnonce()
     setBikes(annonces)
-    console.log(annonces);
 }
 
 const handleChangeSearch = e => {
     setSearch(e.target.value)
 
 }
+
 return (
     <>
      <Navbar/>
@@ -136,6 +137,7 @@ return (
                 key={index}
                 name={bike.name}
                 price={bike.price}
+                city={bike.city}
                 starts={bike.starts}
                 image={bike.pictures}
                 description={bike.description}
@@ -146,12 +148,21 @@ return (
         </BikesList>
         <BikeMap>
             <BikesMap
-            map="list"
+            // map="list"
             center={center}
             bikes={bikes}
             selectedBike={selectedBike}
             setSelectedBike={setSelectedBike}
-            />
+            >
+            {bikes.map(e => (
+                <BikeMarker 
+                color = "yellow"
+                key={e.name + e.description} 
+                lat={e.location.coordinates[0]} 
+                lng={e.location.coordinates[1]} 
+                />
+            ))}
+            </BikesMap>
         </BikeMap>
     </Container>
     <CenterPages>

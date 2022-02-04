@@ -15,6 +15,7 @@ const BikeMap = (props) => {
         }}
         defaultZoom={12}
       >
+          {props.children}
           {/* {bikes.map(bike => (
               <BikeMarker
               bike={bike}

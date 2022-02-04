@@ -31,7 +31,7 @@ function Calendrier() {
 
              <input className="input-style"
             {...getInputProps
-            ({ placeholder: "Type address" })}
+            ({ placeholder: "Emplacement de vos désirs..." })}
              />
 
             <div>

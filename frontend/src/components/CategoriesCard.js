@@ -39,7 +39,7 @@ const CategoriesCard = (props) => {
     <Link
             to={`/bikepage`}
             style={{
-              color: "black",
+              color: "white",
               padding: "20px",
               textDecoration: "none",
               fontSize: "30px",
@@ -51,7 +51,7 @@ const CategoriesCard = (props) => {
       <Card
       style={{
         background : `url(${velodeville}) no-repeat center/cover`,
-        opacity: 0.6,
+        opacity: 0.8
       }}
       >
         <p>VELO DE VILLE</p>
@@ -62,7 +62,7 @@ const CategoriesCard = (props) => {
     <Link
             to={`/bikepage`}
             style={{
-              color: "black",
+              color: "white",
               padding: "20px",
               textDecoration: "none",
               fontSize: "30px",
@@ -74,7 +74,7 @@ const CategoriesCard = (props) => {
       <Card
       style={{
         background : `url(${vtt}) no-repeat center/cover`,
-        opacity: 0.6,
+        opacity: 0.8,
       }}
       >
         <p>VTT</p>
@@ -85,7 +85,7 @@ const CategoriesCard = (props) => {
     <Link
             to={`/bikepage`}
             style={{
-              color: "black",
+              color: "white",
               padding: "20px",
               textDecoration: "none",
               fontSize: "30px",
@@ -97,7 +97,7 @@ const CategoriesCard = (props) => {
       <Card
       style={{
         background : `url(${vtc}) no-repeat center/cover`,
-        opacity: 0.6,
+        opacity: 0.8,
       }}
       >
         <p>VTC</p>
@@ -108,7 +108,7 @@ const CategoriesCard = (props) => {
     <Link
             to={`/bikepage`}
             style={{
-              color: "black",
+              color: "white",
               padding: "20px",
               textDecoration: "none",
               fontSize: "30px",
@@ -120,7 +120,7 @@ const CategoriesCard = (props) => {
       <Card
       style={{
         background : `url(${autre}) no-repeat center/cover`,
-        opacity: 0.6,
+        opacity: 0.8,
       }}
       >
         <p>AUTRE...</p>
