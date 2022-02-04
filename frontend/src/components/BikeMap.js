@@ -2,20 +2,21 @@ import GoogleMapReact from "google-map-react";
 import BikeMarker from "./BikeMarker";
 
 const BikeMap = (props) => {
-  const setSelectedBike = props.setSelectedBike;
-  const bikes = props.bikes;
-  let center = props.center;
-
-  return (
-    <GoogleMapReact
-      bootstrapURLKeys={{ key: "" }}
-      defaultCenter={{
-        lat: center.lat,
-        lng: center.lon,
-      }}
-      defaultZoom={12}
-    >
-      {/* {bikes.map(bike => (
+    const setSelectedBike =props.setSelectedBike
+    const bikes = props.bikes
+    let center = props.center
+    
+    return (
+        <GoogleMapReact
+        bootstrapURLKeys={{ key: "" }}
+        defaultCenter={{
+          lat: center.lat,
+          lng: center.lon,
+        }}
+        defaultZoom={12}
+      >
+          {props.children}
+          {/* {bikes.map(bike => (
               <BikeMarker
               bike={bike}
               lat={bike.location.lat}

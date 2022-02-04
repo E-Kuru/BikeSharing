@@ -61,36 +61,44 @@ const BikeCard = (props) => {
     }
   }, [selectedBike, props.id]);
 
-  return (
-    <>
-      <CardBox
-        ref={ref}
-        style={{
-          background: `${props.id === selectedBike._id ? "black" : "grey"}`,
-        }}
-      >
-        <CardImage
-          style={{ background: `url(${BikeImage}) no-repeat center/cover` }}
-        />
-        <CardContent>
-          <Link
-            to={`/bikePage/${props.id}`}
-            style={{
-              color: "white",
-              textDecoration: "none",
-              fontFamily: "Overpass, sans-serif",
-              width: "100%",
-            }}
-          >
-            <CardText>
-              <Div>
-                <h4>{props.name} </h4>
-                <h6>{props.price}€/h</h6>
-              </Div>
-              <h5>{props.description}</h5>
-              <h7>{props.city}</h7>
-
-              {/* <BikeStars>
+    useEffect(() => {
+        if (props.id === selectedBike._id) {
+            ref.current.scrollIntoView({ behavior: "smooth" });
+          }
+        }, [selectedBike, props.id]);
+      
+        return (
+          <>
+            <CardBox
+              ref={ref}
+              style={{
+                background: `${props.id === selectedBike._id ? "black" : "grey"}`,
+              }}
+            >
+              <CardImage
+                style={
+                    {background : `url(${BikeImage}) no-repeat center/cover`}
+                }
+              />
+              <CardContent>
+                <Link
+                  to={`/bikePage/${props.id}`}
+                  style={{
+                    color: "white",
+                    textDecoration: "none",
+                    fontFamily: 'Overpass, sans-serif',
+                    width: '100%',
+                  }}
+                >
+                  <CardText>
+                    <Div>
+                    <h4>{props.name} </h4>
+                    <h6>{props.price}€/h</h6>
+                    <h5>{props.city}</h5>
+                    </Div>
+                    <h5>{props.description}</h5>
+                    
+                    {/* <BikeStars>
                       {[...Array(Math.floor(props.stars))].map((i) => (
                         <AiFillStar size={14} color={"yellow"} />
                       ))}
