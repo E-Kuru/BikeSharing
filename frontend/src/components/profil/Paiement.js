@@ -1,49 +1,36 @@
 import styled from "styled-components";
 import Carte from "../../images/paiement.png"
 import { Button, Form } from "react-bootstrap"
-import { MdOutlineEdit, MdDeleteOutline } from "react-icons/md";
 
 
 const CardBox = styled.div`
 margin: 30px;
 padding: 50px;
 height: 100%;
-/* border-radius: 10px;
-height: 500px;
-display: flex;
-justify-content: flex-start;
-overflow: hidden; */
+font-family: 'Gilda Display', serif;
 border: 2px solid white;
-
-/* :hover {
-  background-color: black;
-} */
 `;
 
-const Icon = styled.div`
-  margin-left: 170px;
-`;
 
 const CardImage = styled.div`
-background-position: bottom;
-background-size: cover;
-width: 40%;
+height: 100px;
+width: 500px;
 `;
 
-const CardText = styled.div`
-margin-top: 0;
-display: flex;
-flex-direction: column;
-h1 {
-  font-family: "Overpass", sans-serif;
-}
-`;
+
 
 
 const Paiement = () => {
+  
     return(
+
         <CardBox>
+          <div style = {{display:"flex", justifyContent:"space-around", alignItems:"center"}}>
             <h1>Payer en ligne</h1>
+            <CardImage
+          style={{ background: `url(${Carte}) no-repeat center/cover` }}
+        />
+        </div>
   <Form.Group className="mb-3" controlId="formBasicEmail">
     <Form.Label>Email</Form.Label>
     <Form.Control type="email" placeholder="Enter email" />
