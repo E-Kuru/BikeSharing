@@ -30,6 +30,14 @@ const Input = styled.input`
   background-color: white;
   padding: 10px 24px;
   justify-content: center;
+
+  // display: block;
+  // margin-right: auto;
+  // margin-left: auto;
+  // border: 2px solid white;
+  // padding: 20px;
+  // border-radius: 10px;
+  // width: 60%;
 `
 const Box = styled.div`
 display: flex;

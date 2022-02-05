@@ -22,7 +22,7 @@ const BikeDescription = () => {
 `;
    
     const Div = styled.div`
-          color: yellow;
+    color: rgb(250, 250, 145);
           display: block;
           display: flex;
           flex-direction: row;
@@ -41,7 +41,7 @@ const BikeDescription = () => {
           
     const Span = styled.div`
     //    display: flex;
-          color: yellow;
+    color: rgb(250, 250, 145);
         
        
 `;
@@ -77,8 +77,8 @@ const DivThree = styled.div`
      border-radius: 17px;
 `;
 
-const P = styled.div`
-    display: flex;
+const P = styled.P`
+    display: block;
 
    
     
