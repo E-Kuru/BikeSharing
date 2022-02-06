@@ -5,22 +5,34 @@ import styled from "styled-components";
 import { Annonce, files } from "../../api/annonce";
 
 const Container = styled.div`
-  width: 320px;
-  margin: 0 auto;
-  font-family: Gilda Display;
-  color: white;
-  border: red 2px solid;
+border: 2px solid white;
+font-family: Gilda Display;
+width: 100%;
+height: 80vh;
+display: flex;
+justify-content: center;
+align-content: center;
+padding: 200px;
+flex-direction: column;
 
 `
 const Form = styled.form`
+display: flex;
+flex-direction: column;
 `
 
-const Select = styled.form`
-`
-const Button = styled.form`
+const Select = styled.select`
+width: 20rem ;
+
 `
 const Input = styled.input`
-height: 20px;
+ width: 20rem;
+  border-radius: 5px;
+  font-size: 14px;
+  background-color: white;
+  padding: 10px 24px;
+  justify-content: center;
+  margin: 20px auto;
 `
 const CreateAnnonce = () => {
   const formik = useFormik({
@@ -108,9 +120,9 @@ const CreateAnnonce = () => {
         />
 
         <Input type="file" name="file" onChange={handleFileChange} />
-        <Button type="submit" class="btn btn-light">
+        <button type="submit" className="btn btn-light" style={{width:"20rem"}}>
           Valider
-        </Button>
+        </button>
       </Form>
     </Container>
   );

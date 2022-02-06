@@ -16,7 +16,7 @@ const BikeMap = (props) => {
         defaultZoom={12}
       >
           {props.children}
-          {/* {bikes.map(bike => (
+          {bikes.map(bike => (
               <BikeMarker
               bike={bike}
               lat={bike.location.lat}
@@ -35,7 +35,7 @@ const BikeMap = (props) => {
                   </div>
                   }
               </BikeMarker>
-          ))} */}
+          ))}
     </GoogleMapReact>
   );
 };

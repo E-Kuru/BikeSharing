@@ -1,61 +1,71 @@
 import React from "react";
-import { Button } from "react-bootstrap";
-import PlacesAutocomplete, { geocodeByAddress, getLatLng} from "react-places-autocomplete";
+import PlacesAutocomplete, {
+  geocodeByAddress,
+  getLatLng,
+} from "react-places-autocomplete";
 
 import styled from "styled-components";
 
 const Container = styled.div`
-border: 2px solid white;
-font-family: Gilda Display;
-width: 100%;
-height: 100vh;
-display: flex;
-justify-content: center;
-align-content: center;
-padding: 200px;
-flex-direction: column;
 
-h1 {
-  font-size: 20px;
-}
+  font-family: Gilda Display;
+  width: 100%;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  padding: 200px 400px;
+  flex-direction: column;
 
-h2 {
+  h1 {
     font-size: 20px;
   }
-`
+
+  h2 {
+    font-size: 20px;
+  }
+  .emplacement {
+    display: flex;
+    flex-direction: column;
+    width: 100% !important;
+  }
+  .containerInput {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    
+  }
+`;
 const Input = styled.input`
- width: 20rem;
+  width: 20rem;
   border-radius: 5px;
   font-size: 14px;
   background-color: white;
   padding: 10px 24px;
   justify-content: center;
-`
+`;
 const Box = styled.div`
-display: flex;
-margin : 100px;
-align-items: flex-start;
-justify-content: space-between;
+  display: flex;
+  margin: 100px 0;
+  align-items: flex-start;
+  justify-content: space-between;
 
-  .date{
+  .date {
     display: flex;
     justify-content: space-around;
     width: 45%;
     align-items: center;
   }
-
-`
-
+`;
 
 function Calendrier() {
-     
-     const [address, setAddress] = React.useState("");
-     const [coordinates, setCoordinates] = React.useState({
-       lat: null,
-       lng: null
-     });
+  const [address, setAddress] = React.useState("");
+  const [coordinates, setCoordinates] = React.useState({
+    lat: null,
+    lng: null,
+  });
 
-  const handleSelect = async value => {
+  const handleSelect = async (value) => {
     const results = await geocodeByAddress(value);
     const latLng = await getLatLng(results[0]);
     setAddress(value);
@@ -64,77 +74,89 @@ function Calendrier() {
 
   return (
     <Container>
-      <div className="date"> 
-      <h1>LOUER VOTRE VÉLO EN <br/>
-      QUELQUES CLICKS
-      </h1>
-      <PlacesAutocomplete
-        value={address}
-        onChange={setAddress}
-        onSelect={handleSelect}
-      >
-        {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-          <div>
-            <p> {coordinates.lat}</p>
-            <p> {coordinates.lng}</p>
-
-             <Input className="input-style" style={{width: "35rem"}}
-            {...getInputProps
-            ({ placeholder: "Emplacement..." })}
-             />
-
+      <div className="containerInput">
+      <div className="emplacement">
+        <h1>
+          LOUER VOTRE VÉLO EN <br />
+          QUELQUES CLICKS
+        </h1>
+        <PlacesAutocomplete
+          value={address}
+          onChange={setAddress}
+          onSelect={handleSelect}
+          style={{
+            width: "100%",
+          }}
+        >
+          {({
+            getInputProps,
+            suggestions,
+            getSuggestionItemProps,
+            loading,
+          }) => (
             <div>
-             {loading ? <div>...loading</div> : null}
+              <p> {coordinates.lat}</p>
+              <p> {coordinates.lng}</p>
 
-              {suggestions.map(suggestion => {
-                const style = {
-                  backgroundColor: suggestion.active ? "#41b6e6" : "black"
-                };
+              <Input
+                className="input-style"
+                style={{ width: "44.7rem" }}
+                {...getInputProps({ placeholder: "Emplacement..." })}
+              />
 
-                return (
-                  <div {...getSuggestionItemProps(suggestion, { style })}>
-                    {suggestion.description}
-                  </div>
-                );
-              })}
+              <div>
+                {loading ? <div>...loading</div> : null}
+
+                {suggestions.map((suggestion) => {
+                  const style = {
+                    backgroundColor: suggestion.active ? "#41b6e6" : "black",
+                  };
+
+                  return (
+                    <div {...getSuggestionItemProps(suggestion, { style })}>
+                      {suggestion.description}
+                    </div>
+                  );
+                })}
+              </div>
             </div>
-          </div>
-        )}
-      </PlacesAutocomplete>
+          )}
+        </PlacesAutocomplete>
       </div>
       <Box>
         <div className="date">
-      <h2>DE </h2>
-       <Input type="datetime-local"
-        id="meeting-time"
-        name="meeting-time"
-       value="2022-02-02T21:30"
-       min="2022-02-07T00:00" 
-       max="2022-02-14T00:00" 
-       />
-       </div>
-       <div className="date">
-     <h2>À </h2>
-     <Input type="datetime-local"
-      id="meeting-time"
-      name="meeting-time"
-     value="2022-02-02T21:30"
-     min="2022-02-07T00:00" 
-     max="2022-02-14T00:00" 
-     />
-     </div>
+          <h2 style={{   marginRight: "10px"}}>DE </h2>
+          <Input
+            type="datetime-local"
+            id="meeting-time"
+            name="meeting-time"
+            value=""
+            min=""
+            max=""
+          />
+        </div>
+        <div className="date">
+          <h2 style={{   marginRight: "10px"}}>À </h2>
+          <Input
+            type="datetime-local"
+            id="meeting-time"
+            name="meeting-time"
+            value=""
+            min=""
+            max=""
+          />
+        </div>
       </Box>
-      <button type="submit" class="btn btn-light">RECHERCHER</button>
+      <button
+        type="submit"
+        class="btn btn-light"
+        style={{ width: "350px", margin: "0 auto" }}
+      >
+        RECHERCHER
+      </button>
+      </div>
     </Container>
-   
   );
 }
 
-export default Calendrier
-
-
-
-
-
-
-
+export default Calendrier;

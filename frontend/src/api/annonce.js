@@ -31,19 +31,6 @@ const Annonce = async ({ titre, type, description, price, adress, picture }) => 
   return data
 }
 
-// const getFile = async ({ files }) => {
-//   const response = await             fetch(`http://localhost:5000/files/${Annonce._id}`, {
-//     method: 'post',
-//     ...options,
-//     body: formdata
-//   })
-//   if (response.status >= 400) {
-//     throw response.statusText
-//   }
-
-//   const data = await response.json()
-//   return data
-// }
 
   const files = async (values, user) => {
     const formdata = new FormData()
