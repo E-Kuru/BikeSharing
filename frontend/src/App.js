@@ -14,7 +14,7 @@ import Annonce from "./pages/BikePage";
 import "./style/fonts.css";
 import { UserProvider } from "./context/User";
 import CreateAnnoce from "./components/profil/CreateAnnonce";
-import MesCommentaire from "./pages/MesCommentaire";
+ 
 
 const App = () => {
   return (
@@ -28,7 +28,7 @@ const App = () => {
             <Route path="/bikePage/:categorie" element={<BikePage />} />
             <Route path="/location-borrower/:id" element={<ConfirmationBorrower />} />
             <Route path="/location-lender/:id" element={<ConfirmationLender />} />
-            <Route path="/MesCommentaire" element={<MesCommentaire />} />
+            <Route path="/BikeDescription" element={<BikeDescription />} />
             <Route exact path="*" element={<NotFound />} />
           </Routes>
           <Modals />

@@ -16,21 +16,17 @@ const Container = styled.div`
   margin: 0 auto;
   font-family: 'Overpass', sans-serif;
   border-radius: 10px;
-<<<<<<< HEAD
   height: 440px;
   background-color: black;
   border: solid 2px white
-=======
-  height: 360px;
-  border : 1px solid white;
-  padding : 20px;
->>>>>>> 43ce9bfd5a5e64e4952b8164cf1aa57641d5bdff
 `
 const Content = styled.div`
-    margin: 10px;
+    margin: 0 auto;
     width: 100%;
 `
-
+const Input = styled.input`
+margin-bottom: 30px;
+`
 const CreateAnnonce = ({tabCreateAnnonce, fetchAnnonceUser}) => {
     const [address, setAddress] = useState("");
     const [coordinates, setCoordinates] = useState({
@@ -89,12 +85,12 @@ const CreateAnnonce = ({tabCreateAnnonce, fetchAnnonceUser}) => {
                 
                 <form onSubmit={formik.handleSubmit}>
                     <div className='col-8 ps-2'>
-                        <input
+                        <Input
                             type="text"
                             name="name"
                             value={formik.values.name}
                             onChange={formik.handleChange}
-                            placeholder="NOM"
+                            placeholder="Nom..."
                             className="form-control border border-dark border-3 my-1"
                         />
                     </div>
@@ -113,34 +109,34 @@ const CreateAnnonce = ({tabCreateAnnonce, fetchAnnonceUser}) => {
                     </div>
 
                     <div className='col-8 ps-2'>
-                        <input
+                        <Input
                             type="text"
                             name="description"
                             value={formik.values.description}
                             onChange={formik.handleChange}
-                            placeholder="DESCRIPTION"
+                            placeholder="Description..."
                             className="form-control border border-dark border-3 my-1"
                         />
                     </div>
 
                     <div className='col-8 ps-2'>
-                        <input
+                        <Input
                             type="text"
                             name="city"
                             value={formik.values.city}
                             onChange={formik.handleChange}
-                            placeholder="VILLE"
+                            placeholder="Ville..."
                             className="form-control border border-dark border-3 my-1"
                         />
                     </div>
                     
                     <div className='col-8 ps-2'>
-                        <input
+                        <Input
                             type="number"
                             name="price"
                             value={formik.values.price}
                             onChange={formik.handleChange}
-                            placeholder="PRIX"
+                            placeholder="Prix..."
                             className="form-control border border-dark border-3 my-1"
                             />
                     </div>

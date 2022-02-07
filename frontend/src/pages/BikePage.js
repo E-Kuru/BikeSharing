@@ -107,11 +107,18 @@ const BikePage = () => {
 
   const fetchAnnonce = async () => {
 
+    if(categorie === "tous"){
+      const response = await getAnnonce()
+
+      setBikes(response)
+    } else {
       const response = await fetch(`http://localhost:5000/annonce/${categorie}`)
     
       const data = await response.json()
         
       setBikes(data);
+
+    }
   };
 
   const handleChangeSearch = (e) => {

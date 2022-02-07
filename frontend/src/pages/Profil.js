@@ -12,6 +12,7 @@ import '../App.css'
 import "../App.css";
 import CreateAnnonce from "../components/profil/CreateAnnonce";
 import Paiement from "../components/profil/Paiement";
+import MesCommentaire from "../components/profil/MesCommentaire";
 // import Footer from "../components/Footer"
 
 const Vertical = styled.div`
@@ -64,6 +65,14 @@ const Profil = () => {
             href="#"
             toggleTab={toggleTab}
           />
+          <Vertical className="my-3" />
+          <Link
+            name="Mes commentaires"
+            number="6"
+            className={toggle === "6" ? "nav-link active text-primary": "nav-link active text-light"}
+            href="#"
+            toggleTab={toggleTab}
+          />
         </nav>
 
         {toggle === "" && <MesAnnonces toggle={toggle} toggleTab={toggleTab} />}
@@ -72,6 +81,7 @@ const Profil = () => {
         {toggle === "3" && <MesInformations />}
         {toggle === "4" && <Paiement />}
         {toggle === "5" && <CreateAnnonce />}
+        {toggle === "6" && <MesCommentaire />}
       </div>
     </>
   );
