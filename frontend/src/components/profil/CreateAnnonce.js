@@ -18,7 +18,7 @@ const Container = styled.div`
   border-radius: 10px;
   height: 440px;
   background-color: black;
-  border: solid 2px white
+  border: solid 2px white;
 `
 const Content = styled.div`
     margin: 0 auto;
