@@ -20,12 +20,16 @@ const annonceSchema = new Schema ({
         type: Number,
         required : true
     },
+    date : {
+        type : String
+    },
     city : {
         type : String,
         required : true
     },
     location : {
-        type : Object
+        type : Object,
+        required : true
     },
     picture: {
         type: String

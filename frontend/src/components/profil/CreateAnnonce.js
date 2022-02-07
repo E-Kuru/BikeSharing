@@ -2,7 +2,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import styled from "styled-components";
 
-import { Annonce, files } from "../../api/annonce";
+import { annonce, files } from "../../api/annonce";
 
 const Container = styled.div`
   width: 320px;
@@ -19,6 +19,7 @@ const Select = styled.form`
 `
 const Button = styled.form`
 `
+
 const Input = styled.input`
 height: 20px;
 `
@@ -34,8 +35,8 @@ const CreateAnnonce = () => {
     },
     onSubmit: async (values, { setFieldError }) => {
       try {
-        const response = await Annonce(values);
-        Annonce(response);
+        const response = await annonce(values);
+        annonce(response);
       } catch (e) {
         setFieldError("submit", "Incorrect");
       }
@@ -43,8 +44,8 @@ const CreateAnnonce = () => {
 
     onSubmit: async (values, { setFieldError }) => {
       try {
-        const response = await Annonce(values);
-        Annonce(response);
+        const response = await annonce(values);
+        annonce(response);
         files(response);
       } catch (e) {
         setFieldError("submit", "Incorrect");
