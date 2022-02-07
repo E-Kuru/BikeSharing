@@ -12,10 +12,10 @@ const UserProvider = ({ children }) => {
   }, []);
 
   const getUser = async () => {
-    const fetchedUser = await getMe();
+    const fetchUser = await getMe();
 
-    if (!fetchedUser.error) {
-      setUser(fetchedUser);
+    if (!fetchUser.error) {
+      setUser(fetchUser);
     }
   };
 

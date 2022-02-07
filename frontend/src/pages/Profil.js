@@ -12,38 +12,39 @@ import '../App.css'
 import "../App.css";
 import CreateAnnonce from "../components/profil/CreateAnnonce";
 import Paiement from "../components/profil/Paiement";
+// import Footer from "../components/Footer"
 
 const Vertical = styled.div`
   border-left: 4px solid white;
   height: 10px;
   display: inline-block;
-`;
+`
 
 const Profil = () => {
-    const { user } = useContext(UserContext)
-    const [toggle, setToggleState] = useState("1");
-    
-    const toggleTab = (index) => {
-    setToggleState(index);
+  const { user } = useContext(UserContext)
+  const [toggle, setToggle] = useState("");
+  
+  const toggleTab = (index) => {
+  setToggle(index);
   };
 
   return (
     <>
-      <Navbar />
+    <Navbar />
       <div className="container ">
         <nav className="nav my-4">
-          <Vertical className="my-3" />
           <Link
             name="Mes annonces"
             number="1"
-            className="nav-link active text-light"
+            className={toggle === "1" ? "nav-link active text-primary": "nav-link active text-light"}
             href="#"
             toggleTab={toggleTab}
           />
+          <Vertical className="my-3" />
           <Link
             name="Mes commandes"
             number="2"
-            className="nav-link active text-light"
+            className={toggle === "2" ? "nav-link active text-primary": "nav-link active text-light"}
             href="#"
             toggleTab={toggleTab}
           />
@@ -51,7 +52,7 @@ const Profil = () => {
           <Link
             name="Mes informations"
             number="3"
-            className="nav-link active text-light"
+            className={toggle === "3" ? "nav-link active text-primary": "nav-link active text-light"}
             href="#"
             toggleTab={toggleTab}
           />
@@ -59,19 +60,14 @@ const Profil = () => {
           <Link
             name="Mes méthodes de paiement"
             number="4"
-            className="nav-link active text-light"
+            className={toggle === "4" ? "nav-link active text-primary": "nav-link active text-light"}
             href="#"
             toggleTab={toggleTab}
           />
         </nav>
 
-        {toggle === null && (
-          <MesAnnonces toggle={toggle} toggleTab={toggleTab} />
-        )}
-
-        {toggle === "1" && (
-          <MesAnnonces toggle={toggle} toggleTab={toggleTab} />
-        )}
+        {toggle === "" && <MesAnnonces toggle={toggle} toggleTab={toggleTab} />}
+        {toggle === "1" && <MesAnnonces toggle={toggle} toggleTab={toggleTab} />}
         {toggle === "2" && <MesCommandes />}
         {toggle === "3" && <MesInformations />}
         {toggle === "4" && <Paiement />}

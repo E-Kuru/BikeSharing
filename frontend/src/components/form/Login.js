@@ -60,7 +60,7 @@ const LoginForm = () => {
         .min(4, "Mot de passe trop court"),
     }),
   });
-  console.log(user);
+  // console.log(user);
   return (
     <Form onSubmit={handleSubmit}>
       <Container>

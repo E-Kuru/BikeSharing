@@ -19,21 +19,21 @@ app.get('/', async (req,res) => {
 
 // Get un user par son id 
 
-app.get('/:id', async (req,res) => {
+app.get('/infos', async (req,res) => {
     
     const {id} = req.params
 
     try {
-        const oneUser =  await User.findById(id).exec()
+        const oneUser =  await User.findById({_id: req.user }).exec()
         res.json(oneUser)
-    } catch {
+    } catch (err) {
         res.status(500).json({ error: err })
     }
 })
 
 // Put pour modifier infos du user
 
-app.put('/', verifyUser, async (req,res) => {
+app.put('/user/modifier', verifyUser, async (req,res) => {
 
     try {
         const userUpdate =  await User.findOneAndUpdate(
@@ -44,7 +44,7 @@ app.put('/', verifyUser, async (req,res) => {
 
         res.json(userUpdate)
 
-    } catch {
+    } catch (err){
         res.status(500).json({ error: err })
     }
 })
