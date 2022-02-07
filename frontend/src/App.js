@@ -15,6 +15,7 @@ import Annonce from "./pages/BikePage";
 import "./style/fonts.css";
 import { UserProvider } from "./context/User";
 import CreateAnnoce from "./components/profil/CreateAnnonce";
+import MesCommentaire from "./pages/MesCommentaire";
 
 const App = () => {
   return (
@@ -27,6 +28,7 @@ const App = () => {
             <Route exact path="/profil" element={<Profil />} />
             <Route exact path="/bikePage" element={<BikePage />} />
             <Route exact path="/BikeDescription" element={<BikeDescription />} />
+            <Route exact path="/MesCommentaire" element={<MesCommentaire />} />
             <Route exact path="*" element={<NotFound />} />
           </Routes>
           <Modals />

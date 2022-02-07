@@ -20,8 +20,8 @@ dbConnect()
 
 
 app.use(cors({
-  origin: 'http://localhost:3000',
-  origin: process.env.domain,
+  origin: true,
+  // origin: process.env.domain,
   credentials: true
 }))
 
@@ -45,7 +45,6 @@ app.use('/location', location)
 app.use('/coment', coment)
 app.use('/files', files)
 
-const port = 5000
 const port = process.env.PORT
 app.listen(port, () => {
   console.log(`Server running on port ${port}`)
