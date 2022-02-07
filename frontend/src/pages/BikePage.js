@@ -92,6 +92,33 @@ const Div = styled.form`
   justify-content: center;
 `;
 
+const Categorie = styled.div `
+    display : flex;
+    justify-content : center;
+    align-items : center;
+    font-family: "Gilda Display";
+     
+    .all{
+      width : 50%;
+      display : flex;
+      justify-content : space-around;
+      align-items : center;
+    }
+
+    .all h4{
+      padding : 5px;
+    }
+
+    .all button{
+      border-radius : 5px;
+      background-color : #000;
+      color : #fff;
+      border : 1px solid white;
+      width : 15%;
+      margin-bottom : 1%;
+    }
+`
+
 const BikePage = () => {
   const [selectedBike, setSelectedBike] = useState({});
   const [bikes, setBikes] = useState([]);
@@ -102,28 +129,34 @@ const BikePage = () => {
   const {categorie} = useParams()
 
   useEffect(() => {
-    fetchAnnonce();
+    if(categorie === "tous"){
+      getAllAnnonce()
+    } else {
+      fetchAnnonce(categorie);
+    }
   }, [page]);
 
-  const fetchAnnonce = async () => {
 
-    if(categorie === "tous"){
-      const response = await getAnnonce()
 
-      setBikes(response)
-    } else {
-      const response = await fetch(`http://localhost:5000/annonce/${categorie}`)
+  const fetchAnnonce = async (categ) => {
+
+      const response = await fetch(`http://localhost:5000/annonce/${categ}`)
     
       const data = await response.json()
         
       setBikes(data);
-
-    }
   };
+
+  const getAllAnnonce = async (categ) => {
+
+      const response = await getAnnonce()
+            
+      setBikes(response);
+  }
 
   const handleChangeSearch = (e) => {
     setSearch(e.target.value);
-  };
+  }
 
   return (
     <>
@@ -136,6 +169,16 @@ const BikePage = () => {
           onChange={() => handleChangeSearch()}
         />
       </Div>
+      <Categorie>
+        <div className="all">
+          <h4>Trier par : &nbsp; </h4>
+          <button onClick={() => getAllAnnonce()}>Tous</button>
+          <button onClick={() => fetchAnnonce("VTT")}>VTT</button>
+          <button onClick={() => fetchAnnonce("VTC")}>VTC</button>
+          <button onClick={() => fetchAnnonce("Vélo-de-ville")}>Vélo de ville</button>
+          <button onClick={() => fetchAnnonce("Autre")}>Autre</button>
+        </div>
+      </Categorie>
       <Container>
         <BikesList >
           {!bikes ? (
