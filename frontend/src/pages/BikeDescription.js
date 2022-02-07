@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import velodeville from "../images/velodeville.png";
 
 const BikeDescription = () => {
 
@@ -10,114 +11,117 @@ const BikeDescription = () => {
      const Container = styled.div`
            
 `;
-
-
-     const Info = styled.div`
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          padding-left: 30%;
+const Info = styled.div`
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     padding-left: 30%;
 `;
-          
-
-
-
-           
-          
-    const Button = styled.div`
-    color: black;
-    text-decoration: none;
-    font-size: 18px;
-    text-align: center;
-    background-color: white;
-    padding: 5px;
-    border-radius: 30px;
-       width: 100%;
-       display: flex;
-       align-items: center;
-       justify-content: center;
-
- 
-}
-          
+const Button = styled.div`
+     color: black;
+     text-decoration: none;
+     font-size: 18px;
+     text-align: center;
+     background-color: white;
+     padding: 5px;
+     border-radius: 30px;
+     width: 100%;
+     display: flex;
+     align-items: center;
+     justify-content: center;          
 `;
    
-     const Div = styled.div`
-          color: rgb(250, 250, 145);
-          display: block;
-          display: flex;
-          flex-direction: row;
-          flex-wrap: wrap;
-          justify-content: flex-end;
-          align-items: flex-end;
-          align-content: space-around;
-          padding-top: 10px;
-          
+const Div = styled.div`
+     color: rgb(250, 250, 145);
+     display: block;
+     display: flex;
+     flex-direction: row;
+     flex-wrap: wrap;
+     justify-content: flex-end;
+     align-items: flex-end;
+     align-content: space-around;
+     padding-top: 10px;
+     
 `;
           
-    const Span = styled.div`
-          //    display: flex;
-          color: rgb(250, 250, 145);
-          
+const Span = styled.div`
+     //    display: flex;
+     color: rgb(250, 250, 145);
 `;
 
-     const Commentaire = styled.div`
-          margin: auto;
-          width: 80%;
-          border: 2px solid white;
-          padding: 20px;
-          border-radius: 17px;
-          background-color: white;
+const Commentaire = styled.div`
+     margin: auto;
+     width: 80%;
+     border: 2px solid white;
+     padding: 20px;
+     border-radius: 17px;
+     background-color: white;
 `;
           
-     const DvToo = styled.div`
-          margin: auto;
-          width: 80%;
-          border: 2px solid white;
-          padding: 20px;
-          border-radius: 17px;
-          background-color: white;
-          color: white;
-          
+const DvToo = styled.div`
+     margin: auto;
+     width: 80%;
+     border: 2px solid white;
+     padding: 20px;
+     border-radius: 17px;
+     background-color: white;
+     color: white;
+     
  `;
      
-     const DivThree = styled.div`
-          margin: auto;
-          width: 80%;
-          border: 2px solid white;
-          padding: 20px;
-          border-radius: 17px;
-          background-color: white;
+const DivThree = styled.div`
+     margin: auto;
+     width: 80%;
+     border: 2px solid white;
+     padding: 20px;
+     border-radius: 17px;
+     background-color: white;
 `;
     
 
-     const P = styled.div`
-         color: white importn;
-         padding-left: 8%;
-         margin: 40px;
-    
+const P = styled.div`
+     color: white importn;
+     padding-left: 8%;
+     margin: 40px;
+
  `; 
-    const H5 = styled.div`
-         color: black;
+const H5 = styled.div`
+     color: black;
  `;
-    const span = styled.div`
-         color: black;
+const span = styled.div`
+     color: black;
  `;
     
-    const Min = styled.div`
-         display: flex;
+const Min = styled.div`
+     display: flex;
 `;
-          
-      const start = <i className="fas fa-star star-on"></i>
+
+const Card = styled.div`
+width: 300px;
+height: 200px;
+
+border-radius:  white; 
+`;
+
+const start = <i className="fas fa-star star-on"></i>
    
   return (
 
-   
       <>
        <Navbar />
+
       
+       <Card
+      style={{
+        background : `url(${velodeville}) no-repeat center/cover`,
+        
+      }}
+      >
+      </Card>
+      <p>VELO DE VILLE</p>
 
        <Container className='container'>
+
 
             <Info >
                <div>    
@@ -128,12 +132,16 @@ const BikeDescription = () => {
                 It has survived not only five centuries.</p>
                
                <Button>RESERVER</Button>
+       
                </div>
               </Info>
      </Container>
 
+     
+
+
       <Span>
-           <Min>{start}{start}{start}(25Commentaire)</Min>
+           {/* <Min>{start}{start}{start}(25Commentaire)</Min> */}
       </Span>
         <P>Commentaire</P>
      <Commentaire>
@@ -178,6 +186,6 @@ const BikeDescription = () => {
       
   <Footer />
        </>
-)
-}
+)}
+
 export default BikeDescription;
