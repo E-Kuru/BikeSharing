@@ -19,7 +19,8 @@ const files = require('./routes/files')
 dbConnect()
 
 app.use(cors({
-  origin: process.env.domain,
+  origin: true,
+  // origin: process.env.domain,
   credentials: true
 }))
 

@@ -2,7 +2,7 @@ const express = require("express")
 const app = express()
 const Annonce = require("../models/Annonce")
 const User =  require("../models/User")
-const { verifyUser } = require("../middlewares/checkUser")
+const { verifyUser, verifySession } = require("../middlewares/checkUser")
 
 // Récupérer toutes les annonces
 
@@ -11,6 +11,21 @@ app.get('/', async (req,res) => {
     try{
         const annonces = await Annonce.find().exec()
         
+        res.json(annonces).status(200)
+        
+    } catch (err) {
+        res.status(500).json({ error: err })
+    }
+})
+
+// Récupérer toutes les annonces de l'utilisateur connecté
+
+app.get('/user',  async (req,res) => {
+    
+    try{
+        const annonces = await Annonce.find({user: req.user}).exec()
+        console.log(annonces)
+
         res.json(annonces).status(200)
         
     } catch (err) {
@@ -105,7 +120,7 @@ app.put('/:id', verifyUser, async (req,res) => {
         res.json(annonceUpdate)
 
     } catch {
-        res.status(500).json({ error: err })
+        // res.status(500).json({ error: err })
     }
 })
 

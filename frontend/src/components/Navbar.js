@@ -3,6 +3,9 @@ import { useState, useContext } from "react";
 import styled from "styled-components";
 import logo from "../images/Logo.png";
 import { ModalContext } from "../context/Modal";
+import { UserContext } from '../context/User'
+import { logout } from "../api/auth"
+import { useNavigate } from "react-router-dom"
 import Modals from "./Modals";
 import LoginForm from "./form/Login";
 
@@ -25,10 +28,19 @@ const linkStyle2 = {
 };
 
 const Navbar = () => {
-  const { handleSignupClick, handleLoginClick, open, visible, setVisible } =
-    useContext(ModalContext);
+  
 
-  const [openBurger, setOpenBurger] = useState(false);
+    const { handleSignupClick, handleLoginClick, open, visible, setVisible } = useContext(ModalContext)
+    const [ openBurger, setOpenBurger ] = useState(false)
+    const { setUser, user } = useContext(UserContext)
+    const navigate = useNavigate()
+
+    const logoutUser = async () => {
+        await logout()
+        setUser(null)
+        navigate('/')  
+      }
+
 
   const List = styled.div`
     background-color: black;
@@ -37,7 +49,23 @@ const Navbar = () => {
     display: flex;
     align-items: center;
     justify-content: space-between;
+<<<<<<< HEAD
+    flex-direction: ${openBurger ? "column" : "row"}; 
+    
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+    
+=======
+<<<<<<< HEAD
+    // border-bottom: 1px solid white;
+=======
+>>>>>>> b9df0dcbe88a7e1ff5f77f4bc42cf60855ff9429
+>>>>>>> refs/remotes/origin/main
+=======
     flex-direction: ${openBurger ? "column" : "row"};
+>>>>>>> 4eab688f3663c036f1e7eefa8c1d850424f02754
+>>>>>>> 6b33e6d15b9619862179b7afd613768dd28ac33b
 
     @media (max-width: 376px) {
       justify-content: flex-end;
@@ -98,9 +126,13 @@ const Navbar = () => {
   `;
   return (
     <>
-      <List>
-        <img src={logo}></img>
-        <Burger onClick={() => setOpenBurger(!openBurger)}>☰</Burger>
+
+    <List>
+    <img src={logo}></img>
+        <Burger onClick={() => setOpenBurger(!openBurger)} >☰</Burger>
+        {!user ? 
+        <>
+
         <Menu>
           <Li>
             <Link to="/" style={linkStyle}>
@@ -123,8 +155,38 @@ const Navbar = () => {
             </Link>
           </Li>
         </Menu>
-      </List>
-    </>
+
+        </> :
+            <>
+            <Menu>
+            <Li>
+                <Link to="/" style={linkStyle}>
+                    HOME
+                </Link>
+                </Li>
+                <Li>
+                    <Link to="/profil" style={linkStyle}>
+                        PROFIL
+                    </Link>
+                </Li>
+                <Li>
+                    <button style={linkStyle} onClick={logoutUser}>
+                        SE DECONNECTER
+                    </button>
+                </Li>
+                <Li>
+                    <Link to="/bikePage" style={linkStyle2}>
+                        Louer un vélo
+                    </Link>
+                </Li>
+            </Menu>
+            </>
+}
+    </List>
+
+  </>
+
+    
   );
 };
 export default Navbar;

@@ -17,12 +17,12 @@ app.post(`/login`, passport.authenticate('local'), (req, res) => {
 app.post('/signup', async (req,res) => {
  
   try {
-    // const { password } = req.body
-    // const hash = await bcrypt.hash(password, 10)
+    const { password } = req.body
+    const hash = await bcrypt.hash(password, 10)
 
     const newUser = new User ({
       ...req.body,
-      // password: hash
+      password: hash
   })
 
   const signupUser = await newUser.save()
@@ -39,6 +39,12 @@ app.get('/me', (req, res) => {
   } else {
     res.status(401).json({ error: "Unauthorized" })
   }
+})
+
+app.delete('/logout', (req, res) => {
+  req.session.destroy()
+  req.logout() 
+  res.status(200).json({ success: "Sucess" })
 })
 
 module.exports = app

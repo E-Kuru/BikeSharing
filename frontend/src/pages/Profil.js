@@ -6,6 +6,9 @@ import MesCommandes from "../components/profil/MesCommandes";
 import MesInformations from "../components/profil/MesInformations";
 import Navbar from "../components/Navbar";
 import styled from "styled-components";
+import { UserContext } from '../context/User'
+import { useContext } from 'react'
+import '../App.css'
 import "../App.css";
 import CreateAnnonce from "../components/profil/CreateAnnonce";
 import Paiement from "../components/profil/Paiement";
@@ -17,9 +20,10 @@ const Vertical = styled.div`
 `;
 
 const Profil = () => {
-  const [toggle, setToggleState] = useState("1");
-
-  const toggleTab = (index) => {
+    const { user } = useContext(UserContext)
+    const [toggle, setToggleState] = useState("1");
+    
+    const toggleTab = (index) => {
     setToggleState(index);
   };
 

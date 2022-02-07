@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Home from "./pages/Home";
 // import BikeDescription from "./pages/Annonce";
 import BikePage from "./pages/BikePage";
+import BikeDescription from "./pages/BikeDescription";
 import ConfirmationBorrower from "./pages/ConfirmationBorrower";
 import ConfirmationUser from "./pages/ConfirmationUser";
 import Profil from "./pages/Profil";
@@ -25,7 +26,7 @@ const App = () => {
             {/* <Route path="/annonce" element={<Annonce/>} /> */}
             <Route exact path="/profil" element={<Profil />} />
             <Route exact path="/bikePage" element={<BikePage />} />
-            <Route exact path="/blop" element={<ConfirmationUser />} />
+            <Route exact path="/BikeDescription" element={<BikeDescription />} />
             <Route exact path="*" element={<NotFound />} />
           </Routes>
           <Modals />

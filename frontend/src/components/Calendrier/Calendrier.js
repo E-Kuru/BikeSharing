@@ -1,8 +1,8 @@
-import React from "react";
 import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
 } from "react-places-autocomplete";
+import React, { useState } from "react";
 
 import styled from "styled-components";
 
@@ -59,11 +59,15 @@ const Box = styled.div`
 `;
 
 function Calendrier() {
+  const [date, setDate] = useState(new Date());
+  const [showDate, setShowDate] = useState(false);
+
   const [address, setAddress] = React.useState("");
   const [coordinates, setCoordinates] = React.useState({
     lat: null,
     lng: null,
   });
+
 
   const handleSelect = async (value) => {
     const results = await geocodeByAddress(value);
@@ -71,6 +75,19 @@ function Calendrier() {
     setAddress(value);
     setCoordinates(latLng);
   };
+
+  const onChange = (date) => {
+    setDate(date);
+  };
+
+const validation = () => {
+    setShowDate(true);
+    console.log(date);
+  };
+
+// const reset = () => {
+//     showDate(false);
+//   };
 
   return (
     <Container>
@@ -130,9 +147,8 @@ function Calendrier() {
             type="datetime-local"
             id="meeting-time"
             name="meeting-time"
-            value=""
-            min=""
-            max=""
+            onChange={onChange}
+            
           />
         </div>
         <div className="date">
@@ -141,9 +157,7 @@ function Calendrier() {
             type="datetime-local"
             id="meeting-time"
             name="meeting-time"
-            value=""
-            min=""
-            max=""
+            onChange={onChange}
           />
         </div>
       </Box>

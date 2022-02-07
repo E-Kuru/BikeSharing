@@ -32,44 +32,48 @@ const Icon = styled.div`
   margin-left: 170px;
 `;
 const Button = styled.button`
-  background-color: black;
-  border: 2px solid black;
-  border-radius: 50px;
-  color: white;
-  font-weight: bold;
-  font-size: 0.7em;
-  font-size: 14px;
-  padding: 0.6em 6.2em;
-  cursor: pointer;
-  margin-top: 60px;
-`;
+{
+    background-color: black;
+    border: 2px solid black;
+    border-radius: 50px;
+    color: white;
+    font-weight: bold;
+    font-size: 0.7em;
+    font-size: 14px;
+    padding: 0.6em 6.2em;
+    cursor: pointer;
+    margin-top: 85px
+}
+`
 
 const MesCommandes = () => {
+
+
   return (
     <>
-      <div className="container my-5">
-        <CardBox className="col-8">
-          <CardImage
-            src="https://www.courte-focale.fr/wp-content/uploads/2012/07/The-Dark-Knight-Rises_0.jpg"
-            alt=""
-          ></CardImage>
-          <CardContent className=" h-100">
-            <div>
-              <h4 className="text-dark">Vélo de ville</h4>
-              <P className="mb-1 my-5 text-dark">10€/h</P>
-              <P className="text-dark">Paris</P>
-            </div>
-            <div>
-              <Icon className="">
-                <MdOutlineEdit color="black" fontSize="30px" />
-                <MdDeleteOutline color="black" fontSize="30px" />
-              </Icon>
-
-              <Button>En cours</Button>
-            </div>
+    <div className='container my-5'>
+      <CardBox className='col-8'>
+        <CardImage
+          src="https://www.courte-focale.fr/wp-content/uploads/2012/07/The-Dark-Knight-Rises_0.jpg" alt=""
+          >
+        </CardImage>
+          <CardContent className=' h-100'>
+              <div>
+                <h4 className='text-dark'>Vélo de ville</h4>
+                <P className='mb-1 my-5 text-dark'>10€/h</P>  
+                <P className='text-dark'>Paris</P>  
+              </div>
+              <div>
+                {/* <Icon className=''>
+                    <MdOutlineEdit color="black" fontSize="30px" /> 
+                    <MdDeleteOutline color="black" fontSize="30px"/>
+                </Icon> */}
+                <Button>En cours</Button>
+              </div>
+                
           </CardContent>
-        </CardBox>
-      </div>
+      </CardBox>
+    </div>
     </>
   );
 };

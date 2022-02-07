@@ -7,17 +7,17 @@ const LocalStrategy = passportLocal.Strategy
 
 passport.use(new LocalStrategy({ usernameField : "email"}, async (username, password, done) => {
 
-    const user = await User.findOne({email : username, password : password}).lean().exec()
+    const user = await User.findOne({email : username}).lean().exec()
 
     if (!user) {
         return done(null, false)
     } 
 
-    // const passwordValid = await bcrypt.compare(password, user.password)
+    const passwordValid = await bcrypt.compare(password, user.password)
 
-    // if (!passwordValid) {
-    //     return done(null, false)
-    // }
+    if (!passwordValid) {
+        return done(null, false)
+    }
 
     return done(null, user)
 }))

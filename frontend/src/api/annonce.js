@@ -1,14 +1,20 @@
-// import { options } from './config'
+import { options } from './config'
 
-import { options } from "./config"
 
 const getAnnonce = async () => {
-  const response = await fetch("http://localhost:5000/annonce")
+  const response = await fetch("http://localhost:5000/annonce", {
+
+    ...options
+  }
+  )
+
+
 
   const data = await response.json()
     
   return data
 }
+
 const Annonce = async ({ titre, type, description, price, adress, picture }) => {
   const response = await fetch('http://localhost:5000/annonce', {
     method: 'post',
@@ -41,13 +47,33 @@ const Annonce = async ({ titre, type, description, price, adress, picture }) => 
       ...options,
       body: formdata
     })
-
-    const data = await response.json()
-      return data
   }
+
+const deleteAnnonce = async _id => {
+  const response = await fetch(`http://localhost:5000/annonce/${_id}`, {
+    method: 'delete',
+    ...options
+  })
+
+  const data = response.json()
+  return data
+}
+
+const modifyAnnonce = async ( id, values) => {
+  const response = await fetch(`http://localhost:5000/annonce/${id}`, {
+    method: 'put',
+    ...options,
+    body: JSON.stringify(
+      values
+    )
+  })
+
+  const data = await response.json()
+  return data
+}
+
 export {
-    getAnnonce,
-    Annonce,
-    files,
-   
+  getAnnonce,
+  deleteAnnonce,
+  modifyAnnonce,
 }
