@@ -21,7 +21,6 @@ dbConnect()
 
 app.use(cors({
   origin: true,
-  // origin: process.env.domain,
   credentials: true
 }))
 

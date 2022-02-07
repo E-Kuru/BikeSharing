@@ -58,15 +58,17 @@ app.post('/:id', verifyUser, async (req,res) => {
             annonce : id,
             lender : annonceUser.user
         })
-        
+        // console.log(annonceUser)
+        // console.log(location)
         const locationInsered = await location.save()
 
         const findUser = await User.findById(req.user)
-        findUser.locations = [...findUser.locations, locationInsered._id]
+        console.log(findUser)
+        findUser.rentals = [...findUser.rentals, locationInsered._id]
         findUser.save()
 
         const findAnnonce = await Annonce.findById(id)
-        findAnnonce.locations = [...findAnnonce.locations, locationInsered._id]
+        findAnnonce.rentals = [...findAnnonce.rentals, locationInsered._id]
         findAnnonce.save()
 
         res.json(location)

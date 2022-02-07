@@ -9,18 +9,21 @@ const getAnnonce = async () => {
   return data
 }
 
-const annonce = async ({ titre, type, description, price, adress, picture }) => {
+const getAnnonceUser = async () => {
+  const response = await fetch("http://localhost:5000/annonce/user",{
+        ...options,
+    })
+
+  const data = await response.json()
+    
+  return data
+}
+
+const createAnnonce = async (values) => {
   const response = await fetch('http://localhost:5000/annonce', {
     method: 'post',
     ...options,
-    body: JSON.stringify({
-      titre: titre,
-      type: type,
-      description: description,
-      price: price,
-     adress: adress, 
-     picture: picture
-    }),
+    body: JSON.stringify(values),
   })
 
   if (response.status >= 400) {
@@ -45,16 +48,16 @@ const annonce = async ({ titre, type, description, price, adress, picture }) => 
 //   return data
 // }
 
-  const files = async (values, user) => {
-    const formdata = new FormData()
-    formdata.append('photo', values.file, values.file.name)
+// const files = async (values, user) => {
+//   const formdata = new FormData()
+//   formdata.append('photo', values.file, values.file.name)
 
-    const response = await fetch(`http://localhost:5000/files/${annonce._id}`, {
-      method: 'post',
-      ...options,
-      body: formdata
-    })
-  }
+//   const response = await fetch(`http://localhost:5000/files/${Annonce._id}`, {
+//     method: 'post',
+//     ...options,
+//     body: formdata
+//   })
+// }
 
 const deleteAnnonce = async _id => {
   const response = await fetch(`http://localhost:5000/annonce/${_id}`, {
@@ -66,8 +69,8 @@ const deleteAnnonce = async _id => {
   return data
 }
 
-const modifyAnnonce = async ( id, values) => {
-  const response = await fetch(`http://localhost:5000/annonce/${id}`, {
+const modifyAnnonce = async ( _id, values) => {
+  const response = await fetch(`http://localhost:5000/annonce/${_id}`, {
     method: 'put',
     ...options,
     body: JSON.stringify(
@@ -83,6 +86,6 @@ export {
   getAnnonce,
   deleteAnnonce,
   modifyAnnonce,
-  annonce,
-  files
+  getAnnonceUser,
+  createAnnonce
 }

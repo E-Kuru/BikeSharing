@@ -23,10 +23,10 @@ app.get('/', async (req,res) => {
 app.get('/user',  async (req,res) => {
     
     try{
-        const annonces = await Annonce.find({user: req.user}).exec()
+        const annonces = await Annonce.find({user: req.user }).exec()
         console.log(annonces)
 
-        res.json(annonces).status(200)
+        res.json(annonces)
         
     } catch (err) {
         res.status(500).json({ error: err })
@@ -49,20 +49,6 @@ app.get('/:categorie', async (req,res) => {
     }
 })
 
-// Récupérer une annonce en fonction de l'id
-
-app.get('/:id', verifyUser, async (req,res) => {
-    const { id } = req.params
-    
-    try{
-        const annonces = await Annonce.findById(id)
-        
-        res.json(annonces).status(200)
-        
-    } catch (err) {
-        res.status(500).json({ error: err })
-    }
-})
 
 // Trouver des locations dans un secteur proche
 
