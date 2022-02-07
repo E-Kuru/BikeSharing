@@ -85,11 +85,7 @@ const Div = styled.div`
               />
               <CardContent>
                 <Link
-<<<<<<< HEAD
-                  to={`/bikeDescription/${props.id}`}
-=======
                   to={`/bikeDescription`}
->>>>>>> c4a8e3edb2acc4aef96f2ce824860ad662c3bfe5
                   style={{
                     color: "white",
                     textDecoration: "none",
