@@ -50,16 +50,8 @@ const Navbar = () => {
     display: flex;
     align-items: center;
     justify-content: space-between;
-<<<<<<< HEAD
-    flex-direction: ${openBurger ? "column" : "row"}; 
-    
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-    
-=======
-<<<<<<< HEAD
-    // border-bottom: 1px solid white;
+
+  order-bottom: 1px solid white;
 =======
 >>>>>>> b9df0dcbe88a7e1ff5f77f4bc42cf60855ff9429
 >>>>>>> refs/remotes/origin/main
