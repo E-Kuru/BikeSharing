@@ -48,7 +48,7 @@ const Navbar = () => {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    flex-direction: ${openBurger ? "column" : "row"}; 
+    flex-direction: ${openBurger ? "column" : "row"};
 
     @media (max-width: 376px) {
       justify-content: flex-end;
