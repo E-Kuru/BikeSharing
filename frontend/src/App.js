@@ -5,7 +5,7 @@ import Home from "./pages/Home";
 import BikePage from "./pages/BikePage";
 import BikeDescription from "./pages/BikeDescription";
 import ConfirmationBorrower from "./pages/ConfirmationBorrower";
-import ConfirmationUser from "./pages/ConfirmationUser";
+import ConfirmationLender from "./pages/ConfirmationLender";
 import Profil from "./pages/Profil";
 import Admin from "./pages/Admin";
 import NotFound from "./pages/NotFound";
@@ -26,9 +26,11 @@ const App = () => {
             <Route exact path="/" element={<Home />} />
             {/* <Route path="/annonce" element={<Annonce/>} /> */}
             <Route exact path="/profil" element={<Profil />} />
-            <Route exact path="/bikePage" element={<BikePage />} />
-            <Route exact path="/bikeDescription" element={<BikeDescription />} />
-            <Route exact path="/MesCommentaire" element={<MesCommentaire />} />
+            <Route path="/bikePage" element={<BikePage />} />
+            <Route path="/location-borrower/:id" element={<ConfirmationBorrower />} />
+            <Route path="/location-lender/:id" element={<ConfirmationLender />} />
+            <Route path="/BikeDescription" element={<BikeDescription />} />
+            <Route path="/MesCommentaire" element={<MesCommentaire />} />
             <Route exact path="*" element={<NotFound />} />
           </Routes>
           <Modals />

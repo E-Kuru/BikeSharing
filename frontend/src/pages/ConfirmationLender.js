@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { useParams } from "react-router-dom";
 
 
-const ConfirmationUser = () => {
+const ConfirmationLender = () => {
 
   useEffect( () => {
     // Fonction qui récupère les données de l'annonce 
@@ -146,4 +146,4 @@ const ConfirmationUser = () => {
 
 };
 
-export default ConfirmationUser;
+export default ConfirmationLender;
