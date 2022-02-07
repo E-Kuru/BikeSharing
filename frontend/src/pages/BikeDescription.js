@@ -186,6 +186,6 @@ const start = <i className="fas fa-star star-on"></i>
       
   <Footer />
        </>
-)
-}
+)}
+
 export default BikeDescription;
