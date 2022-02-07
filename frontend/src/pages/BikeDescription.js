@@ -33,10 +33,10 @@ const BikeDescription = () => {
     background-color: white;
     padding: 5px;
     border-radius: 30px;
-       width: 100%;
-       display: flex;
-       align-items: center;
-       justify-content: center;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
  
 }
@@ -121,7 +121,7 @@ const BikeDescription = () => {
    
  
       
-// velodeville.png
+ 
           
       const start = <i className="fas fa-star star-on"></i>
    
