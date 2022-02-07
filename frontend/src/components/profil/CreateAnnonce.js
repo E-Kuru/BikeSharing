@@ -2,7 +2,7 @@
 // import * as Yup from "yup";
 // import styled from "styled-components";
 
-// import { Annonce, files } from "../../api/annonce";
+import { annonce, files } from "../../api/annonce";
 
 // const Container = styled.div`
 //   width: 320px;
@@ -15,41 +15,42 @@
 // const Form = styled.form`
 // `
 
-// const Select = styled.form`
-// `
-// const Button = styled.form`
-// `
-// const Input = styled.input`
-// height: 20px;
-// `
-// const CreateAnnonce = () => {
-//   const formik = useFormik({
-//     initialValues: {
-//       titre: "",
-//       type: "",
-//       adress: "",
-//       description: "",
-//       price: "",
-//       picture: "",
-//     },
-//     onSubmit: async (values, { setFieldError }) => {
-//       try {
-//         const response = await Annonce(values);
-//         Annonce(response);
-//       } catch (e) {
-//         setFieldError("submit", "Incorrect");
-//       }
-//     },
+const Select = styled.form`
+`
+const Button = styled.form`
+`
 
-//     onSubmit: async (values, { setFieldError }) => {
-//       try {
-//         const response = await Annonce(values);
-//         Annonce(response);
-//         files(response);
-//       } catch (e) {
-//         setFieldError("submit", "Incorrect");
-//       }
-//     },
+const Input = styled.input`
+height: 20px;
+`
+const CreateAnnonce = () => {
+  const formik = useFormik({
+    initialValues: {
+      titre: "",
+      type: "",
+      adress: "",
+      description: "",
+      price: "",
+      picture: "",
+    },
+    onSubmit: async (values, { setFieldError }) => {
+      try {
+        const response = await annonce(values);
+        annonce(response);
+      } catch (e) {
+        setFieldError("submit", "Incorrect");
+      }
+    },
+
+    onSubmit: async (values, { setFieldError }) => {
+      try {
+        const response = await annonce(values);
+        annonce(response);
+        files(response);
+      } catch (e) {
+        setFieldError("submit", "Incorrect");
+      }
+    },
 
 //     validationSchema: Yup.object().shape({
 //       titre: Yup.string()

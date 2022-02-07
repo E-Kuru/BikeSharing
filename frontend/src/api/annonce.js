@@ -9,7 +9,7 @@ const getAnnonce = async () => {
   return data
 }
 
-const Annonce = async ({ titre, type, description, price, adress, picture }) => {
+const annonce = async ({ titre, type, description, price, adress, picture }) => {
   const response = await fetch('http://localhost:5000/annonce', {
     method: 'post',
     ...options,
@@ -49,7 +49,7 @@ const Annonce = async ({ titre, type, description, price, adress, picture }) => 
     const formdata = new FormData()
     formdata.append('photo', values.file, values.file.name)
 
-    const response = await fetch(`http://localhost:5000/files/${Annonce._id}`, {
+    const response = await fetch(`http://localhost:5000/files/${annonce._id}`, {
       method: 'post',
       ...options,
       body: formdata
@@ -82,5 +82,7 @@ const modifyAnnonce = async ( id, values) => {
 export {
   getAnnonce,
   deleteAnnonce,
-  modifyAnnonce
+  modifyAnnonce,
+  annonce,
+  files
 }
