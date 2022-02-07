@@ -1,176 +1,148 @@
-import PlacesAutocomplete, {
-  geocodeByAddress,
-  getLatLng,
-} from "react-places-autocomplete";
-import React, { useState } from "react";
+import React from "react";
+import { Button } from "react-bootstrap";
+import PlacesAutocomplete, { geocodeByAddress, getLatLng} from "react-places-autocomplete";
 
 import styled from "styled-components";
 
 const Container = styled.div`
+border: 2px solid white;
+font-family: Gilda Display;
+width: 100%;
+height: 100vh;
+display: flex;
+justify-content: center;
+align-content: center;
+padding: 200px;
+flex-direction: column;
 
-  font-family: Gilda Display;
-  width: 100%;
-  height: 90vh;
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  padding: 200px 400px;
-  flex-direction: column;
+h1 {
+  font-size: 20px;
+}
 
-  h1 {
+h2 {
     font-size: 20px;
   }
-
-  h2 {
-    font-size: 20px;
-  }
-  .emplacement {
-    display: flex;
-    flex-direction: column;
-    width: 100% !important;
-  }
-  .containerInput {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    
-  }
-`;
+`
 const Input = styled.input`
-  width: 20rem;
+ width: 20rem;
   border-radius: 5px;
   font-size: 14px;
   background-color: white;
   padding: 10px 24px;
   justify-content: center;
-`;
-const Box = styled.div`
-  display: flex;
-  margin: 100px 0;
-  align-items: flex-start;
-  justify-content: space-between;
 
-  .date {
+  // display: block;
+  // margin-right: auto;
+  // margin-left: auto;
+  // border: 2px solid white;
+  // padding: 20px;
+  // border-radius: 10px;
+  // width: 60%;
+`
+const Box = styled.div`
+display: flex;
+margin : 100px;
+align-items: flex-start;
+justify-content: space-between;
+
+  .date{
     display: flex;
     justify-content: space-around;
     width: 45%;
     align-items: center;
   }
-`;
+
+`
+
 
 function Calendrier() {
-  const [date, setDate] = useState(new Date());
-  const [showDate, setShowDate] = useState(false);
+     
+     const [address, setAddress] = React.useState("");
+     const [coordinates, setCoordinates] = React.useState({
+       lat: null,
+       lng: null
+     });
 
-  const [address, setAddress] = React.useState("");
-  const [coordinates, setCoordinates] = React.useState({
-    lat: null,
-    lng: null,
-  });
-
-
-  const handleSelect = async (value) => {
+  const handleSelect = async value => {
     const results = await geocodeByAddress(value);
     const latLng = await getLatLng(results[0]);
     setAddress(value);
     setCoordinates(latLng);
   };
 
-  const onChange = (date) => {
-    setDate(date);
-  };
-
-const validation = () => {
-    setShowDate(true);
-    console.log(date);
-  };
-
-// const reset = () => {
-//     showDate(false);
-//   };
-
   return (
     <Container>
-      <div className="containerInput">
-      <div className="emplacement">
-        <h1>
-          LOUER VOTRE VÉLO EN <br />
-          QUELQUES CLICKS
-        </h1>
-        <PlacesAutocomplete
-          value={address}
-          onChange={setAddress}
-          onSelect={handleSelect}
-          style={{
-            width: "100%",
-          }}
-        >
-          {({
-            getInputProps,
-            suggestions,
-            getSuggestionItemProps,
-            loading,
-          }) => (
-            <div>
-              <p> {coordinates.lat}</p>
-              <p> {coordinates.lng}</p>
+      <div className="date"> 
+      <h1>LOUER VOTRE VÉLO EN <br/>
+      QUELQUES CLICKS
+      </h1>
+      <PlacesAutocomplete
+        value={address}
+        onChange={setAddress}
+        onSelect={handleSelect}
+      >
+        {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+          <div>
+            <p> {coordinates.lat}</p>
+            <p> {coordinates.lng}</p>
 
-              <Input
-                className="input-style"
-                style={{ width: "44.7rem" }}
-                {...getInputProps({ placeholder: "Emplacement..." })}
-              />
+             <Input className="input-style" style={{width: "35rem"}}
+            {...getInputProps
+            ({ placeholder: "Emplacement actuel ..." })}
+             />
 
-              <div>
-                {loading ? <div>...loading</div> : null}
+            <div className="style">
+             {loading ? <div>...loading</div> : null}
 
-                {suggestions.map((suggestion) => {
-                  const style = {
-                    backgroundColor: suggestion.active ? "#41b6e6" : "black",
-                  };
+              {suggestions.map(suggestion => {
+                const style = {
+                  backgroundColor: suggestion.active ? "#41b6e6" : "black"
+                };
 
-                  return (
-                    <div {...getSuggestionItemProps(suggestion, { style })}>
-                      {suggestion.description}
-                    </div>
-                  );
-                })}
-              </div>
+                return (
+                  <div {...getSuggestionItemProps(suggestion, { style })}>
+                    {suggestion.description}
+                  </div>
+                );
+              })}
             </div>
-          )}
-        </PlacesAutocomplete>
+          </div>
+        )}
+      </PlacesAutocomplete>
       </div>
       <Box>
         <div className="date">
-          <h2 style={{   marginRight: "10px"}}>DE </h2>
-          <Input
-            type="datetime-local"
-            id="meeting-time"
-            name="meeting-time"
-            onChange={onChange}
-            
-          />
-        </div>
-        <div className="date">
-          <h2 style={{   marginRight: "10px"}}>À </h2>
-          <Input
-            type="datetime-local"
-            id="meeting-time"
-            name="meeting-time"
-            onChange={onChange}
-          />
-        </div>
+      <h2>DE </h2>
+       <Input type="datetime-local"
+        id="meeting-time"
+        name="meeting-time"
+       value="2022-02-02T21:30"
+       min="2022-02-07T00:00" 
+       max="2022-02-14T00:00" 
+       />
+       </div>
+       <div className="date">
+     <h2>À </h2>
+     <Input type="datetime-local"
+      id="meeting-time"
+      name="meeting-time"
+     value="2022-02-02T21:30"
+     min="2022-02-07T00:00" 
+     max="2022-02-14T00:00" 
+     />
+     </div>
       </Box>
-      <button
-        type="submit"
-        class="btn btn-light"
-        style={{ width: "350px", margin: "0 auto" }}
-      >
-        RECHERCHER
-      </button>
-      </div>
+      <button type="submit" class="btn btn-light">RECHERCHER</button>
     </Container>
+   
   );
 }
 
-export default Calendrier;
+export default Calendrier
+
+
+
+
+
+
+

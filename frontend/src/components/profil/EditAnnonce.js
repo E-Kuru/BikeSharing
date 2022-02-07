@@ -36,7 +36,7 @@ const EditAnnonce = ({annonce, annuler, fetchAnnonceUser, index}) => {
 
 
     return (
-        <div className="row">
+        // <div className="row">
             <div className="col-3 my-3" key={annonce.name} >
                 <Box className="my-1 h-100 " >
                     <Image className="image mb-3 rounded-top"
@@ -104,7 +104,7 @@ const EditAnnonce = ({annonce, annuler, fetchAnnonceUser, index}) => {
                     </form>
                 </Box>
             </div>
-        </div>
+        // </div>
     );
 };
 
