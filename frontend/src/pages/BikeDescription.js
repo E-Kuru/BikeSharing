@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import velodeville from "../images/velodeville.png";
 
 const BikeDescription = () => {
 
@@ -107,6 +108,20 @@ const BikeDescription = () => {
     const Min = styled.div`
          display: flex;
 `;
+
+
+   const Card = styled.div`
+   width: 300px;
+   height: 200px;
+    
+   border-radius:  white; 
+`;
+   
+
+   
+ 
+      
+// velodeville.png
           
       const start = <i className="fas fa-star star-on"></i>
    
@@ -115,9 +130,19 @@ const BikeDescription = () => {
    
       <>
        <Navbar />
+
       
+       <Card
+      style={{
+        background : `url(${velodeville}) no-repeat center/cover`,
+        
+      }}
+      >
+      </Card>
+      <p>VELO DE VILLE</p>
 
        <Container className='container'>
+
 
             <Info >
                <div>    
@@ -128,12 +153,16 @@ const BikeDescription = () => {
                 It has survived not only five centuries.</p>
                
                <Button>RESERVER</Button>
+       
                </div>
               </Info>
      </Container>
 
+     
+
+
       <Span>
-           <Min>{start}{start}{start}(25Commentaire)</Min>
+           {/* <Min>{start}{start}{start}(25Commentaire)</Min> */}
       </Span>
         <P>Commentaire</P>
      <Commentaire>
