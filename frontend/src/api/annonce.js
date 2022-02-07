@@ -3,12 +3,8 @@ import { options } from './config'
 
 const getAnnonce = async () => {
   const response = await fetch("http://localhost:5000/annonce", {
-
     ...options
-  }
-  )
-
-
+  })
 
   const data = await response.json()
     
