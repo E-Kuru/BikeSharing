@@ -94,7 +94,7 @@ const MesAnnonces = () => {
                             >
                             </Image>
                             <Title className='d-flex justify-content-between'>
-                            <h3 className="text-dark ps-2 fw-bolder">{annonce.name[0].toUpperCase() + annonce.name.slice(1)}</h3>
+                            <h3 className="text-dark ps-2 fw-bolder">{annonce.name.toUpperCase()}</h3>
                             <Icon className=''>
                                 <MdOutlineEdit color="black" fontSize="30px" onClick={()=>setIndex(i)} type="button" /> 
                                 <MdDeleteOutline color="red" fontSize="30px" onClick={()=>deleteAnnonces(annonce._id)} type="button"/>
