@@ -2,7 +2,7 @@
 // import * as Yup from "yup";
 // import styled from "styled-components";
 
-import { annonce, files } from "../../api/annonce";
+// import { annonce, files } from "../../api/annonce";
 
 // const Container = styled.div`
 //   width: 320px;
@@ -15,42 +15,42 @@ import { annonce, files } from "../../api/annonce";
 // const Form = styled.form`
 // `
 
-const Select = styled.form`
-`
-const Button = styled.form`
-`
+// const Select = styled.form`
+// `
+// const Button = styled.form`
+// `
 
-const Input = styled.input`
-height: 20px;
-`
-const CreateAnnonce = () => {
-  const formik = useFormik({
-    initialValues: {
-      titre: "",
-      type: "",
-      adress: "",
-      description: "",
-      price: "",
-      picture: "",
-    },
-    onSubmit: async (values, { setFieldError }) => {
-      try {
-        const response = await annonce(values);
-        annonce(response);
-      } catch (e) {
-        setFieldError("submit", "Incorrect");
-      }
-    },
+// const Input = styled.input`
+// height: 20px;
+// `
+// const CreateAnnonce = () => {
+//   const formik = useFormik({
+//     initialValues: {
+//       titre: "",
+//       type: "",
+//       adress: "",
+//       description: "",
+//       price: "",
+//       picture: "",
+//     },
+//     onSubmit: async (values, { setFieldError }) => {
+//       try {
+//         const response = await annonce(values);
+//         annonce(response);
+//       } catch (e) {
+//         setFieldError("submit", "Incorrect");
+//       }
+//     },
 
-    onSubmit: async (values, { setFieldError }) => {
-      try {
-        const response = await annonce(values);
-        annonce(response);
-        files(response);
-      } catch (e) {
-        setFieldError("submit", "Incorrect");
-      }
-    },
+//     onSubmit: async (values, { setFieldError }) => {
+//       try {
+//         const response = await annonce(values);
+//         annonce(response);
+//         files(response);
+//       } catch (e) {
+//         setFieldError("submit", "Incorrect");
+//       }
+//     },
 
 //     validationSchema: Yup.object().shape({
 //       titre: Yup.string()
