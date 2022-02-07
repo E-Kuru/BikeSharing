@@ -99,15 +99,19 @@ const BikePage = () => {
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
 
+  const {categorie} = useParams()
+
   useEffect(() => {
     fetchAnnonce();
   }, [page]);
 
   const fetchAnnonce = async () => {
-    const annonces = await getAnnonce();
-    setBikes(annonces);
-    // console.log(annonces.map(e => e.location.coordinates[0]));
-    // console.log(annonces.map(e => e.location.coordinates[1]));
+
+      const response = await fetch(`http://localhost:5000/annonce/${categorie}`)
+    
+      const data = await response.json()
+        
+      setBikes(data);
   };
 
   const handleChangeSearch = (e) => {
@@ -137,6 +141,7 @@ const BikePage = () => {
                 city={bike.city}
                 starts={bike.starts}
                 image={bike.pictures}
+                id={bike._id}
                 description={bike.description}
                 selectedBike={selectedBike}
               />

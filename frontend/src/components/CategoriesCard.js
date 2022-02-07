@@ -34,7 +34,7 @@ const CategoriesCard = (props) => {
   <div class="row">
     <div class="col-3">
     <Link
-            to={`/bikepage`}
+            to={`/bikepage/Vélo-de-ville`}
             style={{
               color: "white",
               padding: "20px",
@@ -57,7 +57,7 @@ const CategoriesCard = (props) => {
     </div>
     <div class="col-3">
     <Link
-            to={`/bikepage`}
+            to={`/bikepage/VTT`}
             style={{
               color: "white",
               padding: "20px",
@@ -80,7 +80,7 @@ const CategoriesCard = (props) => {
     </div>
     <div class="col-3">
     <Link
-            to={`/bikepage`}
+            to={`/bikepage/VTC`}
             style={{
               color: "white",
               padding: "20px",
@@ -103,7 +103,7 @@ const CategoriesCard = (props) => {
     </div>
     <div class="col-3">
     <Link
-            to={`/bikepage`}
+            to={`/bikepage/Autre`}
             style={{
               color: "white",
               padding: "20px",

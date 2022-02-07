@@ -82,7 +82,7 @@ const BikeCard = (props) => {
               />
               <CardContent>
                 <Link
-                  to={`/bikePage/${props.id}`}
+                  to={`/bikeDescription/${props.id}`}
                   style={{
                     color: "white",
                     textDecoration: "none",
