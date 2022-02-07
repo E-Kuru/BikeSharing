@@ -15,7 +15,7 @@ import Annonce from "./pages/BikePage";
 import "./style/fonts.css";
 import { UserProvider } from "./context/User";
 import CreateAnnoce from "./components/profil/CreateAnnonce";
-import MesCommentaire from "./pages/MesCommentaire";
+ 
 
 const App = () => {
   return (
@@ -30,7 +30,6 @@ const App = () => {
             <Route path="/location-borrower/:id" element={<ConfirmationBorrower />} />
             <Route path="/location-lender/:id" element={<ConfirmationLender />} />
             <Route path="/BikeDescription" element={<BikeDescription />} />
-            <Route path="/MesCommentaire" element={<MesCommentaire />} />
             <Route exact path="*" element={<NotFound />} />
           </Routes>
           <Modals />
