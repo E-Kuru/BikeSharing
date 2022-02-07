@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "../App.css";
 
 import BikeMarker from "../components/BikeMarker";
@@ -99,20 +99,25 @@ const BikePage = () => {
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
 
+  const {categorie} = useParams()
+
   useEffect(() => {
     fetchAnnonce();
   }, [page]);
 
   const fetchAnnonce = async () => {
-    const annonces = await getAnnonce();
-    setBikes(annonces);
-    // console.log(annonces.map(e => e.location.coordinates[0]));
-    // console.log(annonces.map(e => e.location.coordinates[1]));
+
+      const response = await fetch(`http://localhost:5000/annonce/${categorie}`)
+    
+      const data = await response.json()
+        
+      setBikes(data);
   };
 
   const handleChangeSearch = (e) => {
     setSearch(e.target.value);
   };
+
   return (
     <>
       <Navbar />
@@ -125,18 +130,20 @@ const BikePage = () => {
         />
       </Div>
       <Container>
-        <BikesList>
+        <BikesList >
           {!bikes ? (
             <p>En cours de chargement...</p>
           ) : (
             bikes.map((bike, index) => (
               <BikeCard
                 key={index}
+                id = {bike._id}
                 name={bike.name}
                 price={bike.price}
                 city={bike.city}
                 starts={bike.starts}
                 image={bike.pictures}
+                id={bike._id}
                 description={bike.description}
                 selectedBike={selectedBike}
               />
@@ -147,13 +154,13 @@ const BikePage = () => {
           <BikesMap
             map="list"
             center={center}
-            bikes={bikes}
-            selectedBike={selectedBike}
-            setSelectedBike={setSelectedBike}
             >
-            {bikes.map(e => (
+            {bikes.map((e , i) => (
                 <BikeMarker 
-                key={e.name + e.description} 
+                selectedBike={selectedBike}
+                setSelectedBike={setSelectedBike}
+                key={e.name + e.description + i} 
+                bike = {e._id}
                 lat={e.location.coordinates[0]} 
                 lng={e.location.coordinates[1]} 
                 />

@@ -83,7 +83,7 @@ function Calendrier() {
       >
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
           <div>
-            <p>{coordinates.lat}</p>
+            <p> {coordinates.lat}</p>
             <p> {coordinates.lng}</p>
 
              <Input className="input-style" style={{width: "35rem"}}

@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import autre from "../images/autre.jpeg";
+import autre from "../images/autre.png";
 import velodeville from "../images/velodeville.png";
-import vtc from "../images/vtc.jpeg";
-import vtt from "../images/vtt.jpeg";
+import vtc from "../images/vtc.png";
+import vtt from "../images/vtt.png";
 
 const CategoriesCard = (props) => {
   const Card = styled.div`
@@ -16,8 +16,8 @@ const CategoriesCard = (props) => {
     }
 
     p {
-      font-size: 40px;
-      font-family: "Oswald", sans-serif;
+      font-size: 35px;
+      font-family: Gilda Display;
       padding-top: 60px;
 
       @media (max-width: 812px) {
@@ -34,13 +34,12 @@ const CategoriesCard = (props) => {
   <div class="row">
     <div class="col-3">
     <Link
-            to={`/bikepage`}
+            to={`/bikepage/Vélo-de-ville`}
             style={{
               color: "white",
               padding: "20px",
               textDecoration: "none",
-              fontSize: "30px",
-              fontWeight: "bolder",
+              fontSize: "30px",       
               textAlign: "center",
               
             }}
@@ -48,7 +47,7 @@ const CategoriesCard = (props) => {
       <Card
       style={{
         background : `url(${velodeville}) no-repeat center/cover`,
-        opacity: 0.8
+        
       }}
       >
         <p>VELO DE VILLE</p>
@@ -57,13 +56,12 @@ const CategoriesCard = (props) => {
     </div>
     <div class="col-3">
     <Link
-            to={`/bikepage`}
+            to={`/bikepage/VTT`}
             style={{
               color: "white",
               padding: "20px",
               textDecoration: "none",
               fontSize: "30px",
-              fontWeight: "bolder",
               textAlign: "center",
               
             }}
@@ -71,7 +69,6 @@ const CategoriesCard = (props) => {
       <Card
       style={{
         background : `url(${vtt}) no-repeat center/cover`,
-        opacity: 0.8,
       }}
       >
         <p>VTT</p>
@@ -80,13 +77,12 @@ const CategoriesCard = (props) => {
     </div>
     <div class="col-3">
     <Link
-            to={`/bikepage`}
+            to={`/bikepage/VTC`}
             style={{
               color: "white",
               padding: "20px",
               textDecoration: "none",
               fontSize: "30px",
-              fontWeight: "bolder",
               textAlign: "center",
               
             }}
@@ -94,7 +90,6 @@ const CategoriesCard = (props) => {
       <Card
       style={{
         background : `url(${vtc}) no-repeat center/cover`,
-        opacity: 0.8,
       }}
       >
         <p>VTC</p>
@@ -103,13 +98,12 @@ const CategoriesCard = (props) => {
     </div>
     <div class="col-3">
     <Link
-            to={`/bikepage`}
+            to={`/bikepage/Autre`}
             style={{
               color: "white",
               padding: "20px",
               textDecoration: "none",
               fontSize: "30px",
-              fontWeight: "bolder",
               textAlign: "center",
               
             }}
@@ -117,7 +111,6 @@ const CategoriesCard = (props) => {
       <Card
       style={{
         background : `url(${autre}) no-repeat center/cover`,
-        opacity: 0.8,
       }}
       >
         <p>AUTRE...</p>
