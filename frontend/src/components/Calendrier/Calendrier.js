@@ -22,6 +22,7 @@ h1 {
 h2 {
     font-size: 20px;
   }
+
 `
 const Input = styled.input`
  width: 20rem;
@@ -45,12 +46,15 @@ margin : 100px;
 align-items: flex-start;
 justify-content: space-between;
 
+
   .date{
     display: flex;
     justify-content: space-around;
     width: 45%;
     align-items: center;
   }
+
+
 
 `
 
@@ -111,14 +115,13 @@ function Calendrier() {
       </PlacesAutocomplete>
       </div>
       <Box>
+        <div className="box">
         <div className="date">
       <h2>DE </h2>
        <Input type="datetime-local"
         id="meeting-time"
         name="meeting-time"
        value="2022-02-02T21:30"
-       min="2022-02-07T00:00" 
-       max="2022-02-14T00:00" 
        />
        </div>
        <div className="date">
@@ -127,9 +130,9 @@ function Calendrier() {
       id="meeting-time"
       name="meeting-time"
      value="2022-02-02T21:30"
-     min="2022-02-07T00:00" 
-     max="2022-02-14T00:00" 
+
      />
+     </div>
      </div>
       </Box>
       <button type="submit" class="btn btn-light">RECHERCHER</button>
