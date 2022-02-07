@@ -133,7 +133,7 @@ const Navbar = () => {
             </button>
           </Li>
           <Li>
-            <Link to="/bikePage" style={linkStyle2}>
+            <Link to="/bikePage/tous" style={linkStyle2}>
               Louer un vélo
             </Link>
           </Li>
