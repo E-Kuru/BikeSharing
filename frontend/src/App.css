@@ -2,5 +2,6 @@ body
 {
     background-color: black; 
     color: white;
+  border-radius: 1 solid blue;
    
 }

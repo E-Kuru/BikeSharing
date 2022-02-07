@@ -1,131 +1,127 @@
-// import { useFormik } from "formik";
-// import * as Yup from "yup";
-// import styled from "styled-components";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import styled from "styled-components";
 
-// import { Annonce, files } from "../../api/annonce";
+import { createAnnonce } from "../../api/annonce"
 
-// const Container = styled.div`
-// border: 2px solid white;
-// font-family: Gilda Display;
-// width: 100%;
-// height: 80vh;
-// display: flex;
-// justify-content: center;
-// align-content: center;
-// padding: 200px;
-// flex-direction: column;
+const Container = styled.div`
+  width: 100%;
+  margin: 0 auto;
+  font-family: 'Overpass', sans-serif;
+  border-radius: 10px;
+  height: 360px;
+  border : 1px solid white;
+  padding : 20px;
+`
+const Content = styled.div`
+    margin: 10px;
+    width: 100%;
+`
 
-// `
-// const Form = styled.form`
-// display: flex;
-// flex-direction: column;
-// `
+const CreateAnnonce = ({tabCreateAnnonce, fetchAnnonceUser}) => {
+    
+    const formik = useFormik({
+        initialValues: {
+            name: "",
+            description: "",
+            city: "",
+            categorie: "",
+            price: "",
+        },
+        onSubmit: async (values) => {
+            console.log(values)
+            const response = await createAnnonce(values)
+            fetchAnnonceUser(response)
+            tabCreateAnnonce()
+        },
 
-// const Select = styled.select`
-// width: 20rem ;
+        // validationSchema: Yup.object().shape({
+        //   name: Yup.string()
+        //     .min(4, "nom trop court")
+        //     .required("le nom est requis"),
+        // }),
+    });
+    
+    //   const handleFileChange = (e) => {
+    //     console.log(e.target.files[0]);
+    //     formik.setFieldValue("file", e.target.files[0]);
+    //   };
+    
+    return (
+        <Container>
+            <Content>
+                <h1 className="text-light">Créer une annonce</h1>
+                
+                <form onSubmit={formik.handleSubmit}>
+                    <div className='col-8 ps-2'>
+                        <input
+                            type="text"
+                            name="name"
+                            value={formik.values.name}
+                            onChange={formik.handleChange}
+                            placeholder="NOM"
+                            className="form-control border border-dark border-3 my-1"
+                        />
+                    </div>
 
-// `
-// const Input = styled.input`
-//  width: 20rem;
-//   border-radius: 5px;
-//   font-size: 14px;
-//   background-color: white;
-//   padding: 10px 24px;
-//   justify-content: center;
-//   margin: 20px auto;
-// `
-// const CreateAnnonce = () => {
-//   const formik = useFormik({
-//     initialValues: {
-//       titre: "",
-//       type: "",
-//       adress: "",
-//       description: "",
-//       price: "",
-//       picture: "",
-//     },
-//     onSubmit: async (values, { setFieldError }) => {
-//       try {
-//         const response = await Annonce(values);
-//         Annonce(response);
-//       } catch (e) {
-//         setFieldError("submit", "Incorrect");
-//       }
-//     },
+                    <div className='col-8 ps-2'>
+                        <select className="form-select border-dark border-3" aria-label="Default select example" 
+                        value={formik.values.categorie}
+                        name="categorie" 
+                        onChange={formik.handleChange}
+                        >
+                            <option>VTT</option>
+                            <option>VTC</option>
+                            <option>Vélo de ville</option>
+                            <option>Autre...</option>
+                        </select>
+                    </div>
 
-//     onSubmit: async (values, { setFieldError }) => {
-//       try {
-//         const response = await Annonce(values);
-//         Annonce(response);
-//         files(response);
-//       } catch (e) {
-//         setFieldError("submit", "Incorrect");
-//       }
-//     },
+                    <div className='col-8 ps-2'>
+                        <input
+                            type="text"
+                            name="description"
+                            value={formik.values.description}
+                            onChange={formik.handleChange}
+                            placeholder="DESCRIPTION"
+                            className="form-control border border-dark border-3 my-1"
+                        />
+                    </div>
 
-//     validationSchema: Yup.object().shape({
-//       titre: Yup.string()
-//         .min(4, "titre trop court")
-//         .required("titre est requis"),
-//     }),
-//   });
+                    <div className='col-8 ps-2'>
+                        <input
+                            type="text"
+                            name="city"
+                            value={formik.values.city}
+                            onChange={formik.handleChange}
+                            placeholder="VILLE"
+                            className="form-control border border-dark border-3 my-1"
+                        />
+                    </div>
+                    
+                    <div className='col-8 ps-2'>
+                        <input
+                            type="number"
+                            name="price"
+                            value={formik.values.price}
+                            onChange={formik.handleChange}
+                            placeholder="PRIX"
+                            className="form-control border border-dark border-3 my-1"
+                            />
+                    </div>
+                   
 
-//   const handleFileChange = (e) => {
-//     console.log(e.target.files[0]);
-//     formik.setFieldValue("file", e.target.files[0]);
-//   };
+                    {/* <Input type="file" name="file" onChange={handleFileChange} /> */}
+                    <button type="submit" className="btn btn-light ms-2 my-2">
+                        Valider
+                    </button>
+                    <button type="submit" className="btn btn-danger ms-2 my-2" onClick={tabCreateAnnonce}>
+                        Annuler
+                    </button>
+                </form>
+            </Content>
+        </Container>
+    );
+};
 
-//   return (
-//     <Container>
-//       <h1>Créer une annonce</h1>
-
-//       <Form onSubmit={formik.handleSubmit}>
-//         <Input
-//           type="text"
-//           name="titre"
-//           value={formik.values.titre}
-//           onChange={formik.handleChange}
-//           placeholder="titre"
-//         />
-
-//         <Input
-//           type="text"
-//           name="adress"
-//           value={formik.values.adress}
-//           onChange={formik.handleChange}
-//           placeholder="adresse"
-//         />
-
-//         <Select class="form-select" aria-label="Default select example">
-//           <option selected>Open this select menu</option>
-//           <option value="1">One</option>
-//           <option value="2">Two</option>
-//           <option value="3">Three</option>
-//         </Select>
-
-//         <Input
-//           type="text"
-//           name="description"
-//           value={formik.values.description}
-//           onChange={formik.handleChange}
-//           placeholder="description"
-//         />
-
-//         <Input
-//           type="price"
-//           name="price"
-//           value={formik.values.price}
-//           onChange={formik.handleChange}
-//           placeholder="prix"
-//         />
-
-//         <Input type="file" name="file" onChange={handleFileChange} />
-//         <button type="submit" className="btn btn-light" style={{width:"20rem"}}>
-//           Valider
-//         </button>
-//       </Form>
-//     </Container>
-//   );
-// };
-
-// export default CreateAnnonce;
+export default CreateAnnonce;

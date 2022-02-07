@@ -46,7 +46,7 @@ const userSchema = new Schema ({
     }],
     rentals: [{
         type: Schema.Types.ObjectId,
-        ref: "Paiement"
+        ref: "Location"
     }]
 },{
     timestamps: true

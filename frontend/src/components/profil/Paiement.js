@@ -27,12 +27,12 @@ const Paiement = () => {
         <CardBox>
           <div style = {{display:"flex", justifyContent:"space-around", alignItems:"center"}}>
             <h1>Payer en ligne</h1>
-            <CardImage
+            {/* <CardImage
           style={{ background: `url(${Carte}) no-repeat center/cover` }}
-        />
+        /> */}
         </div>
   <Form.Group className="mb-3" controlId="formBasicEmail">
-    <Form.Label>Email</Form.Label>
+    <Form.Label>Email :</Form.Label>
     <Form.Control type="email" placeholder="Enter email" />
   </Form.Group>
 

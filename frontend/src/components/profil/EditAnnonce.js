@@ -7,6 +7,7 @@ const Box = styled.div`
     background: white;
     border-radius: 5px;
     transition: 1s;
+    font-family: Gilda Display;
 `
 const Image = styled.img`
     height: 250px;
@@ -14,7 +15,7 @@ const Image = styled.img`
     min-width: 100%;
 `
 
-const EditAnnonce = ({annonce, annuler, fetchAnnonce, index}) => {
+const EditAnnonce = ({annonce, annuler, fetchAnnonceUser, index}) => {
 
     const formik = useFormik({
         initialValues: {
@@ -27,8 +28,8 @@ const EditAnnonce = ({annonce, annuler, fetchAnnonce, index}) => {
         onSubmit: async (values) => {
             
             const response = modifyAnnonce(index, values)
+            fetchAnnonceUser(response)
             console.log(response)
-            fetchAnnonce()
             annuler()
         },
     })
