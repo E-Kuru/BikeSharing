@@ -1,19 +1,20 @@
-import img from "../images/Qsm.png";
+import img from "../images/bike.png";
 import styled from "styled-components";
 
 const Qsm = () => {
   const Container = styled.div`
     width: 100%;
-    height: 5%;
   `;
   const Info = styled.div`
     font-family: "Gilda Display", serif;
     text-align: center;
-    padding: 60px;
+    padding: 40px;
+    font-family: 'Overpass', sans-serif;
 
     p {
-      margin: 50px;
-      font-size: 20px;
+      margin: 30px;
+      font-size: 18px;
+
     }
   `;
 
@@ -21,11 +22,11 @@ const Qsm = () => {
     <Container
       style={{
         background: `url(${img}) no-repeat center/cover`,
-        height: 500,
+        height: 400,
       }}
     >
       <Info>
-        <h1>Qui sommes-nous ?</h1>
+        <h2 style={{fontWeight:"bold"}}>Qui sommes-nous ?</h2>
         <p>
           Envie de louer ou prêter un vélo ? BikeSharing est le site
           <br />

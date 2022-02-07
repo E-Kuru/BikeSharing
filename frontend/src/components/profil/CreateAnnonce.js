@@ -14,11 +14,17 @@ Geocode.setApiKey("AIzaSyBJIeo6IGX39PtiojU7LIc4Vq1zYlzj4pQ");
 const Container = styled.div`
   width: 100%;
   margin: 0 auto;
-  font-family: Gilda Display;
+  font-family: 'Overpass', sans-serif;
   border-radius: 10px;
+<<<<<<< HEAD
   height: 440px;
   background-color: black;
   border: solid 2px white
+=======
+  height: 360px;
+  border : 1px solid white;
+  padding : 20px;
+>>>>>>> 43ce9bfd5a5e64e4952b8164cf1aa57641d5bdff
 `
 const Content = styled.div`
     margin: 10px;
@@ -79,7 +85,7 @@ const CreateAnnonce = ({tabCreateAnnonce, fetchAnnonceUser}) => {
     return (
         <Container>
             <Content>
-                <h1 className="text-light pt-3">Créer une annonce</h1>
+                <h1 className="text-light">Créer une annonce</h1>
                 
                 <form onSubmit={formik.handleSubmit}>
                     <div className='col-8 ps-2'>
@@ -88,7 +94,7 @@ const CreateAnnonce = ({tabCreateAnnonce, fetchAnnonceUser}) => {
                             name="name"
                             value={formik.values.name}
                             onChange={formik.handleChange}
-                            placeholder="nom"
+                            placeholder="NOM"
                             className="form-control border border-dark border-3 my-1"
                         />
                     </div>
@@ -99,9 +105,10 @@ const CreateAnnonce = ({tabCreateAnnonce, fetchAnnonceUser}) => {
                         name="categorie" 
                         onChange={formik.handleChange}
                         >
-                            <option>One</option>
-                            <option>Two</option>
-                            <option>Three</option>
+                            <option>VTT</option>
+                            <option>VTC</option>
+                            <option>Vélo de ville</option>
+                            <option>Autre...</option>
                         </select>
                     </div>
 
@@ -111,7 +118,7 @@ const CreateAnnonce = ({tabCreateAnnonce, fetchAnnonceUser}) => {
                             name="description"
                             value={formik.values.description}
                             onChange={formik.handleChange}
-                            placeholder="description"
+                            placeholder="DESCRIPTION"
                             className="form-control border border-dark border-3 my-1"
                         />
                     </div>
@@ -122,7 +129,7 @@ const CreateAnnonce = ({tabCreateAnnonce, fetchAnnonceUser}) => {
                             name="city"
                             value={formik.values.city}
                             onChange={formik.handleChange}
-                            placeholder="ville"
+                            placeholder="VILLE"
                             className="form-control border border-dark border-3 my-1"
                         />
                     </div>
@@ -133,7 +140,7 @@ const CreateAnnonce = ({tabCreateAnnonce, fetchAnnonceUser}) => {
                             name="price"
                             value={formik.values.price}
                             onChange={formik.handleChange}
-                            placeholder="prix"
+                            placeholder="PRIX"
                             className="form-control border border-dark border-3 my-1"
                             />
                     </div>
@@ -187,7 +194,7 @@ const CreateAnnonce = ({tabCreateAnnonce, fetchAnnonceUser}) => {
                     </PlacesAutocomplete> */}
 
                     {/* <Input type="file" name="file" onChange={handleFileChange} /> */}
-                    <button type="submit" className="btn btn-dark ms-2 my-2">
+                    <button type="submit" className="btn btn-light ms-2 my-2">
                         Valider
                     </button>
                     <button type="submit" className="btn btn-danger ms-2 my-2" onClick={tabCreateAnnonce}>

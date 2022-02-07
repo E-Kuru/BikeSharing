@@ -1,11 +1,10 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import styled from "styled-components";
 import Home from "./pages/Home";
-// import BikeDescription from "./pages/Annonce";
 import BikePage from "./pages/BikePage";
 import BikeDescription from "./pages/BikeDescription";
 import ConfirmationBorrower from "./pages/ConfirmationBorrower";
-import ConfirmationUser from "./pages/ConfirmationUser";
+import ConfirmationLender from "./pages/ConfirmationLender";
 import Profil from "./pages/Profil";
 import Admin from "./pages/Admin";
 import NotFound from "./pages/NotFound";
@@ -24,11 +23,12 @@ const App = () => {
         <ModalProvider>
           <Routes>
             <Route exact path="/" element={<Home />} />
-            {/* <Route path="/annonce" element={<Annonce/>} /> */}
+            <Route path="/bikeDescription/:id" element={<BikeDescription/>} />
             <Route exact path="/profil" element={<Profil />} />
-            <Route exact path="/bikePage" element={<BikePage />} />
-            <Route exact path="/BikeDescription" element={<BikeDescription />} />
-            <Route exact path="/MesCommentaire" element={<MesCommentaire />} />
+            <Route path="/bikePage/:categorie" element={<BikePage />} />
+            <Route path="/location-borrower/:id" element={<ConfirmationBorrower />} />
+            <Route path="/location-lender/:id" element={<ConfirmationLender />} />
+            <Route path="/MesCommentaire" element={<MesCommentaire />} />
             <Route exact path="*" element={<NotFound />} />
           </Routes>
           <Modals />
