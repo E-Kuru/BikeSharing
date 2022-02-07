@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "../App.css";
 
 import BikeMarker from "../components/BikeMarker";
@@ -117,6 +117,7 @@ const BikePage = () => {
   const handleChangeSearch = (e) => {
     setSearch(e.target.value);
   };
+
   return (
     <>
       <Navbar />
@@ -129,13 +130,14 @@ const BikePage = () => {
         />
       </Div>
       <Container>
-        <BikesList>
+        <BikesList >
           {!bikes ? (
             <p>En cours de chargement...</p>
           ) : (
             bikes.map((bike, index) => (
               <BikeCard
                 key={index}
+                id = {bike._id}
                 name={bike.name}
                 price={bike.price}
                 city={bike.city}
@@ -152,13 +154,13 @@ const BikePage = () => {
           <BikesMap
             map="list"
             center={center}
-            bikes={bikes}
-            selectedBike={selectedBike}
-            setSelectedBike={setSelectedBike}
             >
-            {bikes.map(e => (
+            {bikes.map((e , i) => (
                 <BikeMarker 
-                key={e.name + e.description} 
+                selectedBike={selectedBike}
+                setSelectedBike={setSelectedBike}
+                key={e.name + e.description + i} 
+                bike = {e._id}
                 lat={e.location.coordinates[0]} 
                 lng={e.location.coordinates[1]} 
                 />

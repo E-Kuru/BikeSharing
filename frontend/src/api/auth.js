@@ -24,7 +24,7 @@ const getMe = async () => {
     ...options
   })
   
-  const data = response.json()
+  const data = await response.json()
   return data
 }
 
@@ -52,7 +52,7 @@ const logout = async () => {
     ...options
   })
 
-  const data = response.json()
+  const data = await response.json()
   return data
 }
 
