@@ -78,6 +78,7 @@ function Calendrier() {
 
   const onChange = (date) => {
     setDate(date);
+    console.log(date)
   };
 
 const validation = () => {
