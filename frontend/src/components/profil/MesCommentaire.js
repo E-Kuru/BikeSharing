@@ -1,6 +1,5 @@
 import React from 'react'
-import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
+import Footer from '../Footer'
 import styled from "styled-components";
 
 const MesCommentaire = () => {
@@ -71,7 +70,7 @@ const MesCommentaire = () => {
    const start = <i className="fas fa-star star-on"></i>
   return(
      <>
-      <Navbar />
+     
       
      <Commentaire>
       <H5>Evan D. </H5>

@@ -59,16 +59,16 @@ const MesInformations = () => {
                 {!toggle ? 
                 <Content>
                     <Title>
-                        <h2 className='mb-5 ms-4 text-dark'>Mes informations</h2>
+                        <h2 className='mb-5 ms-4 pt-3 text-dark'>Mes informations</h2>
                         <Icon>
                             <MdOutlineEdit color="black" fontSize="35px" onClick={()=>setToggle(true)} type="button"/>
                         </Icon>
                     </Title>
-                    <p className='ms-2 text-dark'><span className="fw-bolder">Nom:</span> {userId.lastName}</p>
-                    <p className='ms-2 text-dark'><span className="fw-bolder">Prénom:</span> {userId.firstName}</p>
-                    <p className='ms-2 text-dark'><span className="fw-bolder">Email:</span> {userId.email}</p>
-                    <p className='ms-2 text-dark'><span className="fw-bolder">Numéro de téléphone:</span> {userId.phoneNumber}</p>
-                    <p className='ms-2 text-dark'><span className="fw-bolder">Adresse:</span> {userId.adress}</p>
+                    <p className='ms-2 text-dark'><span className="fw-bolder">Nom :</span> {userId.lastName}</p>
+                    <p className='ms-2 text-dark'><span className="fw-bolder">Prénom :</span> {userId.firstName}</p>
+                    <p className='ms-2 text-dark'><span className="fw-bolder">Email :</span> {userId.email}</p>
+                    <p className='ms-2 text-dark'><span className="fw-bolder">Numéro de téléphone :</span> {userId.phoneNumber}</p>
+                    <p className='ms-2 text-dark'><span className="fw-bolder">Adresse :</span> {userId.adress}</p>
                 </Content>:
                 <EditInfosUser toggleTab={toggleTab} userId={userId._id}  user={userId} fetchUser={fetchUser} />
                 }
