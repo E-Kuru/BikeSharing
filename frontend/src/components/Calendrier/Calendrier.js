@@ -5,21 +5,21 @@ import PlacesAutocomplete, { geocodeByAddress, getLatLng} from "react-places-aut
 import styled from "styled-components";
 
 const Container = styled.div`
-border: 2px solid white;
-font-family: Gilda Display;
-width: 100%;
-height: 100vh;
-display: flex;
-justify-content: center;
-align-content: center;
-padding: 200px;
-flex-direction: column;
+  border: 2px solid white;
+  font-family: Gilda Display;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  padding: 200px;
+  flex-direction: column;
 
-h1 {
+  h1 {
   font-size: 20px;
-}
+  }
 
-h2 {
+  h2 {
     font-size: 20px;
   }
 `
@@ -53,7 +53,6 @@ justify-content: space-between;
   }
 
 `
-
 
 function Calendrier() {
      
