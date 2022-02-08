@@ -106,6 +106,7 @@ const Card = styled.div`
      position: absolute;
      bottom: 21em;
      z-index: -1;
+
      
  `;
 
@@ -131,19 +132,9 @@ const star = <i className="fas fa-star star-on"></i>
       <>
        <Navbar />
 
-       <Container className='container'>
+       <div >
 
             <Info >
-            <Link to={`/location-borrower/:id`}
-            style={{
-              color: "white",
-              padding: "20px",
-              textDecoration: "none",
-              fontSize: "18px",
-              textAlign: "center",
-              
-            }}
-          >
                <div>    
                <h3>Description : </h3>
                <p>Lorem Ipsum is simply dummy text of the printing.
@@ -151,10 +142,9 @@ const star = <i className="fas fa-star star-on"></i>
                 when an unknown<br/> printer took a galley of type and scrambled it to make a type <br/>specimen book.
                 It has survived not only five centuries.</p>
                
-               <Button>RESERVER</Button>
-              
                </div>
-               </Link >
+              
+               <button>RESERVER</button>
               </Info>
               <Card
       style={{
@@ -167,13 +157,13 @@ const star = <i className="fas fa-star star-on"></i>
       <Span>
            
            <Min>
-                {start}
-                {start}
-                {start}
+                {star}
+                {star}
+                {star}
            <H2> 3commentaire</H2>
            </Min>
       </Span>
-     </Container>
+     </div>
         <P>Commentaire</P>
      <Commentaire>
       <H5>Evan D. </H5>
