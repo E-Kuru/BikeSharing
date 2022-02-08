@@ -8,14 +8,14 @@ import velodeville from "../images/velodeville.png";
 const BikeDescription = () => {
 
 
-     const Container = styled.div`
+const Container = styled.div`
            
 `;
 const Info = styled.div`
      display: flex;
      align-items: center;
-     justify-content: center;
-     padding-left: 30%;
+     // justify-content: center;
+     padding-left: 40%;
 `;
           
 const Button = styled.div`
@@ -96,11 +96,11 @@ const span = styled.div`
     
 const Min = styled.div`
      display: flex;
-     padding: 2px;
+     // padding: 7px;
 `;
 
 const Card = styled.div`
-     width: 300px;
+     width: 500px;
      height: 200px;
      border-radius:  white; 
      // content: "";
@@ -150,7 +150,7 @@ const start = <i className="fas fa-star star-on"></i>
             }}
           >
                <div>    
-               <h3>Description : </h3>
+               <h3>Description  </h3>
                <p>Lorem Ipsum is simply dummy text of the printing.
                 and <br/>typesetting industry.Lorem Ipsum has been the industry<br/> standard dummy text  since the 1500s,
                 when an unknown<br/> printer took a galley of type and scrambled it to make a type <br/>specimen book.
