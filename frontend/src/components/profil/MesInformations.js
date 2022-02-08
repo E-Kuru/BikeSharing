@@ -8,6 +8,10 @@ import EditInfosUser from "./EditInfosUser";
 import { getAnnonceUser } from "../../api/annonce";
 
 const Container = styled.div`
+    height: 600px
+`
+
+const Contain = styled.div`
   margin: 0px 0px 30px 0px;
   border-radius: 10px;
   height: 360px;
@@ -54,8 +58,8 @@ const MesInformations = () => {
 
 
     return (
-        <>
-            <Container>
+        <Container>
+            <Contain>
                 {!toggle ? 
                 <Content>
                     <Title>
@@ -72,8 +76,8 @@ const MesInformations = () => {
                 </Content>:
                 <EditInfosUser toggleTab={toggleTab} userId={userId._id}  user={userId} fetchUser={fetchUser} />
                 }
-            </Container>
-        </>
+            </Contain>
+        </Container>
     );
 };
 

@@ -7,7 +7,7 @@ import { useContext } from 'react'
 import { MdOutlineEdit, MdDeleteOutline } from "react-icons/md"
 import EditAnnonce from './EditAnnonce';
 import CreateAnnonce from "./CreateAnnonce";
-
+import moment from "moment"
 
 const Box = styled.div`
   background: white;
@@ -38,6 +38,7 @@ const Button = styled.button`
 `
 const Icon = styled.div`
     display: flex;
+    height: 70px
 `
 
 const Title = styled.div`
@@ -45,6 +46,10 @@ const Title = styled.div`
 `
 const Box2 = styled.div`
     height: 70px
+`
+
+const Container = styled.div`
+    height: 800px
 `
 
 const MesAnnonces = () => {
@@ -78,6 +83,7 @@ const MesAnnonces = () => {
     }
  
     return (
+        <Container >
         <div className='container my-4'>
             {!tab ?
             <>
@@ -102,8 +108,10 @@ const MesAnnonces = () => {
                             </Title>
                             <h5 className="text-dark ps-2 fw-bolder">{annonce.categorie[0].toUpperCase() + annonce.categorie.slice(1)}</h5>
                             <Box2 className=" ">
-                                <p className="text-dark ps-2"><span className="fw-bolder">Description :</span> {annonce.description}</p>
+                                <p className="text-dark ps-2"><span className="fw-bolder">Description : </span> {annonce.description}</p>
                             </Box2>
+                            <p className="text-dark ps-2"><span className="fw-bolder">Date début : </span>{moment(annonce.dateBegin).format("DD-MM-YYYY")}</p>
+                            <p className="text-dark ps-2"><span className="fw-bolder">Date fin : </span>{moment(annonce.dateEnd).format("DD-MM-YYYY")}</p>
                             <div className="d-flex justify-content-between">
                                 <p className="text-dark ps-2 fw-bolder">{annonce.city[0].toUpperCase() + annonce.city.slice(1)}</p>
                                 <p className="text-dark me-2 fw-bolder">{annonce.price} €</p>
@@ -119,6 +127,7 @@ const MesAnnonces = () => {
             <CreateAnnonce tabCreateAnnonce={tabCreateAnnonce} fetchAnnonceUser={fetchAnnonceUser} />
             }
         </div>
+        </Container>
     );
 };
 

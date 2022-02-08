@@ -5,6 +5,9 @@ import styled from "styled-components";
 import { MdOutlineEdit, MdDeleteOutline } from "react-icons/md";
 import moment from "moment"
 
+const Container = styled.div`
+    height: 600px
+`
 const CardBox = styled.div`
   margin: 0px 0px 30px 0px;
   border-radius: 10px;
@@ -22,8 +25,8 @@ const CardImage = styled.img`
 
 const CardContent = styled.div`
   margin: 10px;
-  display: flex;
-  justify-content: space-between;
+  // display: flex;
+  // justify-content: space-between;
   width: 100%;
   font-family: Gilda Display;
 `
@@ -64,9 +67,8 @@ const fetchLocations = async () => {
     setLocations(locations)
 }
 
-
   return (
-    <>
+    <Container>
     <div className='container my-5'>
     {locations.length === 0 && <p className='text-white my-3'>Vous avez 0 commandes</p>}
       {locations.map(location => (
@@ -76,29 +78,21 @@ const fetchLocations = async () => {
           >
         </CardImage>
           <CardContent className=' h-100'>
-              <div>
-                <h4 className='text-dark'>name</h4>
-                <P className='mb-1 my-5 text-dark'>{location.price}/h€</P>  
-                <P className='text-dark'>Paris</P>  
-              </div>
-              <div className="my-4">
-                <P className='mb-1 my-5 text-dark'>Date début: {moment(location.dateBegin).format("DD-MM-YYYY")}</P>  
+            
+                <P className='mb-1 my-1 text-dark'>{location.price}/h€</P>  
+                
+             
+                <P className='mb-1 my-1 text-dark'>Date début: {moment(location.dateBegin).format("DD-MM-YYYY")}</P>  
                 <P className='text-dark'>Date fin: {moment(location.dateEnd).format("DD-MM-YYYY")}</P>  
-              </div>
-              <div>
-                {/* <Icon className=''>
-                    <MdOutlineEdit color="black" fontSize="30px" /> 
-                    <MdDeleteOutline color="black" fontSize="30px"/>
-                </Icon> */}
-                <Button>En cours</Button>
-              </div>
+             
+        
                 
           </CardContent>
       </CardBox>
        ))} 
      
     </div>
-    </>
+    </Container>
   );
 };
 
