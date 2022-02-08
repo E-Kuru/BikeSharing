@@ -3,6 +3,7 @@ const app = express()
 const Annonce = require("../models/Annonce")
 const User =  require("../models/User")
 const { verifyUser, verifySession } = require("../middlewares/checkUser")
+const moment = require("moment")
 
 // Récupérer toutes les annonces
 
@@ -76,7 +77,9 @@ app.post('/', verifyUser, async (req,res) => {
     try{
         const annonce = new Annonce({
             ...req.body,
-            user: req.user
+            user: req.user,
+            dateBegin: moment().format("YYYY-MM-DD"),
+            dateEnd: moment().format("YYYY-MM-DD")
         })
         const OneAnnonce = await annonce.save()
 

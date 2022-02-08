@@ -6,6 +6,22 @@ import PlacesAutocomplete, { geocodeByAddress, getLatLng} from "react-places-aut
 import styled from "styled-components";
 
 const Container = styled.div`
+<<<<<<< HEAD
+  border: 2px solid white;
+  font-family: Gilda Display;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  padding: 200px;
+  flex-direction: column;
+
+  h1 {
+  font-size: 20px;
+  }
+
+=======
   font-family: Gilda Display;
   width: 100%;
   height: 90vh;
@@ -17,6 +33,7 @@ const Container = styled.div`
   h1 {
     font-size: 20px;
   }
+>>>>>>> 062814e9d60392bd5c2e45bc58513912697b87c3
   h2 {
     font-size: 20px;
   }
@@ -73,7 +90,6 @@ const Box = styled.div`
 
 
 // `
-
 
 function Calendrier() {
      

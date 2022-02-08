@@ -1,8 +1,9 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { getCommandeUser } from "../../api/location";
+import { getLocationUser } from "../../api/location";
 import styled from "styled-components";
 import { MdOutlineEdit, MdDeleteOutline } from "react-icons/md";
+import moment from "moment"
 
 const CardBox = styled.div`
   margin: 0px 0px 30px 0px;
@@ -11,13 +12,13 @@ const CardBox = styled.div`
   display: flex;
   overflow: hidden;
   background-color: white;
-`;
+`
 const CardImage = styled.img`
   background-position: bottom;
   background-size: cover;
   height: 110%;
   width: 30%;
-`;
+`
 
 const CardContent = styled.div`
   margin: 10px;
@@ -25,29 +26,30 @@ const CardContent = styled.div`
   justify-content: space-between;
   width: 100%;
   font-family: Gilda Display;
-`;
+`
 const P = styled.p`
   font-size: 20px;
-`;
+`
 const Icon = styled.div`
   margin-left: 170px;
-`;
+`
+
 const Button = styled.button`
 {
-    background-color: black;
-    border: 2px solid black;
-    border-radius: 50px;
-    color: white;
-    font-weight: bold;
-    font-size: 0.7em;
-    font-size: 14px;
-    padding: 0.6em 6.2em;
-    cursor: pointer;
-    margin-top: 85px
+  background-color: black;
+  border: 2px solid black;
+  border-radius: 50px;
+  color: white;
+  font-weight: bold;
+  font-size: 0.7em;
+  font-size: 14px;
+  padding: 0.6em 6.2em;
+  cursor: pointer;
+  margin-top: 85px
 }
 `
 
-const MesCommandes = () => {
+const MesLocations = () => {
   const [locations, setLocations] = useState([])
 
 
@@ -58,9 +60,10 @@ const MesCommandes = () => {
 
 
 const fetchLocations = async () => {
-    const locations = await getCommandeUser()
+    const locations = await getLocationUser()
     setLocations(locations)
 }
+
 
   return (
     <>
@@ -79,8 +82,8 @@ const fetchLocations = async () => {
                 <P className='text-dark'>Paris</P>  
               </div>
               <div className="my-4">
-                <P className='mb-1 my-5 text-dark'>Date début: {location.dateBegin}</P>  
-                <P className='text-dark'>Date fin: {location.dateEnd}</P>  
+                <P className='mb-1 my-5 text-dark'>Date début: {moment(location.dateBegin).format("DD-MM-YYYY")}</P>  
+                <P className='text-dark'>Date fin: {moment(location.dateEnd).format("DD-MM-YYYY")}</P>  
               </div>
               <div>
                 {/* <Icon className=''>
@@ -99,4 +102,4 @@ const fetchLocations = async () => {
   );
 };
 
-export default MesCommandes;
+export default MesLocations;
