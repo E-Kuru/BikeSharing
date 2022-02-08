@@ -31,20 +31,26 @@ const Paiement = () => {
           style={{ background: `url(${Carte}) no-repeat center/cover` }}
         /> */}
         </div>
+        <div className='col-4 ps-2'>
   <Form.Group className="mb-3" controlId="formBasicEmail">
     <Form.Label>Email :</Form.Label>
     <Form.Control type="email" placeholder="Enter email" />
   </Form.Group>
-
+</div>
+<div className='col-4 ps-2'>
   <Form.Group className="mb-3" controlId="formBasicText" >
     <Form.Label>Numéro de carte bancaire :</Form.Label>
     <Form.Control type="text" placeholder="**** **** **** **** ***" />
   </Form.Group>
+  </div>
+
+  <div className='col-4 ps-2'>
   <Form.Group className="mb-3" controlId="formBasicText">
     <Form.Label>Nom sur la carte :</Form.Label>
     <Form.Control type="text" placeholder="" />
   </Form.Group>
-  <Button variant="light" type="submit">
+  </div>
+  <Button variant="light" type="submit" className="ms-2">
     VALIDER
   </Button>
       </CardBox>

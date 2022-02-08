@@ -85,7 +85,7 @@ const Div = styled.div`
               />
               <CardContent>
                 <Link
-                  to={`/bikeDescription/${props._id}`}
+                  to={`/bikeDescription/${props.id}`}
                   style={{
                     color: "white",
                     textDecoration: "none",

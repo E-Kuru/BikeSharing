@@ -1,7 +1,7 @@
 import React from "react";
-import { useState } from "react";
-// import { Button } from "react-bootstrap";
+import { useEffect, useState } from "react";
 import PlacesAutocomplete, { geocodeByAddress, getLatLng} from "react-places-autocomplete";
+import { getAnnonce } from "../../api/annonce";
 
 import styled from "styled-components";
 
@@ -31,13 +31,13 @@ const Container = styled.div`
     width: 100%;
     
   }
-`;
+`
 const Input = styled.input`
   width: 20rem;
   border-radius: 5px;
   font-size: 14px;
   padding: 10px 24px;
-`;
+`
 
 const Box = styled.div`
   display: flex;
@@ -54,36 +54,27 @@ const Box = styled.div`
     margin-top: 5%;
     width: 15%;
   }
-`;
-
-// const Box = styled.div`
-// display: flex;
-// margin : 100px;
-// align-items: flex-start;
-// justify-content: space-between;
-
-
-//   .date{
-//     display: flex;
-//     justify-content: space-around;
-//     width: 45%;
-//     align-items: center;
-//   }
-
-
-
-// `
+`
 
 function Calendrier() {
-     
-     const [address, setAddress] = React.useState("");
-     const [coordinates, setCoordinates] = React.useState({
+     const [annonce, setAnnonce] = useState([]);
+     const [address, setAddress] = useState("");
+     const [coordinates, setCoordinates] = useState({
        lat: null,
        lng: null
      });
 
      const [beginDate, setBeginDate] = useState("");
      const [endDate, setEndDate] = useState("");
+
+     useEffect(() => {
+      fetchAnnonces()
+  }, [])
+  
+  const fetchAnnonces = async () => {
+      const annonces = await getAnnonce()
+      setAnnonce(annonces)
+  }
 
   const handleSelect = async value => {
     const results = await geocodeByAddress(value);
@@ -94,11 +85,18 @@ function Calendrier() {
 
   const changeBeginDate = (e) => {
     setBeginDate(e.target.value);
+    console.log(beginDate)
   };
 
   const changeEndDate = (e) => {
     setEndDate(e.target.value);
+    console.log(endDate)
   };
+
+  const compare = () => {
+    const annonces = annonce.filter( e => e.dateBegin === beginDate && e.dateEnd === endDate)
+    console.log(annonces)
+  }
 
   return (
     <Container>

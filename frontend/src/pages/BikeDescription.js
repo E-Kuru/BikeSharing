@@ -96,7 +96,7 @@ const span = styled.div`
     
 const Min = styled.div`
      display: flex;
-     // padding: 7px;
+     padding: 7px;
 `;
 
 const Card = styled.div`
