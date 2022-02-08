@@ -21,11 +21,11 @@ const annonceSchema = new Schema ({
         required : true
     },
     dateBegin: {
-        type: String,
+        type: Date,
         required : true
     },
     dateEnd: {
-        type: String,
+        type: Date,
         required : true
     },
     city : {

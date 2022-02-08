@@ -21,6 +21,6 @@ const getLocationUser = async () => {
 }
 
 export {
-    getCommandeUser,
-    getLocationUser
+  getCommandeUser,
+  getLocationUser
 }

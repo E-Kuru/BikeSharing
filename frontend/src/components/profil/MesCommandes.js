@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { getCommandeUser } from "../../api/location";
 import styled from "styled-components";
 import { MdOutlineEdit, MdDeleteOutline } from "react-icons/md";
+import moment from "moment"
 
 const CardBox = styled.div`
   margin: 0px 0px 30px 0px;
@@ -32,70 +33,57 @@ const P = styled.p`
 const Icon = styled.div`
   margin-left: 170px;
 `;
-const Button = styled.button`
-{
-    background-color: black;
-    border: 2px solid black;
-    border-radius: 50px;
-    color: white;
-    font-weight: bold;
-    font-size: 0.7em;
-    font-size: 14px;
-    padding: 0.6em 6.2em;
-    cursor: pointer;
-    margin-top: 85px
-}
+
+
+const Container = styled.div`
+    height: 600px
 `
 
 const MesCommandes = () => {
-  const [locations, setLocations] = useState([])
+  const [commandes, setCommandes] = useState([])
 
 
   useEffect(() => {
-    fetchLocations()
+    fetchCommandes()
 }, [])
 
 
 
-const fetchLocations = async () => {
+const fetchCommandes = async () => {
     const locations = await getCommandeUser()
-    setLocations(locations)
+    setCommandes(locations)
 }
 
   return (
-    <>
+    <Container>
     <div className='container my-5'>
-    {locations.length === 0 && <p className='text-white my-3'>Vous avez 0 commandes</p>}
-      {locations.map(location => (
+    {commandes.length === 0 && <p className='text-white my-3'>Vous avez 0 commandes</p>}
+      {commandes.map(commande => (
          <CardBox className='col-8'>
         <CardImage
           src="https://www.courte-focale.fr/wp-content/uploads/2012/07/The-Dark-Knight-Rises_0.jpg" alt=""
           >
         </CardImage>
           <CardContent className=' h-100'>
-              <div>
-                <h4 className='text-dark'>name</h4>
-                <P className='mb-1 my-5 text-dark'>{location.price}/h€</P>  
-                <P className='text-dark'>Paris</P>  
-              </div>
-              <div className="my-4">
-                <P className='mb-1 my-5 text-dark'>Date début: {location.dateBegin}</P>  
-                <P className='text-dark'>Date fin: {location.dateEnd}</P>  
-              </div>
-              <div>
-                {/* <Icon className=''>
-                    <MdOutlineEdit color="black" fontSize="30px" /> 
-                    <MdDeleteOutline color="black" fontSize="30px"/>
-                </Icon> */}
-                <Button>En cours</Button>
-              </div>
+             
+                <div>
+                <P className='mb-1 my-1 text-dark'>{commande.price}/h€</P>  
+            
+            <P className='mb-1 my-1 text-dark'>Date début:  {moment(commande.dateBegin).format("DD-MM-YYYY")}</P>  
+                <P className='text-dark'>Date fin: {moment(commande.dateEnd).format("DD-MM-YYYY")}</P>  
+            </div>
+                
+           
+             
+            
+           
                 
           </CardContent>
       </CardBox>
        ))} 
      
     </div>
-    </>
+    </Container>
   );
 };
 
