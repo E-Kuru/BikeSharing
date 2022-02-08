@@ -44,7 +44,11 @@ const userSchema = new Schema ({
         type: Schema.Types.ObjectId,
         ref: "Paiement"
     }],
-    rentals: [{
+    rentalsLender: [{
+        type: Schema.Types.ObjectId,
+        ref: "Location"
+    }],
+    rentalsBorrower: [{
         type: Schema.Types.ObjectId,
         ref: "Location"
     }]

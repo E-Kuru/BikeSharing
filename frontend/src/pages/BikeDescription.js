@@ -2,36 +2,37 @@ import React from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import velodeville from "../images/velodeville.png";
 
 const BikeDescription = () => {
 
+const navigate = useNavigate()
 
-     const Container = styled.div`
-           
-`;
 const Info = styled.div`
      display: flex;
      align-items: center;
      justify-content: center;
+     flex-direction : column;
      padding-left: 30%;
+
+     div{
+          text-align : center;
+     }
+
+     button{
+          margin-top : 4%;
+          color: black;
+          font-size: 18px;
+          text-align: center;
+          border : none;
+          background-color: white;
+          padding: 5px;
+          width : 35%;
+          border-radius: 30px;
+     }
 `;
-          
-const Button = styled.div`
-     color: black;
-     text-decoration: none;
-     font-size: 18px;
-     text-align: center;
-     background-color: white;
-     padding: 5px;
-     border-radius: 30px;
-     width: 100%;
-     display: flex;
-     align-items: center;
-     justify-content: center;          
-`;
-   
+                       
 const Div = styled.div`
      color: rgb(250, 250, 145);
      display: block;
@@ -90,9 +91,6 @@ const P = styled.div`
 const H5 = styled.div`
      color: black;
  `;
-const span = styled.div`
-     color: black;
- `;
     
 const Min = styled.div`
      display: flex;
@@ -126,17 +124,14 @@ const Card = styled.div`
      color:white;
 `;
 
-const start = <i className="fas fa-star star-on"></i>
+const star = <i className="fas fa-star star-on"></i>
    
   return (
 
       <>
        <Navbar />
 
-    
-
        <Container className='container'>
-
 
             <Info >
             <Link to={`/location-borrower/:id`}
@@ -185,11 +180,11 @@ const start = <i className="fas fa-star star-on"></i>
       <br />
       <H5>Trop bien !!!!!</H5>
      <Div>
-          {start}
-          {start}
-          {start}
-          {start}
-          {start}
+          {star}
+          {star}
+          {star}
+          {star}
+          {star}
      </Div>
      </Commentaire>
       <br />
@@ -199,10 +194,10 @@ const start = <i className="fas fa-star star-on"></i>
           <br />
           <H5>Ca roule ça roule..</H5>
      <Div>
-          {start}
-          {start}
-          {start}
-          {start}
+          {star}
+          {star}
+          {star}
+          {star}
 
      </Div>
      </DvToo>
@@ -213,10 +208,9 @@ const start = <i className="fas fa-star star-on"></i>
           <br />
           <H5>Oh là là super!</H5>
      <Div>
-
-          {start}
-          {start}
-          {start}
+          {star}
+          {star}
+          {star}
     </Div>
     </DivThree>
       

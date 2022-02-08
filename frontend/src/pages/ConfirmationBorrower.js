@@ -3,18 +3,32 @@ import Navbar from "../components/Navbar"
 import Footer from "../components/Footer"
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
+import { options } from "../api/config";
+import { getLocationUser } from "../api/location";
 
 
 const ConfirmationBorrower = () => {
 
+  const {id} = useParams()
+  
   useEffect( () => {
-    // Fonction qui récupère les données de l'annonce 
+
   }, [])
 
-  const {id} = useParams()
+  const [borowwerRental, setBorrowerRental] = useState({})
+
+  const getOneBorrowerRental = async () => {
+    const response = await fetch(`http://localhost:5000/location/borrower/${id}`,{
+        ...options,
+    })
+
+  const data = await response.json()
+    
+  setBorrowerRental(data)
+}
+
 
     const AllContent =  styled.div `
-    // border : 4px solid white;
       margin: 1% 0 4% 0%;
       display : flex;
       justify-content : space-around;
@@ -68,7 +82,7 @@ const ConfirmationBorrower = () => {
 
         .message-content{
           width : 80% ;
-          height : 70%;
+          height : 62%;
           background-color : #ffff;
         }
 
