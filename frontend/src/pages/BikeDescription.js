@@ -42,13 +42,14 @@ const Div = styled.div`
      justify-content: flex-end;
      align-items: flex-end;
      align-content: space-around;
-     padding-top: 10px;
+     padding-top: 12px;
      
 `;
           
 const Span = styled.div`
      //    display: flex;
      color: rgb(250, 250, 145);
+     margin :10PX;
 `;
 
 const Commentaire = styled.div`
@@ -89,13 +90,38 @@ const P = styled.div`
  `; 
 const H5 = styled.div`
      color: black;
-`
+ `;
+    
+const Min = styled.div`
+     display: flex;
+     padding: 2px;
+`;
 
 const Card = styled.div`
-width: 300px;
-height: 200px;
+     width: 300px;
+     height: 200px;
+     border-radius:  white; 
+     // content: "";
+     display: block;
+     position: absolute;
+     bottom: 21em;
+     z-index: -1;
+     
+ `;
 
-border-radius:  white; 
+ const H4 = styled.div`
+     color: black;
+     display: block;
+     position: absolute;
+     bottom: 19em;
+     z-index: -1;
+     color:white;
+     
+ `;
+
+ const H2 = styled.div`
+     display: flex;
+     color:white;
 `;
 
 const star = <i className="fas fa-star star-on"></i>
@@ -103,33 +129,51 @@ const star = <i className="fas fa-star star-on"></i>
   return (
 
       <>
-          <Navbar />
-      
-          <Card
-               style={{background : `url(${velodeville}) no-repeat center/cover`,}}
-          />
+       <Navbar />
 
-          <p>VELO DE VILLE</p>
+       <Container className='container'>
 
-          <div >
-
-               <Info >
-                    <div>
-                    <h3>Description : </h3>
-                    <p>Lorem Ipsum is simply dummy text of the printing.
-                    and <br/>typesetting industry.Lorem Ipsum has been the industry<br/> standard dummy text  since the 1500s,
-                    when an unknown<br/> printer took a galley of type and scrambled it to make a type <br/>specimen book.
-                    It has survived not only five centuries.</p>
-                    </div>
-
-               <button >RESERVER</button>
+            <Info >
+            <Link to={`/location-borrower/:id`}
+            style={{
+              color: "white",
+              padding: "20px",
+              textDecoration: "none",
+              fontSize: "18px",
+              textAlign: "center",
+              
+            }}
+          >
+               <div>    
+               <h3>Description : </h3>
+               <p>Lorem Ipsum is simply dummy text of the printing.
+                and <br/>typesetting industry.Lorem Ipsum has been the industry<br/> standard dummy text  since the 1500s,
+                when an unknown<br/> printer took a galley of type and scrambled it to make a type <br/>specimen book.
+                It has survived not only five centuries.</p>
                
-               </Info>
-          </div>
-
+               <Button>RESERVER</Button>
+              
+               </div>
+               </Link >
+              </Info>
+              <Card
+      style={{
+        background : `url(${velodeville}) no-repeat center/cover`,
+        
+      }}
+      >
+      </Card>
+      <H4>VELO DE VILLE</H4>
       <Span>
-           {/* <Min>{star}{star}{star}(25Commentaire)</Min> */}
+           
+           <Min>
+                {start}
+                {start}
+                {start}
+           <H2> 3commentaire</H2>
+           </Min>
       </Span>
+     </Container>
         <P>Commentaire</P>
      <Commentaire>
       <H5>Evan D. </H5>
@@ -175,3 +219,24 @@ const star = <i className="fas fa-star star-on"></i>
 )}
 
 export default BikeDescription;
+
+
+           
+ 
+
+ 
+
+          
+ 
+     
+     
+     
+      
+
+       
+     
+
+     
+
+
+     
