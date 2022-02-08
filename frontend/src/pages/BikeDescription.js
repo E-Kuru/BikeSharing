@@ -2,12 +2,43 @@ import React from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import velodeville from "../images/velodeville.png";
+import { useEffect, useState } from 'react';
+import { options } from '../api/config';
 
 const BikeDescription = () => {
 
-const navigate = useNavigate()
+     const {id} = useParams()
+
+     const navigate = useNavigate()
+
+     const [annonce , setAnnonce] = useState({})
+
+     useEffect( () => {
+          fetchAnnonce()
+     }, [])
+
+     const fetchAnnonce = async () => {
+          const bike = await fetch(`http://localhost:5000/annonce/${id}`, {
+               ...options
+          })
+
+          const res = await bike.json()
+
+          setAnnonce(res)
+     }
+     
+     const fetchRental = async ()  => {
+     //      const PostRental = await fetch(`http://localhost:5000/location/`, {
+     //           method : "post", 
+     //      ...options
+     // })
+     
+     //      const res = await PostRental.json()
+     navigate(`/location-borrower/5`)
+
+     }
 
 const Info = styled.div`
      display: flex;
@@ -132,19 +163,15 @@ const star = <i className="fas fa-star star-on"></i>
       <>
        <Navbar />
 
-       <div >
 
             <Info >
                <div>    
                <h3>Description : </h3>
-               <p>Lorem Ipsum is simply dummy text of the printing.
-                and <br/>typesetting industry.Lorem Ipsum has been the industry<br/> standard dummy text  since the 1500s,
-                when an unknown<br/> printer took a galley of type and scrambled it to make a type <br/>specimen book.
-                It has survived not only five centuries.</p>
+               <p>{annonce.description}</p>
                
                </div>
               
-               <button>RESERVER</button>
+               <button onClick={() => fetchRental()}>RESERVER</button>
               </Info>
               <Card
       style={{
@@ -153,17 +180,16 @@ const star = <i className="fas fa-star star-on"></i>
       }}
       >
       </Card>
-      <H4>VELO DE VILLE</H4>
+      <H4>Catégorie : {annonce.categorie}</H4>
       <Span>
            
            <Min>
                 {star}
                 {star}
                 {star}
-           <H2> 3commentaire</H2>
+           {/* <H2> 3commentaire</H2> */}
            </Min>
       </Span>
-     </div>
         <P>Commentaire</P>
      <Commentaire>
       <H5>Evan D. </H5>
@@ -209,24 +235,3 @@ const star = <i className="fas fa-star star-on"></i>
 )}
 
 export default BikeDescription;
-
-
-           
- 
-
- 
-
-          
- 
-     
-     
-     
-      
-
-       
-     
-
-     
-
-
-     
