@@ -18,28 +18,6 @@ const Info = styled.div`
      padding-left: 30%;
 `;
           
-
-
-
-           
-          
-//     const Button = styled.div`
-//           color: black;
-//           text-decoration: none;
-//           font-size: 18px;
-//           text-align: center;
-//           background-color: white;
-//           padding: 5px;
-//           border-radius: 30px;
-//           width: 100%;
-//           display: flex;
-//           align-items: center;
-//           justify-content: center;
-// `;
-
- 
-
-          
 const Button = styled.div`
      color: black;
      text-decoration: none;
@@ -63,13 +41,14 @@ const Div = styled.div`
      justify-content: flex-end;
      align-items: flex-end;
      align-content: space-around;
-     padding-top: 10px;
+     padding-top: 12px;
      
 `;
           
 const Span = styled.div`
      //    display: flex;
      color: rgb(250, 250, 145);
+     margin :10PX;
 `;
 
 const Commentaire = styled.div`
@@ -117,14 +96,49 @@ const span = styled.div`
     
 const Min = styled.div`
      display: flex;
+     padding: 2px;
 `;
 
 const Card = styled.div`
-width: 300px;
-height: 200px;
+     width: 300px;
+     height: 200px;
+     border-radius:  white; 
+     // content: "";
+     display: block;
+     position: absolute;
+     bottom: 21em;
+     z-index: -1;
+     
+ `;
 
-border-radius:  white; 
+ const H4 = styled.div`
+     color: black;
+     display: block;
+     position: absolute;
+     bottom: 19em;
+     z-index: -1;
+     color:white;
+     
+ `;
+
+ const H2 = styled.div`
+     display: flex;
+     color:white;
 `;
+
+
+
+           
+ 
+
+ 
+
+          
+ 
+     
+     
+     
+      
 
 const start = <i className="fas fa-star star-on"></i>
    
@@ -133,15 +147,7 @@ const start = <i className="fas fa-star star-on"></i>
       <>
        <Navbar />
 
-      
-       <Card
-      style={{
-        background : `url(${velodeville}) no-repeat center/cover`,
-        
-      }}
-      >
-      </Card>
-      <p>VELO DE VILLE</p>
+    
 
        <Container className='container'>
 
@@ -169,14 +175,31 @@ const start = <i className="fas fa-star star-on"></i>
                </div>
                </Link >
               </Info>
+              <Card
+      style={{
+        background : `url(${velodeville}) no-repeat center/cover`,
+        
+      }}
+      >
+      </Card>
+      <H4>VELO DE VILLE</H4>
+      <Span>
+           
+           <Min>
+                {start}
+                {start}
+                {start}
+           <H2> 3commentaire</H2>
+           </Min>
+      </Span>
      </Container>
+       
+     
 
      
 
 
-      <Span>
-           {/* <Min>{start}{start}{start}(25Commentaire)</Min> */}
-      </Span>
+     
         <P>Commentaire</P>
      <Commentaire>
       <H5>Evan D. </H5>
