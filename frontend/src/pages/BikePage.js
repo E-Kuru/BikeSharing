@@ -92,8 +92,6 @@ const Div = styled.form`
   justify-content: center;
 `;
 
-<<<<<<< HEAD
-=======
 const Categorie = styled.div `
     display : flex;
     justify-content : center;
@@ -120,7 +118,6 @@ const Categorie = styled.div `
       margin-bottom : 1%;
     }
 `
->>>>>>> 717a2435db54c018ac96d27eff1651c7cbc9ee32
 
 const BikePage = () => {
   const [selectedBike, setSelectedBike] = useState({});

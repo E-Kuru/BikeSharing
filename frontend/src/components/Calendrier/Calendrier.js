@@ -59,6 +59,7 @@ const Box = styled.div`
 `;
 
 
+
 function Calendrier() {
      
      const [address, setAddress] = React.useState("");
@@ -148,7 +149,7 @@ function Calendrier() {
      />
      </div>
       </Box>
-      <button type="submit" class="btn btn-light" style={{width : "350px", margin : "0 auto"}} onSubmit={onSubmit} >RECHERCHER</button>
+      <button type="submit" class="btn btn-light" style={{width : "350px", margin : "0 auto"}} >RECHERCHER</button>
     </Container>
    
   );
