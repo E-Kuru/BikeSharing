@@ -126,20 +126,6 @@ const Card = styled.div`
      color:white;
 `;
 
-
-
-           
- 
-
- 
-
-          
- 
-     
-     
-     
-      
-
 const start = <i className="fas fa-star star-on"></i>
    
   return (
@@ -193,13 +179,6 @@ const start = <i className="fas fa-star star-on"></i>
            </Min>
       </Span>
      </Container>
-       
-     
-
-     
-
-
-     
         <P>Commentaire</P>
      <Commentaire>
       <H5>Evan D. </H5>
@@ -246,3 +225,24 @@ const start = <i className="fas fa-star star-on"></i>
 )}
 
 export default BikeDescription;
+
+
+           
+ 
+
+ 
+
+          
+ 
+     
+     
+     
+      
+
+       
+     
+
+     
+
+
+     
