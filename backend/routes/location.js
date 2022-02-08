@@ -45,9 +45,44 @@ app.get('/borrower', verifyUser, async (req,res) => {
     }
 })
 
+// Récupérer une location d'un lender 
+
+app.get('/lender/:id', verifyUser, async (req,res) => {
+
+    // Id de la location 
+
+    const { id } = req.params
+
+    try {
+        const OneLocation = await Location.findOne({_id : id }).exec()
+        res.json(OneLocation)
+    } catch (err) {
+        res.status(500).json({ error: err })
+    }
+})
+
+// Récupérer une location d'un borrower 
+
+app.get('/borrower/:id', verifyUser, async (req,res) => {
+
+    // Id de la location 
+
+    const { id } = req.params
+
+    try {
+        const OneLocation = await Location.findOne({_id : id }).exec()
+        res.json(OneLocation)
+    } catch (err) {
+        res.status(500).json({ error: err })
+    }
+})
+
 // Créer une location
 
 app.post('/:id', verifyUser, async (req,res) => {
+
+    // Id de l'annonce 
+
     const { id } = req.params
     
     try{
@@ -58,14 +93,15 @@ app.post('/:id', verifyUser, async (req,res) => {
             annonce : id,
             lender : annonceUser.user
         })
-        // console.log(annonceUser)
-        // console.log(location)
         const locationInsered = await location.save()
 
-        const findUser = await User.findById(req.user)
-        console.log(findUser)
-        findUser.rentals = [...findUser.rentals, locationInsered._id]
-        findUser.save()
+        const findBorrower = await User.findById(req.user)
+        findBorrower.rentalsBorrower = [...findBorrower.rentalsBorrower, locationInsered._id]
+        findBorrower.save()
+
+        const findLender = await User.findById(annonceUser.user)
+        findLender.rentalsLender = [...findLender.rentalsLender, locationInsered._id]
+        findLender.save()
 
         const findAnnonce = await Annonce.findById(id)
         findAnnonce.rentals = [...findAnnonce.rentals, locationInsered._id]
