@@ -4,6 +4,8 @@ import PlacesAutocomplete, { geocodeByAddress, getLatLng} from "react-places-aut
 import { getAnnonce } from "../../api/annonce";
 
 import styled from "styled-components";
+import { date } from "yup/lib/locale";
+import { UserProvider } from "../../context/User";
 
 const Container = styled.div`
   font-family: Gilda Display;
@@ -161,7 +163,7 @@ function Calendrier() {
      />
      </div>
       </Box>
-      <button type="submit" class="btn btn-light" style={{width : "350px", margin : "0 auto"}}>RECHERCHER</button>
+      <button type="submit" class="btn btn-light" style={{width : "350px", margin : "0 auto"}} >RECHERCHER</button>
     </Container>
    
   );

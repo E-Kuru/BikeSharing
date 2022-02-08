@@ -137,6 +137,7 @@ const Card = styled.div`
      position: absolute;
      bottom: 21em;
      z-index: -1;
+
      
  `;
 
@@ -234,24 +235,3 @@ const star = <i className="fas fa-star star-on"></i>
 )}
 
 export default BikeDescription;
-
-
-           
- 
-
- 
-
-          
- 
-     
-     
-     
-      
-
-       
-     
-
-     
-
-
-     
