@@ -26,22 +26,22 @@ const BikeDescription = () => {
            
           
     const Button = styled.div`
-    color: black;
-    text-decoration: none;
-    font-size: 18px;
-    text-align: center;
-    background-color: white;
-    padding: 5px;
-    border-radius: 30px;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+          color: black;
+          text-decoration: none;
+          font-size: 18px;
+          text-align: center;
+          background-color: white;
+          padding: 5px;
+          border-radius: 30px;
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+`;
 
  
-}
+
           
-`;
    
      const Div = styled.div`
           color: rgb(250, 250, 145);
@@ -145,6 +145,16 @@ const BikeDescription = () => {
 
 
             <Info >
+            <Link to={`/location-borrower/:id`}
+            style={{
+              color: "white",
+              padding: "20px",
+              textDecoration: "none",
+              fontSize: "18px",
+              textAlign: "center",
+              
+            }}
+          >
                <div>    
                <h3>Description : </h3>
                <p>Lorem Ipsum is simply dummy text of the printing.
@@ -153,8 +163,9 @@ const BikeDescription = () => {
                 It has survived not only five centuries.</p>
                
                <Button>RESERVER</Button>
-       
+              
                </div>
+               </Link >
               </Info>
      </Container>
 

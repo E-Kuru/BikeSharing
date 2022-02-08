@@ -5,6 +5,7 @@ import BikePage from "./pages/BikePage";
 import BikeDescription from "./pages/BikeDescription";
 import ConfirmationBorrower from "./pages/ConfirmationBorrower";
 import ConfirmationLender from "./pages/ConfirmationLender";
+import MesCommentaire from "./components/profil/MesCommentaire";
 import Profil from "./pages/Profil";
 import Admin from "./pages/Admin";
 import NotFound from "./pages/NotFound";
