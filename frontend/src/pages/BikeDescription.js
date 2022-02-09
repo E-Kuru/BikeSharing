@@ -212,7 +212,7 @@ const BikeDescription = () => {
         >
           <div className="info">
             <h4>{annonce.categorie} Vélo de ville</h4>
-            <h5>{annonce.price}21€/h</h5>
+            <h5>{annonce.price}€/h</h5>
           </div>
 
           <Stars>
