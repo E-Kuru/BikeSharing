@@ -29,7 +29,6 @@ app.post('/:id', verifyUser, async (req,res) => {
     try{
 
         const locationUser = await Location.findById(id)
-        console.log("id location",locationUser)
         
         const newConversation = await new Conversation({
             borrower: req.user,
@@ -38,7 +37,6 @@ app.post('/:id', verifyUser, async (req,res) => {
         })
 
         const conversationInsered = await newConversation.save()
-        console.log("conversation",newConversation)
 
         const findUser = await User.findById(req.user)
         findUser.conversations = [...findUser.conversations, conversationInsered._id]

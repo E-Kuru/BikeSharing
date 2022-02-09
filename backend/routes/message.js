@@ -25,7 +25,6 @@ app.post('/:id', verifyUser, async (req,res) => {
     
     try{
         const findConversation = await Conversation.findOne({ location : id})
-        console.log("id location", findConversation)
         const message = await new Message({
             ...req.body,
             user: req.user,
@@ -33,8 +32,6 @@ app.post('/:id', verifyUser, async (req,res) => {
         })
 
         const messageInsered = await message.save()
-        console.log(messageInsered)
-        
        
         findConversation.messages = [...findConversation.messages, messageInsered._id]
         findConversation.save()
