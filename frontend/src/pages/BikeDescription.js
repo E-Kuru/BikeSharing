@@ -2,7 +2,6 @@ import React from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import velodeville from "../images/velodeville.png";
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -21,6 +20,7 @@ const BikeDescription = () => {
      }, [])
 
      const fetchAnnonce = async () => {
+
           const bike = await fetch(`http://localhost:5000/annonce/${id}`, {
                ...options
           })
@@ -39,15 +39,17 @@ const BikeDescription = () => {
                price : annonce.price
           }
 
-          const PostRental = await fetch(`http://localhost:5000/location/`, {
+          const PostRental = await fetch(`http://localhost:5000/location/${annonce._id}`, {
                method : "post", 
           ...options,
           body : JSON.stringify(rental)
      })
      
           const res = await PostRental.json()
+
+          console.log(res);
           
-     navigate(`/location-borrower/${res._id}`)
+     // navigate(`/location-borrower/${res._id}`)
 
      }
 
@@ -130,9 +132,6 @@ const P = styled.div`
 const H5 = styled.div`
      color: black;
  `;
-const span = styled.div`
-     color: black;
- `;
     
 const Min = styled.div`
      display: flex;
@@ -175,43 +174,28 @@ const start = <i className="fas fa-star star-on"></i>
        <Navbar />
 
             <Info >
-            <Link to={`/location-borrower/:id`}
-            style={{
-              color: "white",
-              padding: "20px",
-              textDecoration: "none",
-              fontSize: "18px",
-              textAlign: "center",
-              
-            }}
-          >
                <div>    
                <h3>Description  </h3>
-               <p>Lorem Ipsum is simply dummy text of the printing.
-                and <br/>typesetting industry.Lorem Ipsum has been the industry<br/> standard dummy text  since the 1500s,
-                when an unknown<br/> printer took a galley of type and scrambled it to make a type <br/>specimen book.
-                It has survived not only five centuries.</p>
+               <p>{annonce.description}</p>
                
                <button onClick={fetchRental}>RESERVER</button>
               
                </div>
-               </Link >
               </Info>
               <Card
-      style={{
-        background : `url(${velodeville}) no-repeat center/cover`,
-        
+               style={{
+               background : `url(${velodeville}) no-repeat center/cover`,        
       }}
       >
       </Card>
-      <H4>VELO DE VILLE</H4>
+      <H4>{annonce.categorie}</H4>
       <Span>
            
            <Min>
                 {start}
                 {start}
                 {start}
-           <H2> 3commentaire</H2>
+           <H2>3commentaire</H2>
            </Min>
       </Span>
         <P>Commentaire</P>
