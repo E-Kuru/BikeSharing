@@ -71,10 +71,20 @@ const modifyAnnonce = async ( _id, values) => {
   return data
 }
 
+const getAnnonceDate = async (dateBegin, dateEnd) => {
+  const response = await fetch(`http://localhost:5000/annonce/${dateBegin}/${dateEnd}`, {
+    ...options,
+  })
+
+  const data = await response.json()
+  return data
+}
+
 export {
   getAnnonce,
   deleteAnnonce,
   modifyAnnonce,
   getAnnonceUser,
-  createAnnonce
+  createAnnonce,
+  getAnnonceDate
 }

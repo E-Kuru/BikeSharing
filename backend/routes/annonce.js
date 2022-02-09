@@ -4,6 +4,7 @@ const Annonce = require("../models/Annonce")
 const User =  require("../models/User")
 const { verifyUser, verifySession } = require("../middlewares/checkUser")
 const moment = require("moment")
+const e = require("express")
 
 // Récupérer toutes les annonces
 
@@ -86,19 +87,38 @@ app.get('/location/:lat/:lng', async (req,res) => {
     res.json(findRentals)
 })
 
-// récupére les annonces disponibles à une date
+// Récupérer les annonces disponibles en fontion des dates
 
-// app.get('/:dateBegin/:dateEnd', async (req,res) => {
+app.get('/:dateBegin/:dateEnd', async (req,res) => {
+
+    const {dateBegin, dateEnd} = req.params
+    try{
+        const annonces = await Annonce.find()
+        const findDates = annonces.filter(e => moment(e.dateBegin).format("YYYY-MM-DD") >= dateBegin 
+        &&  moment(e.dateEnd).format("YYYY-MM-DD") <= dateEnd)
+        
+        console.log("annonce", findDates)
+        res.json(findDates)
+    }
+    catch (err) {
+        res.status(500).json({ error: err })
+    }
+})
+
+// app.get('/:dateBegin/:dateEnd/:adress', async (req,res) => {
 
 //     const {dateBegin, dateEnd} = req.params
-
-//     // const annonces = await Annonce.find()
-//     const annonces = await Annonce.find()
-//     const filter = annonces.filter(e => Date.parse(e.dateBegin) >= dateBegin &&  Date.parse(e.dateEnd) <= dateEnd)
-//     console.log(filter)
-
-//     res.json(filter)
-
+//     try{
+//         const annonces = await Annonce.find()
+//         const findDates = annonces.filter(e => moment(e.dateBegin).format("YYYY-MM-DD") >= dateBegin 
+//         &&  moment(e.dateEnd).format("YYYY-MM-DD") <= dateEnd) 
+        
+//         console.log("annonce", findDates)
+//         res.json(findDates)
+//     }
+//     catch (err) {
+//         res.status(500).json({ error: err })
+//     }
 // })
 
 // Créer une annonce
