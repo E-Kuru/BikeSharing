@@ -71,7 +71,7 @@ const CreateAnnonce = ({tabCreateAnnonce, fetchAnnonceUser}) => {
                 <h1 className="text-light pt-4 ps-4">Créer une annonce</h1>
                 
                 <form onSubmit={formik.handleSubmit}>
-                    <div className='col-4 ps-4 pt-2'>
+                    <div className='col-5 ps-4 pt-2'>
                         <Input
                             type="text"
                             name="name"

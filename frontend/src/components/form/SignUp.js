@@ -62,7 +62,7 @@ const SignUp = () => {
         const user = await login({ email, password });
         setUser(user);
         setVisible(false);
-        navigate("/profil");
+        navigate("/");
       }
     },
 

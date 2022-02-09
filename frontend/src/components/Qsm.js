@@ -30,7 +30,7 @@ const Qsm = () => {
         <p>
           Envie de louer ou prêter un vélo ? BikeSharing est le site
           <br />
-          leader dans le domaine. En tant que plateforme d’auto-
+          leader dans le domaine. En tant que plateforme de vélo-
           <br />
           partage, notre site permet de vous mettre en contact de
           <br />

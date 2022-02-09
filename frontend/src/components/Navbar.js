@@ -23,7 +23,6 @@ const linkStyle2 = {
   textAlign: "center",
   backgroundColor: "white",
   padding: "10px",
-  borderRadius: "15px"
 };
 
 const Navbar = () => {

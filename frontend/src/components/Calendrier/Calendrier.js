@@ -1,11 +1,15 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import PlacesAutocomplete, { geocodeByAddress, getLatLng} from "react-places-autocomplete";
-import { getAnnonce } from "../../api/annonce";
-
+import { getAnnonce, getAnnonceDate } from "../../api/annonce";
+import {useNavigate} from "react-router-dom"
 import styled from "styled-components";
 import { date } from "yup/lib/locale";
-import { UserProvider } from "../../context/User";
+import { useFormik } from "formik";
+import moment from "moment"
+import BikeCardResearch from "../BikeCardResearch"
+import BikeMarker from "../BikeMarker";
+import BikesMap from "../BikeMap";
 
 const Container = styled.div`
   font-family: Gilda Display;
@@ -34,6 +38,7 @@ const Container = styled.div`
     
   }
 `
+
 const Input = styled.input`
   width: 20rem;
   border-radius: 5px;
@@ -59,25 +64,33 @@ const Box = styled.div`
 `
 
 function Calendrier() {
-     const [annonce, setAnnonce] = useState([]);
      const [address, setAddress] = useState("");
+     const [center, setCenter] = useState({ lat: 48.8646434, lon: 2.3714107 });
+     const [annonceDate, setAnnonceDate] = useState([])
      const [coordinates, setCoordinates] = useState({
        lat: null,
        lng: null
      });
-
      const [beginDate, setBeginDate] = useState("");
      const [endDate, setEndDate] = useState("");
+     const navigate = useNavigate()
 
-     useEffect(() => {
-      fetchAnnonces()
-  }, [])
   
-  const fetchAnnonces = async () => {
-      const annonces = await getAnnonce()
-      setAnnonce(annonces)
-  }
+    const formik = useFormik({
+        initialValues: {
+            dateBegin: "",
+            dateEnd: "",
+        },
+        onSubmit: async (values) => {
+            console.log(values)
 
+            const response = await getAnnonceDate(moment(values.dateBegin).format("YYYY-MM-DD"),moment(values.dateEnd).format("YYYY-MM-DD"))
+            console.log(response)
+            setAnnonceDate(response)         
+        },
+    });
+
+   
   const handleSelect = async value => {
     const results = await geocodeByAddress(value);
     const latLng = await getLatLng(results[0]);
@@ -95,12 +108,10 @@ function Calendrier() {
     console.log(endDate)
   };
 
-  const compare = () => {
-    const annonces = annonce.filter( e => e.dateBegin === beginDate && e.dateEnd === endDate)
-    console.log(annonces)
-  }
+  
 
   return (
+   
     <Container>
       <div className="date"> 
       <h1>LOUER VOTRE VÉLO EN <br/>
@@ -139,16 +150,20 @@ function Calendrier() {
           </div>
         )}
       </PlacesAutocomplete>
-      </div>
+      </div>  
+      <form onSubmit={formik.handleSubmit}>
       <Box>
+    
         <div className="date">
       <h2>DE</h2>
-       <Input type="datetime-local"
+      
+       <Input 
         type="datetime-local"
         id="meeting-time"
-        name="meeting-time"
-        onChange={changeBeginDate}
-        value={beginDate}
+        // name="meeting-time"
+        name="dateBegin"
+        onChange={formik.handleChange}
+        value={formik.values.dateBegin}
         />
        </div>
        <div className="date">
@@ -156,16 +171,20 @@ function Calendrier() {
      <Input 
         type="datetime-local"
         id="meeting-time"
-        name="meeting-time"
-        onChange={changeEndDate}
-        value={endDate}
+        // name="meeting-time"
+        name="dateEnd"
+        onChange={formik.handleChange}
+        value={formik.values.dateEnd}
 
      />
      </div>
       </Box>
-      <button type="submit" class="btn btn-light" style={{width : "350px", margin : "0 auto"}} >RECHERCHER</button>
+      <button type="submit" class="btn btn-light" style={{width : "350px", margin : "0 auto"}} 
+       >RECHERCHER</button>
+      </form>
     </Container>
-   
+ 
+  
   );
 }
 
