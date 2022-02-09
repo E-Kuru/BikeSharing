@@ -13,6 +13,7 @@ const ConfirmationBorrower = () => {
   
   useEffect( () => {
     getOneBorrowerRental()
+    postConversation()
   }, [])
 
   const [borowwerRental, setBorrowerRental] = useState({})
@@ -22,11 +23,20 @@ const ConfirmationBorrower = () => {
         ...options,
     })
 
-  const data = await response.json()
-    
-  setBorrowerRental(data)
-}
+    const data = await response.json()
+      
+    setBorrowerRental(data)
+  }
 
+  const postConversation = async () => {
+    const response = await fetch(`http://localhost:5000/${borowwerRental._id}`, {
+      method : "post",
+      ...options,
+    })
+
+    const res = await response.json()
+    console.log(res);
+  }
 
     const AllContent =  styled.div `
       margin: 1% 0 4% 0%;

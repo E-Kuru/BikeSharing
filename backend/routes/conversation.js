@@ -24,6 +24,7 @@ app.get('/', async (req,res) => {
 app.post('/:id', verifyUser, async (req,res) => {
 
     // Id de la location 
+    
     const { id } = req.params
     
     try{
