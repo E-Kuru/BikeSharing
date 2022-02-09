@@ -30,13 +30,23 @@ const BikeDescription = () => {
      }
      
      const fetchRental = async ()  => {
-     //      const PostRental = await fetch(`http://localhost:5000/location/`, {
-     //           method : "post", 
-     //      ...options
-     // })
+
+          const rental = {
+               dateBegin : annonce.dateBegin,
+               dateEnd : annonce.dateEnd,
+               status : "En attente",
+               price : annonce.price
+          }
+
+          const PostRental = await fetch(`http://localhost:5000/location/`, {
+               method : "post", 
+          ...options,
+          body : JSON.stringify(rental)
+     })
      
-     //      const res = await PostRental.json()
-     navigate(`/location-borrower/5`)
+          const res = await PostRental.json()
+          
+     navigate(`/location-borrower/${res._id}`)
 
      }
 
