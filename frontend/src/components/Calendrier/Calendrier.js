@@ -1,15 +1,12 @@
 import React from "react";
-import { useEffect, useState } from "react";
+import { useState, useContext } from "react";
 import PlacesAutocomplete, { geocodeByAddress, getLatLng} from "react-places-autocomplete";
-import { getAnnonce, getAnnonceDate } from "../../api/annonce";
+import {getAnnonceDate } from "../../api/annonce";
 import {useNavigate} from "react-router-dom"
 import styled from "styled-components";
-import { date } from "yup/lib/locale";
 import { useFormik } from "formik";
 import moment from "moment"
-import BikeCardResearch from "../BikeCardResearch"
-import BikeMarker from "../BikeMarker";
-import BikesMap from "../BikeMap";
+import { UserContext } from '../../context/User'
 
 const Container = styled.div`
   font-family: Gilda Display;
@@ -63,32 +60,32 @@ const Box = styled.div`
   }
 `
 
-function Calendrier() {
-     const [address, setAddress] = useState("");
-     const [center, setCenter] = useState({ lat: 48.8646434, lon: 2.3714107 });
-     const [annonceDate, setAnnonceDate] = useState([])
-     const [coordinates, setCoordinates] = useState({
-       lat: null,
-       lng: null
-     });
-     const [beginDate, setBeginDate] = useState("");
-     const [endDate, setEndDate] = useState("");
-     const navigate = useNavigate()
+const Calendrier = () => {
+  const { setAnnonceDate, annonceDate } = useContext(UserContext)
+  const [address, setAddress] = useState("");
+  const [center, setCenter] = useState({ lat: 48.8646434, lon: 2.3714107 });
+  const [coordinates, setCoordinates] = useState({
+    lat: null,
+    lng: null
+  });
+  const [beginDate, setBeginDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const navigate = useNavigate()
 
-  
-    const formik = useFormik({
-        initialValues: {
-            dateBegin: "",
-            dateEnd: "",
-        },
-        onSubmit: async (values) => {
-            console.log(values)
+  const formik = useFormik({
+    initialValues: {
+      dateBegin: "",
+      dateEnd: "",
+    },
+    onSubmit: async (values) => {
+        console.log(values)
 
-            const response = await getAnnonceDate(moment(values.dateBegin).format("YYYY-MM-DD"),moment(values.dateEnd).format("YYYY-MM-DD"))
-            console.log(response)
-            setAnnonceDate(response)         
-        },
-    });
+        const response = await getAnnonceDate(moment(values.dateBegin).format("YYYY-MM-DD"),moment(values.dateEnd).format("YYYY-MM-DD"))
+        console.log(response)
+        setAnnonceDate(response)
+        navigate("/BikeResearch")         
+    },
+  });
 
    
   const handleSelect = async value => {
@@ -108,12 +105,9 @@ function Calendrier() {
     console.log(endDate)
   };
 
-  
-
   return (
-   
-    <Container>
-      <div className="date"> 
+  <Container>
+    <div className="date"> 
       <h1>LOUER VOTRE VÉLO EN <br/>
       QUELQUES CLICKS
       </h1>
@@ -150,41 +144,38 @@ function Calendrier() {
           </div>
         )}
       </PlacesAutocomplete>
-      </div>  
-      <form onSubmit={formik.handleSubmit}>
-      <Box>
+    </div>  
     
+    <form onSubmit={formik.handleSubmit}>
+      <Box>
         <div className="date">
-      <h2>DE</h2>
-      
-       <Input 
-        type="datetime-local"
-        id="meeting-time"
-        // name="meeting-time"
-        name="dateBegin"
-        onChange={formik.handleChange}
-        value={formik.values.dateBegin}
-        />
-       </div>
-       <div className="date">
-     <h2>À</h2>
-     <Input 
-        type="datetime-local"
-        id="meeting-time"
-        // name="meeting-time"
-        name="dateEnd"
-        onChange={formik.handleChange}
-        value={formik.values.dateEnd}
+          <h2>DE</h2>
 
-     />
-     </div>
+          <Input 
+            type="datetime-local"
+            id="meeting-time"
+            name="dateBegin"
+            onChange={formik.handleChange}
+            value={formik.values.dateBegin}
+          />
+        </div>
+
+        <div className="date">
+          <h2>À</h2>
+            <Input 
+              type="datetime-local"
+              id="meeting-time"
+              name="dateEnd"
+              onChange={formik.handleChange}
+              value={formik.values.dateEnd}
+            />
+        </div>
       </Box>
+
       <button type="submit" class="btn btn-light" style={{width : "350px", margin : "0 auto"}} 
        >RECHERCHER</button>
-      </form>
-    </Container>
- 
-  
+    </form>
+  </Container>
   );
 }
 
