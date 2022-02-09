@@ -11,6 +11,7 @@ import { MdOutlineStarPurple500 } from "react-icons/md";
 const BikeDescription = () => {
 
   const { id } = useParams();
+  // const [bike, setBike] = useState(null);
 
   const navigate = useNavigate();
 
@@ -34,16 +35,16 @@ const BikeDescription = () => {
 
   const fetchRental = async () => {
 
-    const location = {
+    const rental = {
       dateBegin : annonce.dateBegin,
       dateEnd : annonce.dateEnd,
+      status : "En attente",
       price : annonce.price
-    }
-
+ }
          const PostRental = await fetch(`http://localhost:5000/location/${annonce._id}`, {
               method : "post",
          ...options,
-         body : JSON.stringify(location)
+         body : JSON.stringify(rental)
     })
 
          const res = await PostRental.json()
@@ -84,6 +85,19 @@ const BikeDescription = () => {
       align-items: center;
       justify-content: center;
     }
+  `;
+
+  const Div = styled.div`
+    color: rgb(250, 250, 145);
+    display: block;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: flex-end;
+    align-content: space-around;
+    padding-top: 12px;
+    background: red;
   `;
 
   const Stars = styled.div`
@@ -199,10 +213,13 @@ const BikeDescription = () => {
           </div>
 
           <Stars>
-            <MdOutlineStarPurple500 />
-            <MdOutlineStarPurple500 />
-            <MdOutlineStarPurple500 />
-            <MdOutlineStarPurple500 />
+          {/* {[...Array(bike.stars)].map((i) => (
+              <MdOutlineStarPurple500  size={20}/>
+            ))} */}
+            <MdOutlineStarPurple500 size={20}/>
+            <MdOutlineStarPurple500 size={20}/>
+            <MdOutlineStarPurple500 size={20}/>
+            <MdOutlineStarPurple500 size={20}/>
             <h3>(35 commentaires)</h3>
           </Stars>
         </Card>

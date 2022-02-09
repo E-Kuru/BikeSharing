@@ -3,10 +3,12 @@ import { createContext, useEffect, useState } from "react";
 import { getMe } from "../api/auth";
 
 
+
 const UserContext = createContext({});
 
 const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [annonceDate, setAnnonceDate] = useState([])
 
 
   useEffect(() => {
@@ -30,6 +32,8 @@ const UserProvider = ({ children }) => {
     user,
     setUser,
     getUser,
+    annonceDate,
+    setAnnonceDate
     
   };
 
