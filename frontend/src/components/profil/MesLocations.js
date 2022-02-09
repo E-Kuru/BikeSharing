@@ -79,9 +79,7 @@ const fetchLocations = async () => {
         </CardImage>
           <CardContent className=' h-100'>
             
-                <P className='mb-1 my-1 text-dark'>{location.price}/h€</P>  
-                
-             
+                <P className='mb-1 my-1 text-dark'>{location.price}€/h</P>  
                 <P className='mb-1 my-1 text-dark'>Date début: {moment(location.dateBegin).format("DD-MM-YYYY")}</P>  
                 <P className='text-dark'>Date fin: {moment(location.dateEnd).format("DD-MM-YYYY")}</P>  
              

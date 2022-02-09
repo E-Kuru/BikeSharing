@@ -193,7 +193,6 @@ const BikePage = () => {
                 city={bike.city}
                 starts={bike.starts}
                 image={bike.pictures}
-                id={bike._id}
                 description={bike.description}
                 selectedBike={selectedBike}
               />
