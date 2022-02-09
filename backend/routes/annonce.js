@@ -52,10 +52,10 @@ app.get('/:id', async (req,res) => {
 
 // Récupérer les annonces en fonction de leur catégorie 
 
-app.get('/:categorie', async (req,res) => {
+app.get('/categorie/:categorie', async (req,res) => {
     
     const {categorie} = req.params
-    
+
     try{
         const annonces = await Annonce.find({ categorie : categorie}).exec()
         
@@ -65,7 +65,6 @@ app.get('/:categorie', async (req,res) => {
         res.status(500).json({ error: err })
     }
 })
-
 
 // Trouver des locations dans un secteur proche
 
