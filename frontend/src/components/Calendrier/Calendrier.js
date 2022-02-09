@@ -71,8 +71,6 @@ function Calendrier() {
        lat: null,
        lng: null
      });
-     const [beginDate, setBeginDate] = useState("");
-     const [endDate, setEndDate] = useState("");
      const navigate = useNavigate()
 
   
@@ -89,7 +87,6 @@ function Calendrier() {
             setAnnonceDate(response)         
         },
     });
-
    
   const handleSelect = async value => {
     const results = await geocodeByAddress(value);
@@ -97,18 +94,6 @@ function Calendrier() {
     setAddress(value);
     setCoordinates(latLng);
   };
-
-  const changeBeginDate = (e) => {
-    setBeginDate(e.target.value);
-    console.log(beginDate)
-  };
-
-  const changeEndDate = (e) => {
-    setEndDate(e.target.value);
-    console.log(endDate)
-  };
-
-  
 
   return (
    
@@ -179,8 +164,12 @@ function Calendrier() {
      />
      </div>
       </Box>
-      <button type="submit" class="btn btn-light" style={{width : "350px", margin : "0 auto"}} 
-       >RECHERCHER</button>
+      <button 
+      type="submit" 
+      class="btn btn-light" 
+      style={{width : "350px", margin : "0 auto"}}>
+        RECHERCHER
+      </button>
       </form>
     </Container>
  

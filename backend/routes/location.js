@@ -84,30 +84,33 @@ app.post('/:id', verifyUser, async (req,res) => {
     // Id de l'annonce 
 
     const { id } = req.params
-    
+
     try{
+
         const annonceUser = await Annonce.findById(id)
+
         const location = await new Location({
             ...req.body,
             borrower: req.user,
             annonce : id,
             lender : annonceUser.user
         })
-        const locationInsered = await location.save()
+
+        location.save()
 
         const findBorrower = await User.findById(req.user)
-        findBorrower.rentalsBorrower = [...findBorrower.rentalsBorrower, locationInsered._id]
+        findBorrower.rentalsBorrower = [...findBorrower.rentalsBorrower, location._id]
         findBorrower.save()
 
         const findLender = await User.findById(annonceUser.user)
-        findLender.rentalsLender = [...findLender.rentalsLender, locationInsered._id]
+        findLender.rentalsLender = [...findLender.rentalsLender, location._id]
         findLender.save()
 
         const findAnnonce = await Annonce.findById(id)
-        findAnnonce.rentals = [...findAnnonce.rentals, locationInsered._id]
+        findAnnonce.rentals = [...findAnnonce.rentals, location._id]
         findAnnonce.save()
 
-        res.json(location)
+        res.json(location).status(200)
         
     } catch (err) {
         res.status(500).json({ error: err })
