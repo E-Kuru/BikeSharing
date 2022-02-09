@@ -3,15 +3,17 @@ import { useEffect, useState } from "react";
 import { getCommandeUser } from "../../api/location";
 import styled from "styled-components";
 import { MdOutlineEdit, MdDeleteOutline } from "react-icons/md";
-import moment from "moment"
+import moment from "moment";
 
 const CardBox = styled.div`
   margin: 0px 0px 30px 0px;
-  border-radius: 10px;
-  height: 150px;
+  border-radius: 5px;
+  height: 180px;
   display: flex;
   overflow: hidden;
   background-color: white;
+  width: 100%;
+  /* background: red; */
 `;
 const CardImage = styled.img`
   background-position: bottom;
@@ -25,7 +27,7 @@ const CardContent = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  font-family: Gilda Display;
+
 `;
 const P = styled.p`
   font-size: 20px;
@@ -34,55 +36,50 @@ const Icon = styled.div`
   margin-left: 170px;
 `;
 
-
 const Container = styled.div`
-    height: 600px
-`
+  height: 600px;
+  width: 100%;
+`;
 
 const MesCommandes = () => {
-  const [commandes, setCommandes] = useState([])
-
+  const [commandes, setCommandes] = useState([]);
 
   useEffect(() => {
-    fetchCommandes()
-}, [])
+    fetchCommandes();
+  }, []);
 
-
-
-const fetchCommandes = async () => {
-    const locations = await getCommandeUser()
-    setCommandes(locations)
-}
+  const fetchCommandes = async () => {
+    const locations = await getCommandeUser();
+    setCommandes(locations);
+  };
 
   return (
     <Container>
-    <div className='container my-5'>
-    {commandes.length === 0 && <p className='text-white my-3'>Vous avez 0 commandes</p>}
-      {commandes.map(commande => (
-         <CardBox className='col-8'>
-        <CardImage
-          src="https://www.courte-focale.fr/wp-content/uploads/2012/07/The-Dark-Knight-Rises_0.jpg" alt=""
-          >
-        </CardImage>
-          <CardContent className=' h-100'>
-             
-                <div>
-                <P className='mb-1 my-1 text-dark'>{commande.price}/h€</P>  
-            
-            <P className='mb-1 my-1 text-dark'>Date début:  {moment(commande.dateBegin).format("DD-MM-YYYY")}</P>  
-                <P className='text-dark'>Date fin: {moment(commande.dateEnd).format("DD-MM-YYYY")}</P>  
-            </div>
-                
-           
-             
-            
-           
-                
-          </CardContent>
-      </CardBox>
-       ))} 
-     
-    </div>
+      <div className="container my-5">
+        {commandes.length === 0 && (
+          <p className="text-white my-3">Vous avez 0 commandes</p>
+        )}
+        {commandes.map((commande) => (
+          <CardBox className="col-8">
+            <CardImage
+              src="https://www.courte-focale.fr/wp-content/uploads/2012/07/The-Dark-Knight-Rises_0.jpg"
+              alt=""
+            ></CardImage>
+            <CardContent className=" h-100">
+              <div>
+                <P className="mb-1 my-1 text-dark">{commande.price}€/h</P>
+
+                <P className="mb-1 my-1 text-dark">
+                  Date début: {moment(commande.dateBegin).format("DD-MM-YYYY")}
+                </P>
+                <P className="text-dark">
+                  Date fin: {moment(commande.dateEnd).format("DD-MM-YYYY")}
+                </P>
+              </div>
+            </CardContent>
+          </CardBox>
+        ))}
+      </div>
     </Container>
   );
 };
