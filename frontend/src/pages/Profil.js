@@ -27,6 +27,7 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  font-size: 20px;
 
   nav{
     border-bottom: 1px solid white;
