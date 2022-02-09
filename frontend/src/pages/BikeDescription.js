@@ -4,6 +4,9 @@ import Footer from '../components/Footer'
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import velodeville from "../images/velodeville.png";
+import { useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { options } from "../api/config"
 
 const BikeDescription = () => {
 
@@ -48,30 +51,27 @@ const BikeDescription = () => {
 
      }
 
-const Container = styled.div`
-           
-`;
 const Info = styled.div`
      display: flex;
      align-items: center;
      // justify-content: center;
      padding-left: 40%;
+
+     button{
+          color: black;
+          text-decoration: none;
+          font-size: 18px;
+          text-align: center;
+          background-color: white;
+          padding: 5px;
+          border-radius: 30px;
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;               
+     }
 `;
           
-const Button = styled.div`
-     color: black;
-     text-decoration: none;
-     font-size: 18px;
-     text-align: center;
-     background-color: white;
-     padding: 5px;
-     border-radius: 30px;
-     width: 100%;
-     display: flex;
-     align-items: center;
-     justify-content: center;          
-`;
-   
 const Div = styled.div`
      color: rgb(250, 250, 145);
      display: block;
@@ -174,11 +174,6 @@ const start = <i className="fas fa-star star-on"></i>
       <>
        <Navbar />
 
-    
-
-       <Container className='container'>
-
-
             <Info >
             <Link to={`/location-borrower/:id`}
             style={{
@@ -197,7 +192,7 @@ const start = <i className="fas fa-star star-on"></i>
                 when an unknown<br/> printer took a galley of type and scrambled it to make a type <br/>specimen book.
                 It has survived not only five centuries.</p>
                
-               <Button>RESERVER</Button>
+               <button onClick={fetchRental}>RESERVER</button>
               
                </div>
                </Link >
@@ -219,7 +214,6 @@ const start = <i className="fas fa-star star-on"></i>
            <H2> 3commentaire</H2>
            </Min>
       </Span>
-     </Container>
         <P>Commentaire</P>
      <Commentaire>
       <H5>Evan D. </H5>
