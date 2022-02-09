@@ -31,6 +31,6 @@ const getOneLenderRental = async () => {
 }
 
 export {
-    getCommandeUser,
-    getLocationUser
+  getCommandeUser,
+  getLocationUser
 }

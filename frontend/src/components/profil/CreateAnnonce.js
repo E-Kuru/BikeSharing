@@ -12,7 +12,7 @@ const Container = styled.div`
   margin: 0 auto;
   font-family: 'Overpass', sans-serif;
   border-radius: 10px;
-  height: 480px;
+  height: 540px;
   background-color: black;
   border: solid 2px white;
 `
@@ -68,10 +68,10 @@ const CreateAnnonce = ({tabCreateAnnonce, fetchAnnonceUser}) => {
     return (
         <Container>
             <Content>
-                <h1 className="text-light pt-3 ps-3">Créer une annonce</h1>
+                <h1 className="text-light pt-4 ps-4">Créer une annonce</h1>
                 
                 <form onSubmit={formik.handleSubmit}>
-                    <div className='col-8 ps-2'>
+                    <div className='col-4 ps-4 pt-2'>
                         <Input
                             type="text"
                             name="name"
@@ -82,7 +82,7 @@ const CreateAnnonce = ({tabCreateAnnonce, fetchAnnonceUser}) => {
                         />
                     </div>
 
-                    <div className='col-8 ps-2'>
+                    <div className='col-4 ps-4 pt-2'>
                         <select className="form-select border-dark border-3" aria-label="Default select example" 
                         value={formik.values.categorie}
                         name="categorie" 
@@ -95,7 +95,7 @@ const CreateAnnonce = ({tabCreateAnnonce, fetchAnnonceUser}) => {
                         </select>
                     </div>
 
-                    <div className='col-8 ps-2'>
+                    <div className='col-4 ps-4 pt-2'>
                         <Input
                             type="text"
                             name="description"
@@ -106,7 +106,7 @@ const CreateAnnonce = ({tabCreateAnnonce, fetchAnnonceUser}) => {
                         />
                     </div>
 
-                    <div className='col-8 ps-2'>
+                    <div className='col-4 ps-4 pt-2'>
                         <Input
                             type="text"
                             name="city"
@@ -117,7 +117,7 @@ const CreateAnnonce = ({tabCreateAnnonce, fetchAnnonceUser}) => {
                         />
                     </div>
                     
-                    <div className='col-8 ps-2'>
+                    <div className='col-4 ps-4 pt-2'>
                         <Input
                             type="number"
                             name="price"
@@ -128,7 +128,7 @@ const CreateAnnonce = ({tabCreateAnnonce, fetchAnnonceUser}) => {
                             />
                     </div>
                     
-                    <div className='col-8 ps-2'>
+                    <div className='col-4 ps-4 pt-2'>
                         <input
                             type="text"
                             name="location"
@@ -140,7 +140,7 @@ const CreateAnnonce = ({tabCreateAnnonce, fetchAnnonceUser}) => {
                     </div>
 
                     <div className="d-flex">
-                    <div className='col-3 ps-2'>
+                    <div className='col-2 ps-4 pt-2'>
                         <input
                             type="date"
                             name="dateBegin"
@@ -150,7 +150,7 @@ const CreateAnnonce = ({tabCreateAnnonce, fetchAnnonceUser}) => {
                             />
                     </div>
 
-                    <div className='col-3 ps-2'>
+                    <div className='col-2 ps-4 pt-2'>
                         <input
                             type="date"
                             name="dateEnd"
@@ -163,10 +163,10 @@ const CreateAnnonce = ({tabCreateAnnonce, fetchAnnonceUser}) => {
 
 
                     {/* <Input type="file" name="file" onChange={handleFileChange} /> */}
-                    <button type="submit" className="btn btn-light ms-2 my-2">
+                    <button type="submit" className="btn btn-light ms-4 my-2">
                         Valider
                     </button>
-                    <button type="submit" className="btn btn-danger ms-2 my-2" onClick={tabCreateAnnonce}>
+                    <button type="submit" className="btn btn-danger ms-3 my-2" onClick={tabCreateAnnonce}>
                         Annuler
                     </button>
                 </form>

@@ -2,10 +2,8 @@ import React from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import styled from "styled-components";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import velodeville from "../images/velodeville.png";
-import { useEffect, useState } from 'react';
-import { options } from '../api/config';
 
 const BikeDescription = () => {
 
@@ -50,30 +48,30 @@ const BikeDescription = () => {
 
      }
 
+const Container = styled.div`
+           
+`;
 const Info = styled.div`
      display: flex;
      align-items: center;
-     justify-content: center;
-     flex-direction : column;
-     padding-left: 30%;
-
-     div{
-          text-align : center;
-     }
-
-     button{
-          margin-top : 4%;
-          color: black;
-          font-size: 18px;
-          text-align: center;
-          border : none;
-          background-color: white;
-          padding: 5px;
-          width : 35%;
-          border-radius: 30px;
-     }
+     // justify-content: center;
+     padding-left: 40%;
 `;
-                       
+          
+const Button = styled.div`
+     color: black;
+     text-decoration: none;
+     font-size: 18px;
+     text-align: center;
+     background-color: white;
+     padding: 5px;
+     border-radius: 30px;
+     width: 100%;
+     display: flex;
+     align-items: center;
+     justify-content: center;          
+`;
+   
 const Div = styled.div`
      color: rgb(250, 250, 145);
      display: block;
@@ -132,14 +130,17 @@ const P = styled.div`
 const H5 = styled.div`
      color: black;
  `;
+const span = styled.div`
+     color: black;
+ `;
     
 const Min = styled.div`
      display: flex;
-     padding: 2px;
+     padding: 7px;
 `;
 
 const Card = styled.div`
-     width: 300px;
+     width: 500px;
      height: 200px;
      border-radius:  white; 
      // content: "";
@@ -147,6 +148,7 @@ const Card = styled.div`
      position: absolute;
      bottom: 21em;
      z-index: -1;
+
      
  `;
 
@@ -165,22 +167,40 @@ const Card = styled.div`
      color:white;
 `;
 
-const star = <i className="fas fa-star star-on"></i>
+const start = <i className="fas fa-star star-on"></i>
    
   return (
 
       <>
        <Navbar />
 
+    
+
+       <Container className='container'>
+
 
             <Info >
-               <div>    
-               <h3>Description : </h3>
-               <p>{annonce.description}</p>
-               
-               </div>
+            <Link to={`/location-borrower/:id`}
+            style={{
+              color: "white",
+              padding: "20px",
+              textDecoration: "none",
+              fontSize: "18px",
+              textAlign: "center",
               
-               <button onClick={() => fetchRental()}>RESERVER</button>
+            }}
+          >
+               <div>    
+               <h3>Description  </h3>
+               <p>Lorem Ipsum is simply dummy text of the printing.
+                and <br/>typesetting industry.Lorem Ipsum has been the industry<br/> standard dummy text  since the 1500s,
+                when an unknown<br/> printer took a galley of type and scrambled it to make a type <br/>specimen book.
+                It has survived not only five centuries.</p>
+               
+               <Button>RESERVER</Button>
+              
+               </div>
+               </Link >
               </Info>
               <Card
       style={{
@@ -189,27 +209,28 @@ const star = <i className="fas fa-star star-on"></i>
       }}
       >
       </Card>
-      <H4>Catégorie : {annonce.categorie}</H4>
+      <H4>VELO DE VILLE</H4>
       <Span>
            
            <Min>
-                {star}
-                {star}
-                {star}
-           {/* <H2> 3commentaire</H2> */}
+                {start}
+                {start}
+                {start}
+           <H2> 3commentaire</H2>
            </Min>
       </Span>
+     </Container>
         <P>Commentaire</P>
      <Commentaire>
       <H5>Evan D. </H5>
       <br />
       <H5>Trop bien !!!!!</H5>
      <Div>
-          {star}
-          {star}
-          {star}
-          {star}
-          {star}
+          {start}
+          {start}
+          {start}
+          {start}
+          {start}
      </Div>
      </Commentaire>
       <br />
@@ -219,10 +240,10 @@ const star = <i className="fas fa-star star-on"></i>
           <br />
           <H5>Ca roule ça roule..</H5>
      <Div>
-          {star}
-          {star}
-          {star}
-          {star}
+          {start}
+          {start}
+          {start}
+          {start}
 
      </Div>
      </DvToo>
@@ -233,9 +254,10 @@ const star = <i className="fas fa-star star-on"></i>
           <br />
           <H5>Oh là là super!</H5>
      <Div>
-          {star}
-          {star}
-          {star}
+
+          {start}
+          {start}
+          {start}
     </Div>
     </DivThree>
       
@@ -244,24 +266,3 @@ const star = <i className="fas fa-star star-on"></i>
 )}
 
 export default BikeDescription;
-
-
-           
- 
-
- 
-
-          
- 
-     
-     
-     
-      
-
-       
-     
-
-     
-
-
-     

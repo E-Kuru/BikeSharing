@@ -89,14 +89,36 @@ const EditAnnonce = ({annonce, annuler, fetchAnnonceUser, index}) => {
                                 className="form-control border border-dark border-3 my-1"
                             />
                         </div>
+
+                        <div className="d-flex">
+                    <div className='col-4 ps-2 '>
+                        <input
+                            type="date"
+                            name="dateBegin"
+                            value={formik.values.dateBegin}
+                            onChange={formik.handleChange}
+                            className="form-control border border-dark border-3 my-1"
+                            />
+                    </div>
+
+                    <div className='col-4 ps-2 '>
+                        <input
+                            type="date"
+                            name="dateEnd"
+                            value={formik.values.dateEnd}
+                            onChange={formik.handleChange}
+                            className="form-control border border-dark border-3 my-1"
+                            />
+                    </div>
+                    </div>
                         <button
                         type="submit"
-                        className='btn btn-primary ms-2 mb-2'
+                        className='btn btn-primary ms-2 mb-2 '
                         >
                         Valider
                         </button>
                         <button
-                        className='btn btn-danger ms-2 mb-2'
+                        className='btn btn-danger ms-2 mb-2 '
                         onClick={annuler}
                         >
                         Annuler

@@ -21,19 +21,19 @@ app.get('/', async (req,res) => {
 
 // Récupérer toutes les annonces de l'utilisateur connecté
 
-app.get('/:id', async (req,res) => {
+// app.get('/:id', async (req,res) => {
 
-    const {id} = req.params
+//     const {id} = req.params
     
-    try{
-        const annonce = await Annonce.findOne({_id : id}).exec()
+//     try{
+//         const annonce = await Annonce.findOne({_id : id}).exec()
         
-        res.json(annonce).status(200)
+//         res.json(annonce).status(200)
         
-    } catch (err) {
-        res.status(500).json({ error: err })
-    }
-})
+//     } catch (err) {
+//         res.status(500).json({ error: err })
+//     }
+// })
 
 // Récupérer toutes les annonces de l'utilisateur connecté
 
@@ -86,6 +86,21 @@ app.get('/location/:lat/:lng', async (req,res) => {
     res.json(findRentals)
 })
 
+// récupére les annonces disponibles à une date
+
+// app.get('/:dateBegin/:dateEnd', async (req,res) => {
+
+//     const {dateBegin, dateEnd} = req.params
+
+//     // const annonces = await Annonce.find()
+//     const annonces = await Annonce.find()
+//     const filter = annonces.filter(e => Date.parse(e.dateBegin) >= dateBegin &&  Date.parse(e.dateEnd) <= dateEnd)
+//     console.log(filter)
+
+//     res.json(filter)
+
+// })
+
 // Créer une annonce
 
 app.post('/', verifyUser, async (req,res) => {
@@ -94,10 +109,12 @@ app.post('/', verifyUser, async (req,res) => {
         const annonce = new Annonce({
             ...req.body,
             user: req.user,
-            dateBegin: moment().format("YYYY-MM-DD"),
-            dateEnd: moment().format("YYYY-MM-DD")
+            dateBegin: new Date(),
+            dateEnd: new Date()
         })
+        
         const OneAnnonce = await annonce.save()
+        console.log(OneAnnonce)
 
         const findUser = await User.findById(req.user)
         findUser.annonces = [...findUser.annonces, OneAnnonce._id]

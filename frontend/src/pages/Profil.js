@@ -14,13 +14,17 @@ import CreateAnnonce from "../components/profil/CreateAnnonce";
 import Paiement from "../components/profil/Paiement";
 import MesCommentaire from "../components/profil/MesCommentaire";
 import MesLocations from "../components/profil/MesLocations";
-// import Footer from "../components/Footer"
+import Footer from "../components/Footer"
 
 const Vertical = styled.div`
   border-left: 4px solid white;
   height: 10px;
   display: inline-block;
 `
+
+const color = {
+  color: "pink",
+};
 
 const Profil = () => {
   const { user } = useContext(UserContext)
@@ -38,7 +42,7 @@ const Profil = () => {
           <Link
             name="Mes annonces"
             number="1"
-            className={toggle === "1" ? "nav-link active text-primary": "nav-link active text-light"}
+            className={toggle === "1" ? "nav-link active text-secondary ": "nav-link active text-light"}
             href="#"
             toggleTab={toggleTab}
           />
@@ -46,7 +50,15 @@ const Profil = () => {
           <Link
             name="Mes commandes"
             number="2"
-            className={toggle === "2" ? "nav-link active text-primary": "nav-link active text-light"}
+            className={toggle === "2" ? "nav-link active text-secondary": "nav-link active text-light"}
+            href="#"
+            toggleTab={toggleTab}
+          />
+           <Vertical className="my-3" />
+          <Link
+            name="Mes locations"
+            number="7"
+            className={toggle === "7" ? "nav-link active text-secondary": "nav-link active text-light"}
             href="#"
             toggleTab={toggleTab}
           />
@@ -54,7 +66,7 @@ const Profil = () => {
           <Link
             name="Mes informations"
             number="3"
-            className={toggle === "3" ? "nav-link active text-primary": "nav-link active text-light"}
+            className={toggle === "3" ? "nav-link active text-secondary": "nav-link active text-light"}
             href="#"
             toggleTab={toggleTab}
           />
@@ -62,7 +74,7 @@ const Profil = () => {
           <Link
             name="Mes méthodes de paiement"
             number="4"
-            className={toggle === "4" ? "nav-link active text-primary": "nav-link active text-light"}
+            className={toggle === "4" ? "nav-link active text-secondary": "nav-link active text-light"}
             href="#"
             toggleTab={toggleTab}
           />
@@ -74,14 +86,7 @@ const Profil = () => {
             href="#"
             toggleTab={toggleTab}
           /> */}
-          <Vertical className="my-3" />
-          <Link
-            name="Mes locations"
-            number="7"
-            className={toggle === "7" ? "nav-link active text-primary": "nav-link active text-light"}
-            href="#"
-            toggleTab={toggleTab}
-          />
+         
           
         </nav>
 
@@ -93,8 +98,10 @@ const Profil = () => {
         {toggle === "5" && <CreateAnnonce />}
         {/* {toggle === "6" && <MesCommentaire />} */}
         {toggle === "7" && <MesLocations />}
-      </div>
+      </div> 
+    <Footer />
     </>
+  
   );
 };
 
