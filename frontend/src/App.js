@@ -15,6 +15,7 @@ import Annonce from "./pages/BikePage";
 import "./style/fonts.css";
 import { UserProvider } from "./context/User";
 import CreateAnnoce from "./components/profil/CreateAnnonce";
+import BikeReseach from "./pages/BikeReseach";
 
  
 
@@ -31,6 +32,7 @@ const App = () => {
             <Route path="/location-borrower/:id" element={<ConfirmationBorrower />} />
             <Route path="/location-lender/:id" element={<ConfirmationLender />} />
             <Route path="/BikeDescription" element={<BikeDescription />} />
+            <Route path="/BikeResearch" element={<BikeReseach />} />
             <Route exact path="*" element={<NotFound />} />
           </Routes>
           <Modals />

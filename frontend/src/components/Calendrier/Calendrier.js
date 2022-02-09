@@ -1,18 +1,15 @@
 import React from "react";
-import { useEffect, useState } from "react";
+import { useState, useContext } from "react";
 import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
 } from "react-places-autocomplete";
-import { getAnnonce, getAnnonceDate } from "../../api/annonce";
+import { getAnnonceDate } from "../../api/annonce";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { date } from "yup/lib/locale";
 import { useFormik } from "formik";
 import moment from "moment";
-import BikeCardResearch from "../BikeCardResearch";
-import BikeMarker from "../BikeMarker";
-import BikesMap from "../BikeMap";
+import { UserContext } from "../../context/User";
 
 const Container = styled.div`
   font-family: Gilda Display;
@@ -70,10 +67,10 @@ const Box = styled.div`
   }
 `;
 
-function Calendrier() {
+const Calendrier = () => {
+  const { setAnnonceDate, annonceDate } = useContext(UserContext);
   const [address, setAddress] = useState("");
   const [center, setCenter] = useState({ lat: 48.8646434, lon: 2.3714107 });
-  const [annonceDate, setAnnonceDate] = useState([]);
   const [coordinates, setCoordinates] = useState({
     lat: null,
     lng: null,
@@ -96,6 +93,7 @@ function Calendrier() {
       );
       console.log(response);
       setAnnonceDate(response);
+      navigate("/BikeResearch");
     },
   });
 
@@ -199,6 +197,6 @@ function Calendrier() {
       </form>
     </Container>
   );
-}
+};
 
 export default Calendrier;

@@ -12,7 +12,7 @@ const ConfirmationBorrower = () => {
   const {id} = useParams()
   
   useEffect( () => {
-
+    getOneBorrowerRental()
   }, [])
 
   const [borowwerRental, setBorrowerRental] = useState({})
@@ -125,9 +125,9 @@ const ConfirmationBorrower = () => {
           <div className="all-list">
             <ol>
               <li>Client : </li>
-              <li>Date : </li>
+              <li>Date : {borowwerRental.dateBegin} {borowwerRental.dateEnd} </li>
               <li>Lieu : </li>
-              <li>Prix : </li>
+              <li>Prix : {borowwerRental.price}</li>
               <li>Frais de service : </li>
               <li>Total : </li>
             </ol>

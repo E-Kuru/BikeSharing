@@ -2,13 +2,11 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import velodeville from "../images/velodeville.png";
 import { useEffect, useState} from "react";
 import { options } from "../api/config";
 import { MdOutlineStarPurple500 } from "react-icons/md";
-import { useNavigate } from "react-router-dom";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const BikeDescription = () => {
   const { id } = useParams();
@@ -232,7 +230,8 @@ const BikeDescription = () => {
           <div className="description">
             <h3>Description : </h3>
             <p>
-              {annonce.description}Lorem Ipsum is simply dummy text of the
+              {annonce.description}
+              {/* Lorem Ipsum is simply dummy text of the
               printing and typesetting industry. Lorem Ipsum has been the
               industry's standard dummy text ever since the 1500s, when an
               unknown printer took a galley of type and scrambled it to make a
@@ -241,7 +240,7 @@ const BikeDescription = () => {
               unchanged. It was popularised in the 1960s with the release of
               Letraset sheets containing Lorem Ipsum passages, and more recently
               with desktop publishing software like Aldus PageMaker including
-              versions of Lorem Ipsum.
+              versions of Lorem Ipsum. */}
             </p>
           </div>
           <button onClick={() => fetchRental()}>RESERVER</button>
