@@ -19,23 +19,6 @@ app.get('/', async (req,res) => {
         res.status(500).json({ error: err })
     }
 })
-
-// Récupérer toutes les annonces de l'utilisateur connecté
-
-// app.get('/:id', async (req,res) => {
-
-//     const {id} = req.params
-    
-//     try{
-//         const annonce = await Annonce.findOne({_id : id}).exec()
-        
-//         res.json(annonce).status(200)
-        
-//     } catch (err) {
-//         res.status(500).json({ error: err })
-//     }
-// })
-
 // Récupérer toutes les annonces de l'utilisateur connecté
 
 app.get('/user',  async (req,res) => {
@@ -50,6 +33,23 @@ app.get('/user',  async (req,res) => {
         res.status(500).json({ error: err })
     }
 })
+
+// Récupérer une seule annonce
+
+app.get('/:id', async (req,res) => {
+
+    const {id} = req.params
+    
+    try{
+        const annonce = await Annonce.findOne({_id : id}).exec()
+        
+        res.json(annonce).status(200)
+        
+    } catch (err) {
+        res.status(500).json({ error: err })
+    }
+})
+
 
 // Récupérer les annonces en fonction de leur catégorie 
 

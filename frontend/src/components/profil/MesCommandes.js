@@ -7,8 +7,8 @@ import moment from "moment"
 
 const CardBox = styled.div`
   margin: 0px 0px 30px 0px;
-  border-radius: 10px;
-  height: 150px;
+  border-radius: 5px;
+  height: 180px;
   display: flex;
   overflow: hidden;
   background-color: white;

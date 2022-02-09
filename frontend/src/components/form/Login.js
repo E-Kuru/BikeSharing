@@ -47,7 +47,7 @@ const LoginForm = () => {
         const response = await login(values);
         setUser(response);
         setVisible(false);
-        navigate("/profil");
+        navigate("/");
       } catch (e) {
         setFieldError("submit", "Incorrect email/password");
       }
