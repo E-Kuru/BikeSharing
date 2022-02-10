@@ -18,9 +18,28 @@ app.get('/', async (req,res) => {
     }
 })
 
+// Récupérer tous les messages d'une conversation
+
+app.get('/:id', async (req,res) => {
+    
+    // Id de la conversation 
+
+    const { id } = req.params
+
+    try{
+        const messages = await Message.find({conversation : id}).exec()
+        
+        res.json(messages).status(200)
+        
+    } catch (err) {
+        res.status(500).json({ error: err })
+    }
+})
+
 // Post pour créer un message
 
 app.post('/:id', verifyUser, async (req,res) => {
+
     const { id } = req.params
     
     try{

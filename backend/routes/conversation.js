@@ -30,11 +30,12 @@ app.post('/:id', verifyUser, async (req,res) => {
     try{
 
         const locationUser = await Location.findById(id)
-        
+
         const newConversation = await new Conversation({
             borrower: req.user,
             location: id,
-            lender: locationUser.lender
+            lender: locationUser.lender,
+            rental : locationUser._id
         })
 
         const conversationInsered = await newConversation.save()
