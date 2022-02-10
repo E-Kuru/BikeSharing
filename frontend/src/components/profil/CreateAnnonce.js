@@ -14,7 +14,13 @@ const Container = styled.div`
   border-radius: 5px;
   height: 700px;
   background-color: black;
-  padding-bottom: 10px;
+  padding: 0 60px;
+
+  .button{
+    display: flex;
+    flex-direction: row;
+    margin: 10px 30px;
+  }
 `;
 const Content = styled.div`
   width: 100%;
@@ -68,10 +74,10 @@ const CreateAnnonce = ({ tabCreateAnnonce, fetchAnnonceUser }) => {
       }),
     });
 
-  const handleFileChange = (e) => {
-    console.log(e.target.files[0]);
-    setFieldValue("file", e.target.files[0]);
-  };
+  // const handleFileChange = (e) => {
+  //   console.log(e.target.files[0]);
+  //   setFieldValue("file", e.target.files[0]);
+  // };
 
 
   return (
@@ -88,11 +94,10 @@ const CreateAnnonce = ({ tabCreateAnnonce, fetchAnnonceUser }) => {
               onChange={handleChange}
               placeholder="Nom..."
               className="form-control border border-dark border-3 my-1"
-            
             />
             {errors.name}
           </div>
-          {errors && <p className="text-white">{errors.name}</p> }
+
           <div className="col-10 ps-4 pt-2">
             <select
               className="form-select border-dark border-3"
@@ -156,8 +161,7 @@ const CreateAnnonce = ({ tabCreateAnnonce, fetchAnnonceUser }) => {
           <div className="d-flex">
             <div className="col-5 ps-4 pt-2">
               <input
-                type="datetime-local"
-                id="meeting-time"
+                type="date"
                 name="dateBegin"
                 value={values.dateBegin}
                 onChange={handleChange}
@@ -168,8 +172,7 @@ const CreateAnnonce = ({ tabCreateAnnonce, fetchAnnonceUser }) => {
 
             <div className="col-5 ps-4 pt-2">
               <input
-                type="datetime-local"
-                id="meeting-time"
+                type="date"
                 name="dateEnd"
                 value={values.dateEnd}
                 onChange={handleChange}
@@ -179,14 +182,14 @@ const CreateAnnonce = ({ tabCreateAnnonce, fetchAnnonceUser }) => {
             </div>
           </div>
 
-          <div className="col-5 ps-4 pt-2">
+          <div className=" button col-4 ps-4 pt-2">
             {/* <Input type="file" name="file" onChange={handleFileChange} /> */}
-            <button type="submit" className="btn btn-light ms-4 my-2">
+            <button type="submit" className="btn btn-light col-12 ms-3 my-2">
               Valider
             </button>
             <button
               type="submit"
-              className="btn btn-danger ms-3 my-2"
+              className="btn btn-danger col-12 ms-3 my-2"
               onClick={tabCreateAnnonce}
             >
               Annuler
