@@ -104,16 +104,6 @@ const Calendrier = () => {
     setCoordinates(latLng);
   };
 
-  const changeBeginDate = (e) => {
-    setBeginDate(e.target.value);
-    console.log(beginDate);
-  };
-
-  const changeEndDate = (e) => {
-    setEndDate(e.target.value);
-    console.log(endDate);
-  };
-
   return (
     <Container>
       <div className="date">

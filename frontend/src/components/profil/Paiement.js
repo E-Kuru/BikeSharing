@@ -31,6 +31,7 @@ const Paiement = () => {
           display: "flex",
           justifyContent: "space-around",
           alignItems: "center",
+          flexDirection: "column"
         }}
       >
         <h1>Payer en ligne</h1>

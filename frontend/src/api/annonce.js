@@ -28,12 +28,26 @@ const createAnnonce = async (values) => {
     body: JSON.stringify(values),
   })
 
-  if (response.status >= 400) {
-    throw response.statusText
-  }
+  // if (response.status >= 400) {
+  //   throw response.statusText
+  // }
 
   const data = await response.json()
-  return data
+  if (data.error){
+    alert(data.error)
+    return
+  }
+
+  const formdata = new FormData()
+  formdata.append('photo', values.file, values.file.name)
+
+    const upload = await fetch(`http://localhost:5000/files/${data._id}`, {
+    method: 'post',
+    ...options,
+    body: formdata
+    })
+
+    return
 }
 
 

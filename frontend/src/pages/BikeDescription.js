@@ -3,12 +3,13 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import styled from "styled-components";
 import velodeville from "../images/velodeville.png";
-import { useEffect, useState} from "react";
+import { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import { options } from "../api/config";
 import { MdOutlineStarPurple500 } from "react-icons/md";
-import { useNavigate, useParams } from "react-router-dom";
 
 const BikeDescription = () => {
+
   const { id } = useParams();
   // const [bike, setBike] = useState(null);
 
@@ -28,8 +29,29 @@ const BikeDescription = () => {
     const res = await bike.json();
 
     setAnnonce(res);
+
+    console.log(res);
   };
 
+  const fetchRental = async () => {
+
+    const rental = {
+      dateBegin : annonce.dateBegin,
+      dateEnd : annonce.dateEnd,
+      status : "En attente",
+      price : annonce.price
+ }
+         const PostRental = await fetch(`http://localhost:5000/location/${annonce._id}`, {
+              method : "post",
+         ...options,
+         body : JSON.stringify(rental)
+    })
+
+         const res = await PostRental.json()
+
+        navigate(`/location-borrower/${res._id}`);
+  };
+  
   const Box = styled.div`
     display: flex;
     flex-direction: row;
@@ -65,18 +87,6 @@ const BikeDescription = () => {
     }
   `;
 
-  const Div = styled.div`
-    color: rgb(250, 250, 145);
-    display: block;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: flex-end;
-    align-items: flex-end;
-    align-content: space-around;
-    padding-top: 12px;
-    background: red;
-  `;
 
   const Stars = styled.div`
     margin-top: 10px;
@@ -176,31 +186,6 @@ const BikeDescription = () => {
     }
   `;
 
-    
-    
-     
-     const fetchRental = async ()  => {
-
-          const rental = {
-               dateBegin : annonce.dateBegin,
-               dateEnd : annonce.dateEnd,
-               status : "En attente",
-               price : annonce.price
-          }
-
-          const PostRental = await fetch(`http://localhost:5000/location/`, {
-               method : "post", 
-          ...options,
-          body : JSON.stringify(rental)
-     })
-     
-          const res = await PostRental.json()
-          
-     navigate(`/location-borrower/${res._id}`)
-
-     }
-
-   
   return (
     <>
       <Navbar />
@@ -211,7 +196,7 @@ const BikeDescription = () => {
           }}
         >
           <div className="info">
-            <h4>{annonce.categorie} Vélo de ville</h4>
+            <h4>{annonce.categorie}</h4>
             <h5>{annonce.price}€/h</h5>
           </div>
 
@@ -230,7 +215,7 @@ const BikeDescription = () => {
           <div className="description">
             <h3>Description : </h3>
             <p>
-              {annonce.description}
+              {annonce.description}.
               {/* Lorem Ipsum is simply dummy text of the
               printing and typesetting industry. Lorem Ipsum has been the
               industry's standard dummy text ever since the 1500s, when an
