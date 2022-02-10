@@ -22,8 +22,6 @@ app.get('/', async (req,res) => {
 // Récupérer toutes les locations d'un utilisateur
 
 app.get('/lender', verifyUser, async (req,res) => {
-
-    console.log(req.user);
     
     try {
         const allLocations = await Location.find({lender : req.user}).exec()
@@ -35,8 +33,6 @@ app.get('/lender', verifyUser, async (req,res) => {
 
 app.get('/borrower', verifyUser, async (req,res) => {
 
-    console.log(req.user);
-    
     try {
         const allLocations = await Location.find({borrower : req.user}).exec()
         res.json(allLocations)

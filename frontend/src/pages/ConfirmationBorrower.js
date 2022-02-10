@@ -4,29 +4,52 @@ import Footer from "../components/Footer"
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import { options } from "../api/config";
-import { getLocationUser } from "../api/location";
-
+// import { getLocationUser } from "../api/location"; 
 
 const ConfirmationBorrower = () => {
 
   const {id} = useParams()
   
+  const [borowwerRental, setBorrowerRental] = useState({})
+  const [Messages, setMessages] = useState([])
+
   useEffect( () => {
     getOneBorrowerRental()
+    // postConversation()
   }, [])
 
-  const [borowwerRental, setBorrowerRental] = useState({})
-
   const getOneBorrowerRental = async () => {
+
     const response = await fetch(`http://localhost:5000/location/borrower/${id}`,{
         ...options,
     })
 
-  const data = await response.json()
-    
-  setBorrowerRental(data)
-}
+    const data = await response.json()
+      
+    setBorrowerRental(data)
 
+    postConversation(data._id)
+  }
+
+  const postConversation = async (rentalId) => {
+
+    const response = await fetch(`http://localhost:5000/conversation/${id}`, {
+      method : "post",
+      ...options,
+    })
+
+    const res = await response.json()
+
+    console.log(res);
+
+    const messages = await fetch(`http://localhost:5000/message/${res._id}`,{
+      ...options
+    })
+
+    const allMessages = await messages.json()
+
+    setMessages(allMessages)
+  }
 
     const AllContent =  styled.div `
       margin: 1% 0 4% 0%;
@@ -142,7 +165,15 @@ const ConfirmationBorrower = () => {
           <h1>Messagerie</h1>
         </div>
         <div className="message-content">
-          {/* Les messages */}
+          {/* {!Messages ? (
+            <h1>Loadding...</h1>
+          ) : (
+            Messages.map(e => (
+              <div className="message">
+                <p>{e.content}</p>
+              </div>
+            ))
+          )} */}
         </div>
         <form >
         <input type="text" placeholder="Message..." />

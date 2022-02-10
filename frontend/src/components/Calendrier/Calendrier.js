@@ -68,7 +68,7 @@ const Box = styled.div`
 `;
 
 const Calendrier = () => {
-  const { setAnnonceDate, annonceDate } = useContext(UserContext);
+  const { annonceDate, setAnnonceDate } = useContext(UserContext);
   const [address, setAddress] = useState("");
   const [center, setCenter] = useState({ lat: 48.8646434, lon: 2.3714107 });
   const [coordinates, setCoordinates] = useState({

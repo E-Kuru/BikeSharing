@@ -140,14 +140,14 @@ const BikePage = () => {
 
   const fetchAnnonce = async (categ) => {
 
-      const response = await fetch(`http://localhost:5000/annonce/${categ}`)
+      const response = await fetch(`http://localhost:5000/annonce/categorie/${categ}`)
     
       const data = await response.json()
         
       setBikes(data);
   };
 
-  const getAllAnnonce = async (categ) => {
+  const getAllAnnonce = async () => {
 
       const response = await getAnnonce()
             
