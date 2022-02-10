@@ -2,31 +2,61 @@ import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar"
 import Footer from "../components/Footer"
 import styled from "styled-components";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { options } from "../api/config";
-import { getLocationUser } from "../api/location";
-
+import moment from "moment";
 
 const ConfirmationBorrower = () => {
 
   const {id} = useParams()
+
+  const navigate = useNavigate()
   
+  const [borowwerRental, setBorrowerRental] = useState({})
+  const [Messages, setMessages] = useState([])
+
   useEffect( () => {
     getOneBorrowerRental()
+    // postConversation()
   }, [])
 
-  const [borowwerRental, setBorrowerRental] = useState({})
-
   const getOneBorrowerRental = async () => {
+
     const response = await fetch(`http://localhost:5000/location/borrower/${id}`,{
         ...options,
     })
 
-  const data = await response.json()
-    
-  setBorrowerRental(data)
-}
+    const data = await response.json()
+      
+    setBorrowerRental(data)
 
+    postConversation(data._id)
+  }
+
+  const postConversation = async (rentalId) => {
+
+    const response = await fetch(`http://localhost:5000/conversation/${id}`, {
+      method : "post",
+      ...options,
+    })
+
+    const res = await response.json()
+
+    console.log(res);
+
+    const messages = await fetch(`http://localhost:5000/message/${res._id}`,{
+      ...options
+    })
+
+    const allMessages = await messages.json()
+
+    setMessages(allMessages)
+  }
+
+  const submit = () => {
+    alert('Félicitation votre location est confirmée !!')
+    navigate('/')
+  }
 
     const AllContent =  styled.div `
       margin: 1% 0 4% 0%;
@@ -124,12 +154,11 @@ const ConfirmationBorrower = () => {
           <h1>Confirmez votre location</h1>
           <div className="all-list">
             <ol>
-              <li>Client : </li>
-              <li>Date : {borowwerRental.dateBegin} {borowwerRental.dateEnd} </li>
-              <li>Lieu : </li>
+              <li>Date de début : {moment(borowwerRental.dateBegin).format("DD-MM-YYYY")}</li>
+              <li>Date de fin : {moment(borowwerRental.dateEnd).format("DD-MM-YYYY")}  </li>
               <li>Prix : {borowwerRental.price}</li>
-              <li>Frais de service : </li>
-              <li>Total : </li>
+              <li>Frais de service : 4€ </li>
+              <li>Total : {borowwerRental.price + 4}€ </li>
             </ol>
           </div>
           <div className="all-buttons">
@@ -142,11 +171,19 @@ const ConfirmationBorrower = () => {
           <h1>Messagerie</h1>
         </div>
         <div className="message-content">
-          {/* Les messages */}
+          {/* {!Messages ? (
+            <h1>Loadding...</h1>
+          ) : (
+            Messages.map(e => (
+              <div className="message">
+                <p>{e.content}</p>
+              </div>
+            ))
+          )} */}
         </div>
         <form >
         <input type="text" placeholder="Message..." />
-        <button>Envoyer</button>
+        <button onClick={() => submit()}>Envoyer</button>
         </form>
       </Messagerie>
 

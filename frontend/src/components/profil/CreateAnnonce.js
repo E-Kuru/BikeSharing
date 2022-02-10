@@ -4,6 +4,7 @@ import * as Yup from "yup";
 import styled from "styled-components";
 import { createAnnonce } from "../../api/annonce";
 import Geocode from "react-geocode";
+import { grey, red } from "../../style/colors";
 
 Geocode.setApiKey("AIzaSyBJIeo6IGX39PtiojU7LIc4Vq1zYlzj4pQ");
 
@@ -18,50 +19,60 @@ const Container = styled.div`
 const Content = styled.div`
   width: 100%;
 `;
+
 const Input = styled.input`
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+  border: solid 1px ${(props) => (props.error ? red : grey)};
 `;
 const CreateAnnonce = ({ tabCreateAnnonce, fetchAnnonceUser }) => {
 
-  const { values, errors, handleSubmit, handleChange } = useFormik({
-    initialValues: {
-      name: "",
-      description: "",
-      city: "",
-      categorie: "",
-      price: "",
-      location: "",
-      dateBegin: "",
-      dateEnd: "",
-    },
-    onSubmit: async (values) => {
-      console.log(values);
-      const { results } = await Geocode.fromAddress(values.location); // Get latitude & longitude from address.
-      values.location = {
-        type: "Point",
-        coordinates: [
-          results[0].geometry.location.lat,
-          results[0].geometry.location.lng,
-        ],
-      };
-      console.log(values);
+  const { values, errors, handleSubmit, handleChange, setFieldValue } =
+    useFormik({
+      initialValues: {
+        name: "",
+        description: "",
+        location: "",
+        city: "",
+        categorie: "",
+        price: "",
+        dateBegin: "",
+        dateEnd: "",
+      },
 
-      const response = await createAnnonce(values);
-      fetchAnnonceUser(response);
-      tabCreateAnnonce();
-    },
+      onSubmit: async (values) => {
+        console.log(values);
+        const { results } = await Geocode.fromAddress(values.location); // Get latitude & longitude from address.
+        values.location = {
+          type: "Point",
+          coordinates: [
+            results[0].geometry.location.lat,
+            results[0].geometry.location.lng,
+          ],
+        };
+        console.log(values);
 
-    validationSchema: Yup.object().shape({
-      name: Yup.string()
-        .min(4, "nom trop court")
-        .required("le nom est requis"),
-    }),
-  });
+        const response = await createAnnonce(values);
+        fetchAnnonceUser(response);
+        tabCreateAnnonce();
+      },
 
-  // const handleFileChange = (e) => {
-  //   console.log(e.target.files[0]);
-  //   formik.setFieldValue("file", e.target.files[0]);
-  // };
+      validateOnChange: false,
+      validationSchema: Yup.object({
+        name: Yup.string().min(3, "nom trop court").required("nom requis"),
+        categorie: Yup.string().required("catégorie requise"),
+        description: Yup.string().required("description requise"),
+        city: Yup.string().required("ville requise"),
+        price: Yup.string().required("prix requis"),
+        dateBegin: Yup.string().required("date de début requise"),
+        dateEnd: Yup.string().required("date de fin requise"),
+      }),
+    });
+
+  const handleFileChange = (e) => {
+    console.log(e.target.files[0]);
+    setFieldValue("file", e.target.files[0]);
+  };
+
 
   return (
     <Container>
@@ -79,6 +90,7 @@ const CreateAnnonce = ({ tabCreateAnnonce, fetchAnnonceUser }) => {
               className="form-control border border-dark border-3 my-1"
             
             />
+            {errors.name}
           </div>
           {errors && <p className="text-white">{errors.name}</p> }
           <div className="col-10 ps-4 pt-2">
@@ -93,7 +105,8 @@ const CreateAnnonce = ({ tabCreateAnnonce, fetchAnnonceUser }) => {
               <option>VTC</option>
               <option>Vélo de ville</option>
               <option>Autre...</option>
-            </select>
+            </select>{" "}
+            {errors.categorie}
           </div>
 
           <div className="col-10 ps-4 pt-2">
@@ -105,8 +118,18 @@ const CreateAnnonce = ({ tabCreateAnnonce, fetchAnnonceUser }) => {
               placeholder="Description..."
               className="form-control border border-dark border-3 my-1"
             />
+            {errors.description}
           </div>
-
+          <div className="col-10 ps-4 pt-2">
+            <input
+              type="text"
+              name="location"
+              value={values.location}
+              onChange={handleChange}
+              placeholder="address"
+              className="form-control border border-dark border-3 my-1"
+            />
+          </div>
           <div className="col-10 ps-4 pt-2">
             <Input
               type="text"
@@ -127,17 +150,7 @@ const CreateAnnonce = ({ tabCreateAnnonce, fetchAnnonceUser }) => {
               placeholder="Prix..."
               className="form-control border border-dark border-3 my-1"
             />
-          </div>
-
-          <div className="col-10 ps-4 pt-2">
-            <input
-              type="text"
-              name="location"
-              value={values.location}
-              onChange={handleChange}
-              placeholder="address"
-              className="form-control border border-dark border-3 my-1"
-            />
+            {errors.price}
           </div>
 
           <div className="d-flex">
@@ -150,6 +163,7 @@ const CreateAnnonce = ({ tabCreateAnnonce, fetchAnnonceUser }) => {
                 onChange={handleChange}
                 className="form-control border border-dark border-3 my-1"
               />
+              {errors.dateBegin}
             </div>
 
             <div className="col-5 ps-4 pt-2">
@@ -161,6 +175,7 @@ const CreateAnnonce = ({ tabCreateAnnonce, fetchAnnonceUser }) => {
                 onChange={handleChange}
                 className="form-control border border-dark border-3 my-1"
               />
+              {errors.dateEnd}
             </div>
           </div>
 

@@ -18,7 +18,6 @@ const files = require('./routes/files')
 
 dbConnect()
 
-
 app.use(cors({
   origin: true,
   credentials: true

@@ -2,20 +2,15 @@ import { createContext, useEffect, useState } from "react";
 
 import { getMe } from "../api/auth";
 
-
-
 const UserContext = createContext({});
 
 const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [annonce, setAnnonce] = useState([])
 
-
   useEffect(() => {
     getUser();
   }, []);
-
-
 
   const getUser = async () => {
     const fetchUser = await getMe();
@@ -24,9 +19,6 @@ const UserProvider = ({ children }) => {
       setUser(fetchUser);
     }
   };
-
-
-
 
   const value = {
     user,

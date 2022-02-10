@@ -24,21 +24,21 @@ app.get('/', async (req,res) => {
 app.post('/:id', verifyUser, async (req,res) => {
 
     // Id de la location 
+    
     const { id } = req.params
     
     try{
 
         const locationUser = await Location.findById(id)
-        console.log("id location",locationUser)
-        
+
         const newConversation = await new Conversation({
             borrower: req.user,
             location: id,
-            lender: locationUser.lender
+            lender: locationUser.lender,
+            rental : locationUser._id
         })
 
         const conversationInsered = await newConversation.save()
-        console.log("conversation",newConversation)
 
         const findUser = await User.findById(req.user)
         findUser.conversations = [...findUser.conversations, conversationInsered._id]

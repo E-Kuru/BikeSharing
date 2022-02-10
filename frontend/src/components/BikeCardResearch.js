@@ -1,6 +1,5 @@
 import { useRef, useEffect } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import BikeImage from "../images/BikeImage.jpg";
 
 
@@ -13,8 +12,6 @@ const BikeCardResearch = (props) => {
       ref.current.scrollIntoView({ behavior: "smooth" });
     }
   }, [selectedBike, props.id]);
-
-  console.log(props)
 
   const CardBox = styled.div`
   margin: 0px 0px 30px 0px;

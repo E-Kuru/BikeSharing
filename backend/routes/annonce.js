@@ -25,7 +25,6 @@ app.get('/user',  async (req,res) => {
     
     try{
         const annonces = await Annonce.find({user: req.user }).exec()
-        console.log(annonces)
 
         res.json(annonces)
         
@@ -53,10 +52,10 @@ app.get('/:id', async (req,res) => {
 
 // Récupérer les annonces en fonction de leur catégorie 
 
-app.get('/:categorie', async (req,res) => {
+app.get('/categorie/:categorie', async (req,res) => {
     
     const {categorie} = req.params
-    
+
     try{
         const annonces = await Annonce.find({ categorie : categorie}).exec()
         
@@ -66,7 +65,6 @@ app.get('/:categorie', async (req,res) => {
         res.status(500).json({ error: err })
     }
 })
-
 
 // Trouver des locations dans un secteur proche
 
@@ -146,7 +144,6 @@ app.post('/', verifyUser, async (req,res) => {
         })
         
         const OneAnnonce = await annonce.save()
-        console.log(OneAnnonce)
 
         const findUser = await User.findById(req.user)
         findUser.annonces = [...findUser.annonces, OneAnnonce._id]
@@ -177,7 +174,6 @@ app.put('/:id', verifyUser, async (req,res) => {
         // res.status(500).json({ error: err })
     }
 })
-
 
 // Supprimer une annonce
 

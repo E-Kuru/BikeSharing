@@ -18,14 +18,32 @@ app.get('/', async (req,res) => {
     }
 })
 
+// Récupérer tous les messages d'une conversation
+
+app.get('/:id', async (req,res) => {
+    
+    // Id de la conversation 
+
+    const { id } = req.params
+
+    try{
+        const messages = await Message.find({conversation : id}).exec()
+        
+        res.json(messages).status(200)
+        
+    } catch (err) {
+        res.status(500).json({ error: err })
+    }
+})
+
 // Post pour créer un message
 
 app.post('/:id', verifyUser, async (req,res) => {
+
     const { id } = req.params
     
     try{
         const findConversation = await Conversation.findOne({ location : id})
-        console.log("id location", findConversation)
         const message = await new Message({
             ...req.body,
             user: req.user,
@@ -33,8 +51,6 @@ app.post('/:id', verifyUser, async (req,res) => {
         })
 
         const messageInsered = await message.save()
-        console.log(messageInsered)
-        
        
         findConversation.messages = [...findConversation.messages, messageInsered._id]
         findConversation.save()
