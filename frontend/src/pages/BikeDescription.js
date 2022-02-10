@@ -52,8 +52,9 @@ const BikeDescription = () => {
          if(res.error){
             alert("Vous n'êtes pas autorisé, veuillez créer un compte ou vous connectez.")
          }
-
-        navigate(`/location-borrower/${res._id}`);
+         else{
+           navigate(`/location-borrower/${res._id}`);
+         }
   };
   
   const Box = styled.div`
