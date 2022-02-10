@@ -1,13 +1,13 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { getCommandeUser } from "../../api/location";
+import { getCommandeUser, confirmLocation } from "../../api/location";
 import { getAnnonce } from "../../api/annonce";
 import styled from "styled-components";
 import moment from "moment";
 
 const CardBox = styled.div`
   border-radius: 5px;
-  height: 180px;
+  height: 230px;
   display: flex;
   overflow: hidden;
   background-color: white;
@@ -24,13 +24,14 @@ const CardContent = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
+
   
 `;
 const P = styled.p`
   font-size: 20px;
 `;
 const Container = styled.div`
-  height: 600px;
+  height: 1500px;
   width: 100%;
 `;
 
@@ -56,7 +57,11 @@ const MesCommandes = () => {
     setAnnonces(annonces);
   };
 
-  console.log(annonces);
+  const confirmLocations = async (id) => {
+    const response = await confirmLocation(id);
+    fetchCommandes();
+  };
+
 
   return (
     <Container>
@@ -64,14 +69,13 @@ const MesCommandes = () => {
         {commandes.length === 0 && (
           <p className="text-white my-3">Vous avez 0 commandes</p>
         )}
-        {commandes.map((commande) => {
+        {commandes.map((commande, i) => {
           let findAnnonce = annonces.find((e) => e._id === commande.annonce);
-          console.log(findAnnonce);
           if (findAnnonce === undefined) {
             return <p>erreur</p>;
           } else {
             return (
-              <CardBox className="col-8">
+              <CardBox className="col-8 mb-4">
                 <CardImage
                   src="https://levelomad.com/644-large_default/l-urbain.jpg"
                   alt=""
@@ -87,6 +91,9 @@ const MesCommandes = () => {
                     <P className="text-dark">
                       Date fin: {moment(commande.dateEnd).format("DD-MM-YYYY")}
                     </P>
+                    {commande.status === "En attente" ?
+                    <button className="btn btn-secondary" onClick={()=>confirmLocations(commande._id)}> En attente</button>:
+                    <button className="btn btn-success "> Confirmé</button>}
                   </div>
                 </CardContent>
               </CardBox>

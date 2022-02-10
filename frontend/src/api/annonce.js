@@ -80,11 +80,31 @@ const getAnnonceDate = async (dateBegin, dateEnd) => {
   return data
 }
 
+const getAnnonceAddress = async (lat, lng) => {
+  const response = await fetch(`http://localhost:5000/annonce/location/${lat}/${lng}`, {
+    ...options,
+  })
+
+  const data = await response.json()
+  return data
+}
+
+const getAnnonceAddressDate = async (dateBegin, dateEnd, lat, lng) => {
+  const response = await fetch(`http://localhost:5000/annonce/research/${dateBegin}/${dateEnd}/${lat}/${lng}`, {
+    ...options,
+  })
+
+  const data = await response.json()
+  return data
+}
+
 export {
   getAnnonce,
   deleteAnnonce,
   modifyAnnonce,
   getAnnonceUser,
   createAnnonce,
-  getAnnonceDate
+  getAnnonceDate,
+  getAnnonceAddress,
+  getAnnonceAddressDate
 }

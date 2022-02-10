@@ -70,42 +70,26 @@ app.get('/:categorie', async (req,res) => {
 
 // Trouver des locations dans un secteur proche
 
-app.get('/location/:lat/:lng', async (req,res) => {
+// app.get('/location/:lat/:lng', async (req,res) => {
 
-    const {lat, lng} = req.params
+//     const {lat, lng} = req.params
 
-    const options = {
-        location : {
-            $geoWithin : {
-                $centerSphere : [[Number(lat),Number(lng)], 15 / 3963.2]
-            }
-        }
-    }
+//     const options = {
+//         location : {
+//             $geoWithin : {
+//                 $centerSphere : [[Number(lat),Number(lng)], 15 / 3963.2]
+//             }
+//         }
+//     }
 
-    const findRentals = await Annonce.find(options)
+//     const findRentals = await Annonce.find(options)
 
-    res.json(findRentals)
-})
+//     res.json(findRentals)
+// })
 
 // Récupérer les annonces disponibles en fontion des dates
 
-app.get('/:dateBegin/:dateEnd', async (req,res) => {
-
-    const {dateBegin, dateEnd} = req.params
-    try{
-        const annonces = await Annonce.find()
-        const findDates = annonces.filter(e => moment(e.dateBegin).format("YYYY-MM-DD") >= dateBegin 
-        &&  moment(e.dateEnd).format("YYYY-MM-DD") <= dateEnd)
-        
-        console.log("annonce", findDates)
-        res.json(findDates)
-    }
-    catch (err) {
-        res.status(500).json({ error: err })
-    }
-})
-
-// app.get('/:dateBegin/:dateEnd/:adress', async (req,res) => {
+// app.get('/:dateBegin/:dateEnd', async (req,res) => {
 
 //     const {dateBegin, dateEnd} = req.params
 //     try{
@@ -120,6 +104,34 @@ app.get('/:dateBegin/:dateEnd', async (req,res) => {
 //         res.status(500).json({ error: err })
 //     }
 // })
+
+
+// Récupérer les annonces disponibles en fontion des dates et de l'adresse
+
+app.get('/research/:dateBegin/:dateEnd/:lat/:lng', async (req,res) => {
+
+    const {dateBegin, dateEnd, lat, lng} = req.params
+
+    const options = {
+        location : {
+            $geoWithin : {
+                $centerSphere : [[Number(lat),Number(lng)], 15 / 3963.2]
+            }
+        }
+    }
+    try{
+        const annonces = await Annonce.find(options)
+        const findDates = annonces.filter(e => moment(e.dateBegin).format("YYYY-MM-DD") >= dateBegin 
+        &&  moment(e.dateEnd).format("YYYY-MM-DD") <= dateEnd) 
+        
+        console.log("annonce", findDates)
+        res.json(findDates)
+    }
+    catch (err) {
+        res.status(500).json({ error: err })
+    }
+})
+
 
 // Créer une annonce
 

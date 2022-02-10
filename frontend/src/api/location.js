@@ -30,7 +30,18 @@ const getOneLenderRental = async () => {
   return data
 }
 
+const confirmLocation = async ( _id) => {
+  const response = await fetch(`http://localhost:5000/location/location/${_id}`, {
+    method: 'put',
+    ...options,
+  })
+
+  const data = await response.json()
+  return data
+}
+
 export {
   getCommandeUser,
-  getLocationUser
+  getLocationUser,
+  confirmLocation
 }

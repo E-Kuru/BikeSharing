@@ -13,16 +13,17 @@ const Container = styled.div`
   border-radius: 5px;
   height: 700px;
   background-color: black;
-  padding: 60px;
+  padding-bottom: 10px;
 `;
 const Content = styled.div`
   width: 100%;
 `;
 const Input = styled.input`
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 `;
 const CreateAnnonce = ({ tabCreateAnnonce, fetchAnnonceUser }) => {
-  const formik = useFormik({
+
+  const { values, errors, handleSubmit, handleChange } = useFormik({
     initialValues: {
       name: "",
       description: "",
@@ -50,42 +51,43 @@ const CreateAnnonce = ({ tabCreateAnnonce, fetchAnnonceUser }) => {
       tabCreateAnnonce();
     },
 
-    // validationSchema: Yup.object().shape({
-    //   name: Yup.string()
-    //     .min(4, "nom trop court")
-    //     .required("le nom est requis"),
-    // }),
+    validationSchema: Yup.object().shape({
+      name: Yup.string()
+        .min(4, "nom trop court")
+        .required("le nom est requis"),
+    }),
   });
 
-  const handleFileChange = (e) => {
-    console.log(e.target.files[0]);
-    formik.setFieldValue("file", e.target.files[0]);
-  };
+  // const handleFileChange = (e) => {
+  //   console.log(e.target.files[0]);
+  //   formik.setFieldValue("file", e.target.files[0]);
+  // };
 
   return (
     <Container>
       <Content>
         <h1 className="text-light ps-4">Créer une annonce</h1>
 
-        <form onSubmit={formik.handleSubmit}>
+        <form onSubmit={handleSubmit}>
           <div className="col-10 ps-4 pt-2">
             <Input
               type="text"
               name="name"
-              value={formik.values.name}
-              onChange={formik.handleChange}
+              value={values.name}
+              onChange={handleChange}
               placeholder="Nom..."
               className="form-control border border-dark border-3 my-1"
+            
             />
           </div>
-
+          {errors && <p className="text-white">{errors.name}</p> }
           <div className="col-10 ps-4 pt-2">
             <select
               className="form-select border-dark border-3"
               aria-label="Default select example"
-              value={formik.values.categorie}
+              value={values.categorie}
               name="categorie"
-              onChange={formik.handleChange}
+              onChange={handleChange}
             >
               <option>VTT</option>
               <option>VTC</option>
@@ -98,8 +100,8 @@ const CreateAnnonce = ({ tabCreateAnnonce, fetchAnnonceUser }) => {
             <Input
               type="text"
               name="description"
-              value={formik.values.description}
-              onChange={formik.handleChange}
+              value={values.description}
+              onChange={handleChange}
               placeholder="Description..."
               className="form-control border border-dark border-3 my-1"
             />
@@ -109,8 +111,8 @@ const CreateAnnonce = ({ tabCreateAnnonce, fetchAnnonceUser }) => {
             <Input
               type="text"
               name="city"
-              value={formik.values.city}
-              onChange={formik.handleChange}
+              value={values.city}
+              onChange={handleChange}
               placeholder="Ville..."
               className="form-control border border-dark border-3 my-1"
             />
@@ -120,8 +122,8 @@ const CreateAnnonce = ({ tabCreateAnnonce, fetchAnnonceUser }) => {
             <Input
               type="number"
               name="price"
-              value={formik.values.price}
-              onChange={formik.handleChange}
+              value={values.price}
+              onChange={handleChange}
               placeholder="Prix..."
               className="form-control border border-dark border-3 my-1"
             />
@@ -131,8 +133,8 @@ const CreateAnnonce = ({ tabCreateAnnonce, fetchAnnonceUser }) => {
             <input
               type="text"
               name="location"
-              value={formik.values.location}
-              onChange={formik.handleChange}
+              value={values.location}
+              onChange={handleChange}
               placeholder="address"
               className="form-control border border-dark border-3 my-1"
             />
@@ -141,27 +143,29 @@ const CreateAnnonce = ({ tabCreateAnnonce, fetchAnnonceUser }) => {
           <div className="d-flex">
             <div className="col-5 ps-4 pt-2">
               <input
-                type="date"
+                type="datetime-local"
+                id="meeting-time"
                 name="dateBegin"
-                value={formik.values.dateBegin}
-                onChange={formik.handleChange}
+                value={values.dateBegin}
+                onChange={handleChange}
                 className="form-control border border-dark border-3 my-1"
               />
             </div>
 
             <div className="col-5 ps-4 pt-2">
               <input
-                type="date"
+                type="datetime-local"
+                id="meeting-time"
                 name="dateEnd"
-                value={formik.values.dateEnd}
-                onChange={formik.handleChange}
+                value={values.dateEnd}
+                onChange={handleChange}
                 className="form-control border border-dark border-3 my-1"
               />
             </div>
           </div>
 
           <div className="col-5 ps-4 pt-2">
-            <Input type="file" name="file" onChange={handleFileChange} />
+            {/* <Input type="file" name="file" onChange={handleFileChange} /> */}
             <button type="submit" className="btn btn-light ms-4 my-2">
               Valider
             </button>

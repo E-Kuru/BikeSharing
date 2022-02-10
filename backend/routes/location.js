@@ -114,4 +114,21 @@ app.post('/:id', verifyUser, async (req,res) => {
     }
 })
 
+app.put('/location/:id', verifyUser, async (req,res) => {
+    const { id } = req.params
+
+    try {
+        const locationUpdate =  await Location.findOneAndUpdate(
+            { _id: id },
+            { status : "Validé" },
+            { new : true}
+        ).exec()
+            console.log(locationUpdate)
+        res.json(locationUpdate)
+
+    } catch (err){
+        res.status(500).json({ error: err })
+    }
+})
+
 module.exports = app

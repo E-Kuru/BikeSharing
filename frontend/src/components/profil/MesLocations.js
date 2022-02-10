@@ -53,7 +53,7 @@ const MesLocations = () => {
     <Container>
       <div className="container my-5">
         {locations.length === 0 && (
-          <p className="text-white my-3">Vous avez 0 commandes</p>
+          <p className="text-white my-3">Vous avez 0 locations</p>
         )}
         {locations.map((location) => (
           <CardBox>

@@ -53,7 +53,7 @@ const Title = styled.div`
   display: flex;
 `;
 const Box2 = styled.div`
-  height: 70px;
+  height:70px;
 `;
 
 
@@ -130,12 +130,12 @@ const MesAnnonces = () => {
                           {annonce.categorie[0].toUpperCase() +
                             annonce.categorie.slice(1)}
                         </h5>
-                        <Box2 className=" ">
-                          <p className="text-dark ps-2" style={{ height: 70, overflow: 'hidden' }}>
-                            <span className="fw-bolder">Description : </span>{" "}
+                        {/* <Box2 className=" ">
+                          <p className="text-dark ps-2" style={{  overflow: 'hidden' }}>
+                            <span className="fw-bolder">Description : </span>
                             {annonce.description}
                           </p>
-                        </Box2>
+                        </Box2> */}
                         <p className="text-dark ps-2">
                           <span className="fw-bolder">Date début : </span>
                           {moment(annonce.dateBegin).format("DD-MM-YYYY")}

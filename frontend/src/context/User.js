@@ -8,7 +8,7 @@ const UserContext = createContext({});
 
 const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [annonceDate, setAnnonceDate] = useState([])
+  const [annonce, setAnnonce] = useState([])
 
 
   useEffect(() => {
@@ -32,8 +32,8 @@ const UserProvider = ({ children }) => {
     user,
     setUser,
     getUser,
-    annonceDate,
-    setAnnonceDate
+    annonce,
+    setAnnonce,
     
   };
 

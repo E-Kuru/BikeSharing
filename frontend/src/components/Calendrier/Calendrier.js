@@ -1,15 +1,15 @@
 import React from "react";
 import { useState, useContext } from "react";
-import PlacesAutocomplete, {
-  geocodeByAddress,
-  getLatLng,
-} from "react-places-autocomplete";
-import { getAnnonceDate } from "../../api/annonce";
+import PlacesAutocomplete, {geocodeByAddress,getLatLng,} from "react-places-autocomplete";
+import { getAnnonceDate, getAnnonceAddress, getAnnonceAddressDate } from "../../api/annonce";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { useFormik } from "formik";
 import moment from "moment";
 import { UserContext } from "../../context/User";
+import Geocode from "react-geocode";
+
+Geocode.setApiKey("AIzaSyBJIeo6IGX39PtiojU7LIc4Vq1zYlzj4pQ");
 
 const Container = styled.div`
   font-family: Gilda Display;
@@ -68,32 +68,54 @@ const Box = styled.div`
 `;
 
 const Calendrier = () => {
-  const { setAnnonceDate, annonceDate } = useContext(UserContext);
+  const { annonce, setAnnonce} = useContext(UserContext);
   const [address, setAddress] = useState("");
   const [center, setCenter] = useState({ lat: 48.8646434, lon: 2.3714107 });
   const [coordinates, setCoordinates] = useState({
     lat: null,
     lng: null,
   });
-  const [beginDate, setBeginDate] = useState("");
-  const [endDate, setEndDate] = useState("");
   const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: {
       dateBegin: "",
       dateEnd: "",
+      location: ""
     },
     onSubmit: async (values) => {
       console.log(values);
+      
+      // const responseDate = await getAnnonceDate(
+      //   moment(values.dateBegin).format("YYYY-MM-DD"),
+      //   moment(values.dateEnd).format("YYYY-MM-DD")
+      // );
+      // setAnnonce(responseDate);
+      // console.log(responseDate);
+      // navigate("/BikeResearch");
+     
+      // const responseAddress = await getAnnonceAddress(
+      //   results[0].geometry.location.lat,
+      //   results[0].geometry.location.lng
+      // )
+      // setAnnonce(responseAddress);
+      // console.log(responseAddress);
+      // navigate("/BikeResearch");
 
-      const response = await getAnnonceDate(
+      const { results } = await Geocode.fromAddress(values.location)
+      console.log(results)
+
+      const responseResearch = await getAnnonceAddressDate(
         moment(values.dateBegin).format("YYYY-MM-DD"),
-        moment(values.dateEnd).format("YYYY-MM-DD")
-      );
-      console.log(response);
-      setAnnonceDate(response);
+        moment(values.dateEnd).format("YYYY-MM-DD"),
+        results[0].geometry.location.lat,
+        results[0].geometry.location.lng
+      )
+      setAnnonce(responseResearch);
+      console.log(responseResearch);
       navigate("/BikeResearch");
+      
+     
     },
   });
 
@@ -104,42 +126,34 @@ const Calendrier = () => {
     setCoordinates(latLng);
   };
 
-  const changeBeginDate = (e) => {
-    setBeginDate(e.target.value);
-    console.log(beginDate);
-  };
-
-  const changeEndDate = (e) => {
-    setEndDate(e.target.value);
-    console.log(endDate);
-  };
-
   return (
     <Container>
-      <div className="date">
-        <h1>
-          LOUER VOTRE VÉLO EN <br />
-          QUELQUES CLICKS
-        </h1>
-        <PlacesAutocomplete
-          value={address}
-          onChange={setAddress}
-          onSelect={handleSelect}
-        >
-          {({
-            getInputProps,
-            suggestions,
-            getSuggestionItemProps,
-            loading,
-          }) => (
+      <form onSubmit={formik.handleSubmit}>
+        <div className="date">
+          
+          <h1>
+            LOUER VOTRE VÉLO EN <br />
+            QUELQUES CLICKS
+          </h1>
+          <PlacesAutocomplete
+            value={address}
+            onChange={setAddress}
+            onSelect={handleSelect}
+          >
+            {({
+              getInputProps,
+              suggestions,
+              getSuggestionItemProps,
+              loading,
+            }) => (
             <div>
-              <p> {coordinates.lat}</p>
-              <p> {coordinates.lng}</p>
-
               <Input
                 className="input-style"
                 style={{ width: "44.7rem" }}
                 {...getInputProps({ placeholder: "Emplacement actuel ..." })}
+                onChange={formik.handleChange}
+                value={formik.values.location}
+                name="location"
               />
 
               <div className="style">
@@ -161,32 +175,30 @@ const Calendrier = () => {
           )}
         </PlacesAutocomplete>
       </div>
-      <form onSubmit={formik.handleSubmit}>
         <Box>
           <div className="date">
             <h2>DE</h2>
-
             <Input
               type="datetime-local"
               id="meeting-time"
-              // name="meeting-time"
               name="dateBegin"
               onChange={formik.handleChange}
               value={formik.values.dateBegin}
             />
           </div>
+
           <div className="date">
             <h2>À</h2>
             <Input
               type="datetime-local"
               id="meeting-time"
-              // name="meeting-time"
               name="dateEnd"
               onChange={formik.handleChange}
               value={formik.values.dateEnd}
             />
           </div>
         </Box>
+
         <button
           type="submit"
           class="btn btn-light"
@@ -194,6 +206,7 @@ const Calendrier = () => {
         >
           RECHERCHER
         </button>
+        {annonce.lenght === 0 && <p className="text-light">Aucune annonce trouvéz</p>}
       </form>
     </Container>
   );
