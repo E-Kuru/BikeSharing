@@ -2,13 +2,15 @@ import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar"
 import Footer from "../components/Footer"
 import styled from "styled-components";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { options } from "../api/config";
 import moment from "moment";
 
 const ConfirmationBorrower = () => {
 
   const {id} = useParams()
+
+  const navigate = useNavigate()
   
   const [borowwerRental, setBorrowerRental] = useState({})
   const [Messages, setMessages] = useState([])
@@ -49,6 +51,11 @@ const ConfirmationBorrower = () => {
     const allMessages = await messages.json()
 
     setMessages(allMessages)
+  }
+
+  const submit = () => {
+    alert('Félicitation votre location est confirmée !!')
+    navigate('/')
   }
 
     const AllContent =  styled.div `
@@ -176,7 +183,7 @@ const ConfirmationBorrower = () => {
         </div>
         <form >
         <input type="text" placeholder="Message..." />
-        <button>Envoyer</button>
+        <button onClick={() => submit()}>Envoyer</button>
         </form>
       </Messagerie>
 
