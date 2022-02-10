@@ -89,7 +89,7 @@ const MesAnnonces = () => {
 
   return (
     <Container>
-      <div className="container my-4">
+      <div className="container my-2">
         {!tab ? (
           <>
             <Button onClick={() => setTab(true)}>+ Ajouter une annonce</Button>
@@ -100,7 +100,7 @@ const MesAnnonces = () => {
               {annonces.map((annonce, i) => (
                 <>
                   {index !== i ? (
-                    <div className="col-3 my-3" key={annonce.name}>
+                    <div className="col-4 my-3" key={annonce.name}>
                       <Box className="my-1 h-100 ">
                         <Image
                           className="image mb-3 rounded-top"

@@ -206,7 +206,7 @@ const Calendrier = () => {
         >
           RECHERCHER
         </button>
-        {annonce.lenght === 0 && <p className="text-light">Aucune annonce trouvéz</p>}
+     
       </form>
     </Container>
   );
