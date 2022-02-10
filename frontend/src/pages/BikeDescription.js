@@ -49,6 +49,10 @@ const BikeDescription = () => {
 
          const res = await PostRental.json()
 
+         if(res.error){
+            alert("Vous n'êtes pas autorisé, veuillez créer un compte ou vous connectez.")
+         }
+
         navigate(`/location-borrower/${res._id}`);
   };
   
