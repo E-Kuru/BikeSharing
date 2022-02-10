@@ -4,7 +4,7 @@ import Footer from "../components/Footer"
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import { options } from "../api/config";
-// import { getLocationUser } from "../api/location"; 
+import moment from "moment";
 
 const ConfirmationBorrower = () => {
 
@@ -147,12 +147,11 @@ const ConfirmationBorrower = () => {
           <h1>Confirmez votre location</h1>
           <div className="all-list">
             <ol>
-              <li>Client : </li>
-              <li>Date : {borowwerRental.dateBegin} {borowwerRental.dateEnd} </li>
-              <li>Lieu : </li>
+              <li>Date de début : {moment(borowwerRental.dateBegin).format("DD-MM-YYYY")}</li>
+              <li>Date de fin : {moment(borowwerRental.dateEnd).format("DD-MM-YYYY")}  </li>
               <li>Prix : {borowwerRental.price}</li>
-              <li>Frais de service : </li>
-              <li>Total : </li>
+              <li>Frais de service : 4€ </li>
+              <li>Total : {borowwerRental.price + 4}€ </li>
             </ol>
           </div>
           <div className="all-buttons">
