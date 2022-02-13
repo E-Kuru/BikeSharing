@@ -15,7 +15,7 @@ const Image = styled.img`
     min-width: 100%;
 `
 
-const EditAnnonce = ({annonce, annuler, fetchAnnonceUser, index}) => {
+const EditAnnonce = ({annonce, annuler, fetchAnnonceUser, index, test}) => {
 
     const formik = useFormik({
         initialValues: {
@@ -40,7 +40,7 @@ const EditAnnonce = ({annonce, annuler, fetchAnnonceUser, index}) => {
             <div className="col-3 my-3" key={annonce.name} >
                 <Box className="my-1 h-100 " >
                     <Image className="image mb-3 rounded-top"
-                    src="https://www.courte-focale.fr/wp-content/uploads/2012/07/The-Dark-Knight-Rises_0.jpg" alt="" 
+                    src="https://levelomad.com/644-large_default/l-urbain.jpg" alt="" 
                     >
                     </Image>
                     <form onSubmit={formik.handleSubmit}>

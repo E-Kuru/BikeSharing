@@ -28,39 +28,10 @@ const createAnnonce = async (values) => {
     body: JSON.stringify(values),
   })
 
-  // if (response.status >= 400) {
-  //   throw response.statusText
-  // }
-
   const data = await response.json()
-  if (data.error){
-    alert(data.error)
-    return
-  }
-
-  const formdata = new FormData()
-  formdata.append('photo', values.file, values.file.name)
-
-    const upload = await fetch(`http://localhost:5000/files/${data._id}`, {
-    method: 'post',
-    ...options,
-    body: formdata
-    })
-
-    return
+  return data
 }
 
-
-// const files = async (values, user) => {
-//   const formdata = new FormData()
-//   formdata.append('photo', values.file, values.file.name)
-
-//   const response = await fetch(`http://localhost:5000/files/${Annonce._id}`, {
-//     method: 'post',
-//     ...options,
-//     body: formdata
-//   })
-// }
 
 const deleteAnnonce = async _id => {
   const response = await fetch(`http://localhost:5000/annonce/${_id}`, {

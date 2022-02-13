@@ -158,6 +158,16 @@ const BikePage = () => {
     setSearch(e.target.value);
   }
 
+  let imageRamdon= ["https://levelomad.com/644-large_default/l-urbain.jpg",
+  "https://www.cleanrider.com/wp-content/uploads/2021/07/essai-velomad-0001_271220.jpg",
+  "https://dyw7ncnq1en5l.cloudfront.net/gallery/15/15441/5ae1694d-decathlon-elops-920-e-connect.jpeg",
+  "https://www.journaldugeek.com/content/uploads/2022/01/pipop.jpg",
+  "https://www.velo-cyclisme.com/wp-content/uploads/2017/10/le-velo-electrique.jpg",
+"https://www.veloderoute.com/photos/news/zooms/2022-01-13-170923_cannondale-supersix-evo-cx[7a15f3a5f358a9202862429281bcc24c164209023234].jpg",
+"https://www.veloderoute.com/photos/news/zooms/8a32172586f2e9dd75eb0d040c1692f5163646666513.jpg",
+"https://www.cleanrider.com/wp-content/uploads/2022/01/essai-velo-electrique-swapfiets0019.jpg",
+"https://caminade.eu/img/velos.route.et.vtt.fabriques.en.france/1610274124.21120.jpg"]
+
   return (
     <>
       <Navbar />
@@ -184,7 +194,12 @@ const BikePage = () => {
           {!bikes ? (
             <p>En cours de chargement...</p>
           ) : (
-            bikes.map((bike, index) => (
+            bikes.map((bike, index) => {
+              for ( index = 0; index<=imageRamdon.length; index++){
+                var test = imageRamdon[Math.floor(Math.random()*imageRamdon.length)]
+              }
+              console.log(test)
+                return (
               <BikeCard
                 key={index}
                 id = {bike._id}
@@ -195,8 +210,9 @@ const BikePage = () => {
                 image={bike.pictures}
                 description={bike.description}
                 selectedBike={selectedBike}
-              />
-            ))
+                test={test}
+              />)
+            })
           )}
         </BikesList>
         <BikeMap>
