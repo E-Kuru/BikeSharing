@@ -33,6 +33,7 @@ const createAnnonce = async (values) => {
   // }
 
   const data = await response.json()
+  console.log(data);
   if (data.error){
     alert(data.error)
     return

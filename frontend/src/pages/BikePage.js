@@ -217,12 +217,12 @@ const BikePage = () => {
             </BikesMap>
         </BikeMap>
       </Container>
-      <CenterPages>
+      {/* <CenterPages>
         <Pages onClick={() => setPage(1)}>1</Pages>
         <Pages onClick={() => setPage(2)}>2</Pages>
         <Pages onClick={() => setPage(3)}>3</Pages>
         <Pages onClick={() => setPage(4)}>4</Pages>
-      </CenterPages>
+      </CenterPages> */}
       <Footer />
     </>
   );

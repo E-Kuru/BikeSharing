@@ -33,7 +33,7 @@ const CreateAnnonce = ({ tabCreateAnnonce, fetchAnnonceUser }) => {
         description: "",
         location: "",
         city: "",
-        categorie: "",
+        categorie: "VTT",
         price: "",
         dateBegin: "",
         dateEnd: "",
@@ -59,10 +59,10 @@ const CreateAnnonce = ({ tabCreateAnnonce, fetchAnnonceUser }) => {
       validateOnChange: false,
       validationSchema: Yup.object({
         name: Yup.string().min(3, "nom trop court").required("nom requis"),
-        categorie: Yup.string().required("catégorie requise"),
-        description: Yup.string().required("description requise"),
-        city: Yup.string().required("ville requise"),
-        price: Yup.string().required("prix requis"),
+        categorie: Yup.string().required("Catégorie requise"),
+        description: Yup.string().required("Description requise"),
+        city: Yup.string().required("Ville requise"),
+        price: Yup.string().required("Prix requis"),
         dateBegin: Yup.string().required("date de début requise"),
         dateEnd: Yup.string().required("date de fin requise"),
       }),
@@ -101,11 +101,11 @@ const CreateAnnonce = ({ tabCreateAnnonce, fetchAnnonceUser }) => {
               name="categorie"
               onChange={handleChange}
             >
-              <option>VTT</option>
-              <option>VTC</option>
-              <option>Vélo de ville</option>
-              <option>Autre...</option>
-            </select>{" "}
+              <option >VTT</option>
+              <option >VTC</option>
+              <option >Vélo de ville</option>
+              <option >Autre...</option>
+            </select> 
             {errors.categorie}
           </div>
 
