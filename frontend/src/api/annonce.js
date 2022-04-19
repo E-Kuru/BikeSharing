@@ -28,11 +28,8 @@ const createAnnonce = async (values) => {
     body: JSON.stringify(values),
   })
 
-  // if (response.status >= 400) {
-  //   throw response.statusText
-  // }
-
   const data = await response.json()
+<<<<<<< HEAD
   console.log(data);
   if (data.error){
     alert(data.error)
@@ -49,19 +46,11 @@ const createAnnonce = async (values) => {
     })
 
     return
+=======
+  return data
+>>>>>>> 7bfea49a74583885e6effe7c91bdc80eb2186972
 }
 
-
-// const files = async (values, user) => {
-//   const formdata = new FormData()
-//   formdata.append('photo', values.file, values.file.name)
-
-//   const response = await fetch(`http://localhost:5000/files/${Annonce._id}`, {
-//     method: 'post',
-//     ...options,
-//     body: formdata
-//   })
-// }
 
 const deleteAnnonce = async _id => {
   const response = await fetch(`http://localhost:5000/annonce/${_id}`, {

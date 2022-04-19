@@ -74,7 +74,7 @@ const Div = styled.div`
             >
               <CardImage
                 style={
-                    {background : `url(${BikeImage}) no-repeat center/cover`}
+                    {background : `url(${props.test}) no-repeat center/cover`}
                 }
               />
               <CardContent>
